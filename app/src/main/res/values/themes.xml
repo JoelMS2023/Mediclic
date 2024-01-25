@@ -1,0 +1,21 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Mediclic" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/proyecto_Light</item>
+        <item name="android:textColorPrimary">@color/proyecto_Light</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Theme.Mediclic" parent="Base.Theme.Mediclic" />
+
+    <style name="Theme.Mediclic.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Mediclic.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Mediclic.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>

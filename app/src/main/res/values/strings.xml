@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">Mediclic</string>
+    <string name="text_logo"> Logo institutional</string>
+    <string name="title_cite">Schedule Appointment</string>
+    <string name="text_back"> Back</string>
+    <string name="text_login">Log In</string>
+    <string name="text_email">Email</string>
+    <string name="text_password">Password</string>
+    <string name="text_personalemail">Personal Email</string>
+    <string name="text_mypassword"> Mi Password</string>
+    <string name="title_resgister">Register</string>
+    <string name="text_fullname">Full Name</string>
+    <string name="text_fullpasword">Confirm Password</string>
+    <string name="text_formule">Complete the form</string>
+    <string name="text_createaccount"> Create new account</string>
+    <string name="text_countexisten"> Do you already have an account?</string>
+    <string name="text_image">Image</string>
+    <string name="text_username">User:</string>
+    <string name="text_myusername">Enter your username</string>
+    <string name="text_phone">Phone:</string>
+    <string name="text_address"> Address:</string>
+    <string name="text_name">Name:</string>
+    <string name="text_identification">Identification card:</string>
+    <string name="text_logout">Log Out</string>
+    <string name="text_update_profile">Update profile</string>
+    <string name="text_rol">Post</string>
+
+
+
+
+    <string name="home_op1">Schedule</string>
+    <string name="home_op2">attention hours</string>
+    <string name="home_op3">Treatments</string>
+    <string name="home_op4">Doctors</string>
+    <string name="home_op5">Edit or delete appointments</string>
+    <string name="home_op6">Medical history</string>
+
+
+
+    <string name="screen1">Upload a Video</string>
+    <string name="screen2">Create a Short</string>
+    <string name="screen3">Go Live</string>
+    <string name="screen1desc">Record a new video or select a video you already have on your phone.
+        Watch YouTube Videos for Free</string>
+    <string name="screen2desc">Create, edit, and upload your own short videos.
+        All you need is an idea and a phone to record and share Shorts. </string>
+    <string name="screen3desc">YouTube live streaming allows you to reach your community in real time.
+    Go live on YouTube from webcam, mobile and encoder streaming.</string>
+    <string name="startDesc">Create a long video or shorts and upload on youtube. Interact with your subscribers on youtube live.</string>
+    <string name="title_activity_principal">Principal</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+</resources>
