@@ -6,20 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
     
-    <View
-        android:id="@+id/topview"
-        android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:background="@drawable/by_iniciocolor">
-
-    </View>
 
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="60dp"
         android:src="@drawable/endocrinologia"
 
         />

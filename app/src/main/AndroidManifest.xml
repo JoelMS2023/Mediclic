@@ -13,6 +13,24 @@
         android:theme="@style/Theme.Mediclic"
         tools:targetApi="31">
         <activity
+            android:name=".Doctores.Ver_doctores"
+            android:exported="false" />
+        <activity
+            android:name=".Doctores.Det_doctores"
+            android:exported="false" />
+        <activity
+            android:name=".Doctores.Add_doctores"
+            android:exported="false" />
+        <activity
+            android:name=".Citas.Ver_citas"
+            android:exported="false" />
+        <activity
+            android:name=".Citas.Det_citas"
+            android:exported="false" />
+        <activity
+            android:name=".Citas.Add_citas"
+            android:exported="false" />
+        <activity
             android:name=".Principal"
             android:exported="false"
             android:label="@string/title_activity_principal"

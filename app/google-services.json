@@ -12,7 +12,20 @@
           "package_name": "com.joelmaza.mediclic"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "58905270224-c8pdncnv7pl1ia92ieu2eom8c0ijp0io.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.joelmaza.mediclic",
+            "certificate_hash": "0afca9aec02a0e928ce3bab194f02ab9dff327de"
+          }
+        },
+        {
+          "client_id": "58905270224-9br90qr1kh29avmv6r9duvm6ot0rk1jg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCu3SCfCSif8Hf8sMaRkomWJMfCU8SyvGs"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "58905270224-9br90qr1kh29avmv6r9duvm6ot0rk1jg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

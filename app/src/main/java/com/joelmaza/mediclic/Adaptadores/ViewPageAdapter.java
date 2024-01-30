@@ -1,4 +1,4 @@
-package com.joelmaza.mediclic.Adaptador;
+package com.joelmaza.mediclic.Adaptadores;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -30,7 +30,7 @@ public class ViewPageAdapter extends FragmentStateAdapter {
 
     public void addFragment(Fragment fragment){
         fragmentList.add(fragment);
-    }
+    }
 
 
 }

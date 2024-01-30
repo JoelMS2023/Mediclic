@@ -59,7 +59,7 @@
                 app:hintEnabled="false">
 
                 <EditText
-                    android:id="@+id/editText_Email"
+                    android:id="@+id/editText_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
@@ -96,7 +96,7 @@
                 app:hintEnabled="false" >
 
                 <EditText
-                    android:id="@+id/editText_Password"
+                    android:id="@+id/editText_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
@@ -119,9 +119,22 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="15dp"
-                android:backgroundTint="@color/proyecto_Light"
+                android:backgroundTint="@color/proyecto_light"
                 android:padding="15dp"
                 android:text="@string/text_login"
+                android:textSize="20sp" />
+            <Button
+                android:id="@+id/btn_registrarse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/success"
+                android:padding="15dp"
+                android:text="@string/title_resgister"
                 android:textSize="20sp" />
 
 
@@ -136,7 +149,7 @@
 
 
             <TextView
-                android:id="@+id/TengounacuentaTXT"
+                android:id="@+id/NoTengounacuentaTXT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -144,6 +157,7 @@
                 android:text="¿No tienes cuenta? ¿Registrate?"
                 android:textSize="18sp"
                 android:textStyle="bold">
+
 
 
             </TextView>

@@ -24,8 +24,8 @@
     <string name="text_logout">Log Out</string>
     <string name="text_update_profile">Update profile</string>
     <string name="text_rol">Post</string>
-
-
+    <string name="btn_add"> Add</string>
+    <string name="title_profile"> Profile</string>
 
 
     <string name="home_op1">Schedule</string>
@@ -34,7 +34,6 @@
     <string name="home_op4">Doctors</string>
     <string name="home_op5">Edit or delete appointments</string>
     <string name="home_op6">Medical history</string>
-
 
 
     <string name="screen1">Upload a Video</string>

@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.slideshow.SlideshowFragment">
+    android:layout_height="match_parent">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -34,7 +33,7 @@
                     android:id="@+id/txt_rol"
                     android:gravity="center"
                     android:layout_margin="5dp"
-                    android:textColor="@color/proyecto_night"
+                    android:textColor="@color/proyecto_dark"
                     >
                 </TextView>
 
@@ -52,32 +51,8 @@
 
             </ImageView>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/text_name"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="5sp"
-                android:textStyle="bold"
-                android:textSize="15sp"
-                android:gravity="center"
-                android:id="@+id/txt_nombre"
-                >
-            </TextView>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/text_myusername"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:textSize="15sp"
-                android:gravity="center"
-                android:id="@+id/txt_cedula"
-                android:layout_marginBottom="10sp"
-                >
-            </TextView>
+
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -100,7 +75,7 @@
                         android:layout_marginBottom="5dp"
                         />
                     <TextView
-                        android:id="@+id/Text_Name"
+                        android:id="@+id/txt_nombre"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
@@ -121,7 +96,7 @@
                         />
 
                     <EditText
-                        android:id="@+id/editTextTextEmailAddress"
+                        android:id="@+id/editTextEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
@@ -160,7 +135,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/txtdireccion"
+                        android:id="@+id/txt_direccion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="-"
@@ -176,7 +151,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/txtfecha_fin_contrato"
+                        android:id="@+id/txt_cedula"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="-"
