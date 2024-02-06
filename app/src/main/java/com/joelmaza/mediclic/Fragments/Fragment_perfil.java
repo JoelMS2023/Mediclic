@@ -1,5 +1,6 @@
 package com.joelmaza.mediclic.Fragments;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -29,16 +30,14 @@ import com.joelmaza.mediclic.R;
 
 public class Fragment_perfil extends Fragment {
     Button btn_salir, btn_update_profile;
-    TextView txt_nombre, txt_cedula,txt_direccion ;
+    TextView txt_nombre, txt_cedula,txt_direccion,txt_rol ;
     EditText editTextEmail, editTextTextPhone;
     Progress_dialog dialog;
     ImageView img_perfil;
     Alert_dialog alertDialog;
-    String URL_FOTO = "", NOMBRE = "";
     private FirebaseUser usuario;
-    private DatabaseReference dbReference;
-    DatabaseReference dbref;
-    String uid;
+    DatabaseReference dbReference;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -53,6 +52,7 @@ public class Fragment_perfil extends Fragment {
         img_perfil = vista.findViewById(R.id.img_perfil);
         dialog = new Progress_dialog(vista.getContext());
         alertDialog = new Alert_dialog(vista.getContext());
+        txt_rol = vista.findViewById(R.id.txt_rol);
 
         btn_update_profile = vista.findViewById(R.id.btn_update_profile);
 
@@ -60,30 +60,16 @@ public class Fragment_perfil extends Fragment {
 
         usuario = MainActivity.mAuth.getCurrentUser();
 
-
         if (usuario != null){
+
             editTextEmail.setText(usuario.getEmail());
 
-            dbReference.child("usuarios").child(usuario.getUid()).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot datos) {
+            MainActivity.ctlUsuario.Obtener_usuario(dbReference,MainActivity.mAuth.getUid(), user -> {
 
-                    if(datos.exists()){
+                txt_nombre.setText(user.nombre.trim());
+                txt_rol.setText(user.rol.toUpperCase().trim());
 
-                        String nombre = datos.child("nombre").getValue().toString();
-                        txt_nombre.setText(nombre);
-
-
-                    }
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
             });
-
 
 
         }
@@ -94,7 +80,10 @@ public class Fragment_perfil extends Fragment {
             SharedPreferences.Editor editor= Principal.preferences.edit();
             editor.putString("uid","");
             editor.putString("rol","");
-            //Principal.actividad.finish();
+            editor.apply();
+            startActivity(new Intent(vista.getContext(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+            requireActivity().finish();
+
 
         });
 

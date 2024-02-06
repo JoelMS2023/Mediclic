@@ -22,6 +22,9 @@
             android:name=".Doctores.Add_doctores"
             android:exported="false" />
         <activity
+            android:name=".Horarios.Ver_horarios"
+            android:exported="false" />
+        <activity
             android:name=".Citas.Ver_citas"
             android:exported="false" />
         <activity

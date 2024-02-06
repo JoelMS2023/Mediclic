@@ -39,7 +39,6 @@
             android:id="@+id/header_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/text_myusername"
             android:textSize="18sp"
             android:textColor="@color/white"
             >

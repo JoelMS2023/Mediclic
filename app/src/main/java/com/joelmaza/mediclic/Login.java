@@ -25,10 +25,8 @@ import com.joelmaza.mediclic.R;
 
 public class Login extends AppCompatActivity {
 
-    TextView NoTengounacuentaTXT;
     SharedPreferences preferences;
     DatabaseReference dbref;
-
     EditText  editText_email, editText_password;
 
     @Override
@@ -39,7 +37,6 @@ public class Login extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         Button btn_ingresar = (Button) findViewById(R.id.btn_ingresar);
         Button btn_registrarse= (Button) findViewById(R.id.btn_registrarse);
-        NoTengounacuentaTXT=(TextView) findViewById(R.id.NoTengounacuentaTXT);
 
         editText_email = (EditText) findViewById(R.id.editText_email);
         editText_password = (EditText) findViewById(R.id.editText_password);
@@ -47,7 +44,6 @@ public class Login extends AppCompatActivity {
         dbref= MainActivity.DB.getReference();
 
         preferences=getSharedPreferences("Mediclic", MODE_PRIVATE);
-
 
         toolbar.setOnClickListener(view -> finish());
 
@@ -82,14 +78,10 @@ public class Login extends AppCompatActivity {
                                                     i.setClass(getApplicationContext(), Principal.class);
                                                     startActivity(i);
 
-
-
                                                     editText_email.setText("");
                                                     editText_password.setText("");
 
                                                     finish();
-
-
 
                                                 }
 
@@ -124,13 +116,7 @@ public class Login extends AppCompatActivity {
             }
 
         });
-        NoTengounacuentaTXT.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Login.this, Registro.class));
 
-            }
-        });
         btn_registrarse.setOnClickListener(view -> {
             Intent i = new Intent();
             i.setClass(this, Registro.class);

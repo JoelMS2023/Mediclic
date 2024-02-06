@@ -1,10 +1,11 @@
 package com.joelmaza.mediclic;
 
-import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -15,10 +16,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
 
 
 import com.joelmaza.mediclic.databinding.ActivityPrincipalBinding;
@@ -27,43 +25,50 @@ public class Principal extends AppCompatActivity {
 
     public static String rol="";
     private AppBarConfiguration mAppBarConfiguration;
-    private ActivityPrincipalBinding binding;
     public static DatabaseReference databaseReference;
-    public static   SharedPreferences preferences;
-    public static Activity actividad;
-
-
+    public static  SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityPrincipalBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
         preferences=getSharedPreferences("Mediclic", MODE_PRIVATE);
         rol= preferences.getString("rol","");
 
+        if(MainActivity.mAuth.getUid() != null) {
 
-        setSupportActionBar(binding.appBarPrincipal.toolbar);
-        binding.appBarPrincipal.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        DrawerLayout drawer = binding.drawerLayout;
-        NavigationView navigationView = binding.navView;
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_profile, R.id.nav_horario)
-                .setOpenableLayout(drawer)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_principal);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
+            ActivityPrincipalBinding binding = ActivityPrincipalBinding.inflate(getLayoutInflater());
+            setContentView(binding.getRoot());
+
+            databaseReference = MainActivity.DB.getReference();
+
+            setSupportActionBar(binding.appBarPrincipal.toolbar);
+            binding.appBarPrincipal.fab.setOnClickListener(view -> Snackbar.make(view, "mazasalazarj@gmail.com", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show());
+            DrawerLayout drawer = binding.drawerLayout;
+            NavigationView navigationView = binding.navView;
+
+            View headerView = navigationView.getHeaderView(0);
+            TextView headerTextView = headerView.findViewById(R.id.header_username);
+
+            MainActivity.ctlUsuario.Obtener_usuario(databaseReference,MainActivity.mAuth.getUid(),user -> {
+
+                headerTextView.setText(user.nombre);
+
+            });
+
+
+            // Passing each menu ID as a set of Ids because each
+            // menu should be considered as top level destinations.
+            mAppBarConfiguration = new AppBarConfiguration.Builder(
+                    R.id.nav_home, R.id.nav_profile, R.id.nav_horario)
+                    .setOpenableLayout(drawer)
+                    .build();
+            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_principal);
+            NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+            NavigationUI.setupWithNavController(navigationView, navController);
+        }
+
     }
 
     @Override

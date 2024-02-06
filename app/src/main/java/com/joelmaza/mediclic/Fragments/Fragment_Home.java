@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.joelmaza.mediclic.Citas.Ver_citas;
 import com.joelmaza.mediclic.Doctores.Ver_doctores;
 import com.joelmaza.mediclic.Horarios.Ver_horarios;
 import com.joelmaza.mediclic.R;
@@ -29,7 +30,6 @@ public class Fragment_Home extends Fragment {
         card_doctores=(CardView)vista.findViewById(R.id.card_doctores) ;
 
 
-
         card_horario.setOnClickListener(view -> {
             startActivity(new Intent(vista.getContext(), Ver_horarios.class));
 
@@ -39,7 +39,9 @@ public class Fragment_Home extends Fragment {
 
         });
 
-
+        card_agendamiento.setOnClickListener(view -> {
+            startActivity(new Intent(vista.getContext(), Ver_citas.class));
+        });
 
 
         return vista;

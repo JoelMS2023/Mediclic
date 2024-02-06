@@ -19,7 +19,6 @@ public class Ver_citas extends AppCompatActivity {
 
         add_citas =findViewById(R.id.add_citas);
 
-
         if (Principal.rol.equals("Administrador")){
             add_citas.setVisibility(View.VISIBLE);
 
