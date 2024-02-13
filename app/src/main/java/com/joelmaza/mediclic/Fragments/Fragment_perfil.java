@@ -75,14 +75,27 @@ public class Fragment_perfil extends Fragment {
         }
 
         btn_salir.setOnClickListener(view -> {
-            MainActivity.mAuth.signOut();
 
-            SharedPreferences.Editor editor= Principal.preferences.edit();
-            editor.putString("uid","");
-            editor.putString("rol","");
-            editor.apply();
-            startActivity(new Intent(vista.getContext(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-            requireActivity().finish();
+            alertDialog.crear_mensaje("Confirmacion","Estas Seguro que deseas salir",builder -> {
+                builder.setPositiveButton("Aceptar",(dialog1, which) -> {
+
+
+                    MainActivity.mAuth.signOut();
+
+                    SharedPreferences.Editor editor= Principal.preferences.edit();
+                    editor.putString("uid","");
+                    editor.putString("rol","");
+                    editor.apply();
+                    startActivity(new Intent(vista.getContext(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                    requireActivity().finish();
+
+                });
+
+                builder.setNegativeButton("Cancelar",(dialog1, which) -> {});
+                builder.setCancelable(false);
+                builder.create().show();
+            });
+
 
 
         });

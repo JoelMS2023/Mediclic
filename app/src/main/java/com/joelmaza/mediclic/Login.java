@@ -15,11 +15,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.joelmaza.mediclic.Controllers.Alert_dialog;
+import com.joelmaza.mediclic.Controllers.Progress_dialog;
 import com.joelmaza.mediclic.R;
 
 
@@ -28,6 +31,8 @@ public class Login extends AppCompatActivity {
     SharedPreferences preferences;
     DatabaseReference dbref;
     EditText  editText_email, editText_password;
+    Progress_dialog dialog;
+    Alert_dialog alertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,8 @@ public class Login extends AppCompatActivity {
 
         editText_email = (EditText) findViewById(R.id.editText_email);
         editText_password = (EditText) findViewById(R.id.editText_password);
+        dialog = new Progress_dialog(this);
+        alertDialog = new Alert_dialog(this);
 
         dbref= MainActivity.DB.getReference();
 
@@ -48,6 +55,7 @@ public class Login extends AppCompatActivity {
         toolbar.setOnClickListener(view -> finish());
 
         btn_ingresar.setOnClickListener(view -> {
+            dialog.mostrar_mensaje("Iniciando sesión...");
 
             if(!editText_email.getText().toString().isEmpty() && !editText_password.getText().toString().isEmpty()){
 
@@ -68,7 +76,9 @@ public class Login extends AppCompatActivity {
 
                                             if(datos.exists()){
 
+
                                                 if(preferences.getString("uid","").isEmpty()) {
+                                                    dialog.ocultar_mensaje();
                                                     SharedPreferences.Editor editor = preferences.edit();
                                                     editor.putString("uid", user.getUid());
                                                     editor.putString("rol", datos.child("rol").getValue().toString());
@@ -91,6 +101,12 @@ public class Login extends AppCompatActivity {
 
                                         @Override
                                         public void onCancelled(@NonNull DatabaseError error) {
+                                            dialog.ocultar_mensaje();
+                                            alertDialog.crear_mensaje("Advertencia", "Error al Iniciar Sesión",builder -> {
+                                                builder.setCancelable(true);
+                                                builder.setNeutralButton("Aceptar", (dialogInterface, i) -> {});
+                                                builder.create().show();
+                                            });
 
                                         }
                                     });
@@ -103,15 +119,18 @@ public class Login extends AppCompatActivity {
                                     //}
 
                                 }else{
+                                    dialog.ocultar_mensaje();
                                     Toast.makeText(this, "Usuario no encontrado", Toast.LENGTH_LONG).show();
                                 }
 
                             }else{
+                                dialog.ocultar_mensaje();
                                 Toast.makeText(this, "Usuario y/o Clave Incorrectos",Toast.LENGTH_LONG).show();
                             }
 
                         });
             }else{
+                dialog.ocultar_mensaje();
                 Toast.makeText(this, "Ingresa el usuario y la clave",Toast.LENGTH_SHORT).show();
             }
 

@@ -1,5 +1,6 @@
 package com.joelmaza.mediclic;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
@@ -60,13 +61,28 @@ public class Principal extends AppCompatActivity {
 
             // Passing each menu ID as a set of Ids because each
             // menu should be considered as top level destinations.
-            mAppBarConfiguration = new AppBarConfiguration.Builder(
-                    R.id.nav_home, R.id.nav_profile, R.id.nav_horario)
-                    .setOpenableLayout(drawer)
-                    .build();
+
+            if(rol.equals("Administrador")) {
+                mAppBarConfiguration = new AppBarConfiguration.Builder(
+                        R.id.nav_home, R.id.nav_profile, R.id.nav_horario,R.id.nav_user)
+                        .setOpenableLayout(drawer)
+                        .build();
+            }else{
+                mAppBarConfiguration = new AppBarConfiguration.Builder(
+                        R.id.nav_home, R.id.nav_profile)
+                        .setOpenableLayout(drawer)
+                        .build();
+                binding.navView.getMenu().findItem(R.id.nav_horario).setVisible(false);
+                binding.navView.getMenu().findItem(R.id.nav_user).setVisible(false);
+
+            }
             NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_principal);
             NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
             NavigationUI.setupWithNavController(navigationView, navController);
+        }else {
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
+
         }
 
     }
