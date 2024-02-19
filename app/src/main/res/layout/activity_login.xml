@@ -136,6 +136,21 @@
                 android:padding="15dp"
                 android:text="@string/title_resgister"
                 android:textSize="20sp" />
+            <Button
+                android:id="@+id/sign_in_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Iniciar sesión con Google"
+                android:textSize="16sp"
+                android:textColor="#ffffff"
+                android:background="#ff5722"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"/>
+
 
 
         </LinearLayout>

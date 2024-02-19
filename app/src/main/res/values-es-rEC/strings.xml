@@ -61,6 +61,14 @@
 <string name="action_settings">Settings</string>
 
 
+    <string-array name="rol">
+        <item>Selecciona</item>
+        <item>Administrador</item>
+        <item>Doctor</item>
+        <item>Paciente</item>
+
+    </string-array>
+
 
 
 

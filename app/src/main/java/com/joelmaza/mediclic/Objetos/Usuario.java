@@ -10,12 +10,14 @@ public class Usuario {
     public String email;
     public String url_foto;
     public String rol;
+    public String cedula;
+    public String clave;
 
 
     public Usuario() {
     }
 
-    public Usuario(String uid, String nombre, String direccion, String telefono, String email, String url_foto, String rol) {
+    public Usuario(String uid, String nombre, String direccion, String telefono, String email, String url_foto, String rol, String cedula, String clave) {
         this.uid = uid;
         this.nombre=nombre;
         this.direccion=direccion;
@@ -23,6 +25,8 @@ public class Usuario {
         this.telefono=telefono;
         this.url_foto=url_foto;
         this.rol=rol;
+        this.cedula=cedula;
+        this.clave=clave;
     }
 }
 

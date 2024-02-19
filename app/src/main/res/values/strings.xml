@@ -57,4 +57,13 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
+
+
+    <string-array name="rol">
+        <item>Choose</item>
+        <item>Administrator</item>
+        <item>Doctor</item>
+        <item>Patient</item>
+    </string-array>
 </resources>

@@ -19,10 +19,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import com.joelmaza.mediclic.Adaptadores.Adaptador_usuarios;
+import com.joelmaza.mediclic.Controllers.Ctl_usuario;
 import com.joelmaza.mediclic.MainActivity;
 import com.joelmaza.mediclic.Objetos.Usuario;
+import com.joelmaza.mediclic.Principal;
 import com.joelmaza.mediclic.R;
 import com.joelmaza.mediclic.Registro;
+import com.joelmaza.mediclic.Usuarios.Add_usuario;
 
 import java.util.Objects;
 
@@ -34,7 +37,8 @@ public class fragmento_Usuario extends Fragment {
     RecyclerView recyclerview_usuarios;
     Adaptador_usuarios adaptadorUsuarios;
     DatabaseReference dbRef;
-    Button add_usuarios;
+    Button btn_add_usuario;
+    Ctl_usuario ctlUsuarios;
 
     @Nullable
     @Override
@@ -47,15 +51,16 @@ public class fragmento_Usuario extends Fragment {
         dbRef = MainActivity.DB.getReference();
         adaptadorUsuarios = new Adaptador_usuarios(getContext());
 
-        add_usuarios = vista.findViewById(R.id.add_usuarios);
+        btn_add_usuario = vista.findViewById(R.id.btn_add_usuario);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerview_usuarios.setLayoutManager(linearLayoutManager);
         recyclerview_usuarios.setAdapter(adaptadorUsuarios);
+        ctlUsuarios = new Ctl_usuario(Principal.databaseReference);
 
-        add_usuarios.setOnClickListener(v -> {
+        btn_add_usuario.setOnClickListener(v -> {
 
-            startActivity(new Intent(vista.getContext(), Registro.class));
+            startActivity(new Intent(vista.getContext(), Add_usuario.class));
         });
 
         dbRef.child("usuarios").addValueEventListener(new ValueEventListener() {
@@ -105,6 +110,8 @@ public class fragmento_Usuario extends Fragment {
 
             }
         });
+
+        //ctlUsuarios.Vi_det_usuario(adapterUsuario,"",Principal.id, txt_sinresultados, progressBar, txt_contador);
 
         return vista;
 
