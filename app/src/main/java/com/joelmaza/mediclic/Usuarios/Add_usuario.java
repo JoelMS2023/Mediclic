@@ -9,12 +9,19 @@ import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseUser;
 import com.joelmaza.mediclic.Controllers.Alert_dialog;
 import com.joelmaza.mediclic.Controllers.Progress_dialog;
+import com.joelmaza.mediclic.MainActivity;
 import com.joelmaza.mediclic.Objetos.Usuario;
+import com.joelmaza.mediclic.Principal;
 import com.joelmaza.mediclic.R;
 
 
@@ -23,11 +30,12 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class Add_usuario extends AppCompatActivity {
 
     EditText editTextcedula, editTextnombre, editTextTextEmailAddress, editTextTextPhone;
-    Spinner spinner_tipo, spinner_estado;
+    Spinner spinner_tipo;
     Button btn_add_usuario;
     ArrayAdapter<CharSequence> adapterspinner_tipo, adapterspinner_estado;
     Alert_dialog alertDialog;
@@ -78,7 +86,7 @@ public class Add_usuario extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
 
                 if(editable.toString().trim().length() == 10){
-                    if(!fragmento_Usuario.Ctl_usuario.Validar_Cedula(editable.toString().trim())){
+                    if(!MainActivity.ctlUsuario.Validar_Cedula(editable.toString().trim())){
                         editTextcedula.setError("Cédula Incorrecta");
                     }
                 }else{
@@ -101,7 +109,7 @@ public class Add_usuario extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(!fragmento_Usuario.ctlUsuarios.validar_usuario(editable.toString().trim())){
+                if(!MainActivity.ctlUsuario.validar_usuario(editable.toString().trim())){
                     editTextnombre.setError("Ingresa un nombre válido");
                 }
             }
@@ -120,7 +128,7 @@ public class Add_usuario extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(!fragmento_Usuario.ctlUsuarios.validar_correo(editable.toString().trim())){
+                if(!MainActivity.ctlUsuario.validar_correo(editable.toString().trim())){
                     editTextTextEmailAddress.setError("Ingresa un correo válido");
                 }
             }
@@ -141,7 +149,7 @@ public class Add_usuario extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
                 if(editable.toString().trim().length() == 10) {
-                    if (!fragmento_Usuario.ctlUsuarios.validar_celular(editable.toString().trim())) {
+                    if (!MainActivity.ctlUsuario.validar_celular(editable.toString().trim())) {
                         editTextTextPhone.setError("Ingresa un celular válido");
                     }
                 }else{
@@ -158,7 +166,7 @@ public class Add_usuario extends AppCompatActivity {
                     !editTextnombre.getText().toString().trim().isEmpty() && editTextnombre.getError() == null  &&
                     !editTextTextEmailAddress.getText().toString().trim().isEmpty() && editTextTextEmailAddress.getError() == null &&
                     !editTextTextPhone.getText().toString().trim().isEmpty() &&  !spinner_tipo.getSelectedItem().toString().equals("Selecciona")
-                    && !spinner_estado.getSelectedItem().toString().equals("Selecciona")) {
+                    ) {
 
                 Usuario usuario = new Usuario();
                 usuario.cedula = editTextcedula.getText().toString();
@@ -167,14 +175,40 @@ public class Add_usuario extends AppCompatActivity {
                 usuario.telefono = editTextTextPhone.getText().toString();
                 usuario.rol = spinner_tipo.getSelectedItem().toString();
                 usuario.clave = usuario.cedula; //preguntarle al profesor
-                fragmento_Usuario.ctlUsuarios.crear_usuarios(usuario);
 
-                dialog.ocultar_mensaje();
-                alertDialog.crear_mensaje("Correcto", "Usuario Creado Correctamente", builder -> {
-                    builder.setCancelable(false);
-                    builder.setNeutralButton("Aceptar", (dialogInterface, i) -> finish());
-                    builder.create().show();
+                FirebaseUser actual = MainActivity.mAuth.getCurrentUser();
+
+                MainActivity.mAuth.createUserWithEmailAndPassword(usuario.email,usuario.clave).addOnCompleteListener(task -> {
+
+                    if(task.isSuccessful()){
+
+                        usuario.uid = Objects.requireNonNull(task.getResult().getUser()).getUid();
+
+                        if(!usuario.uid.isEmpty()){
+
+                            MainActivity.ctlUsuario.crear_usuario(Principal.databaseReference, usuario.uid,usuario);
+
+                            MainActivity.mAuth.updateCurrentUser(actual);
+
+                            dialog.ocultar_mensaje();
+                            alertDialog.crear_mensaje("Correcto", "Usuario Creado Correctamente", builder -> {
+                                builder.setCancelable(false);
+                                builder.setNeutralButton("Aceptar", (dialogInterface, i) -> finish());
+                                builder.create().show();
+                            });
+
+                        }else{
+                            alertDialog.crear_mensaje("Error", "Usuario No creado", builder -> {
+                                builder.setCancelable(false);
+                                builder.setNeutralButton("Aceptar", (dialogInterface, i) -> finish());
+                                builder.create().show();
+                            });
+                        }
+
+                    }
+
                 });
+
 
             }else{
                 dialog.ocultar_mensaje();

@@ -49,7 +49,7 @@ public class Registro extends AppCompatActivity {
             if (!editText_email.getText().toString().trim().isEmpty()) {
                 if (!editText_password.getText().toString().trim().isEmpty()) {
                     if (editText_password.getText().toString().trim().length() >= 6) {// Verifica que la contraseña tenga al menos 6 caracteres
-                        if(editText_password.equals(editText_confpassword)){
+                        if(editText_password.getText().toString().trim().equals(editText_confpassword.getText().toString().trim())){
                         MainActivity.mAuth.createUserWithEmailAndPassword(editText_email.getText().toString(), editText_password.getText().toString())
                                 .addOnCompleteListener(this, task -> {
                                     if (task.isSuccessful()) {
@@ -63,24 +63,31 @@ public class Registro extends AppCompatActivity {
                                             MainActivity.ctlUsuario.crear_usuario(dbRef,user.getUid(),usuario);
                                             user.sendEmailVerification();
                                             MainActivity.mAuth.signOut();
+                                            dialog.ocultar_mensaje();
                                             Toast.makeText(this, "¡Usuario creado Correctamente!, Verifica Tu Correo", Toast.LENGTH_LONG).show();
                                         } else {
+                                            dialog.ocultar_mensaje();
                                             Toast.makeText(this, "Error al Obtener el usuario", Toast.LENGTH_SHORT).show();
                                         }
                                     } else {
+                                        dialog.ocultar_mensaje();
                                         Toast.makeText(this, "Error al Crear el usuario", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                         } else {
+                            dialog.ocultar_mensaje();
                             Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
                         }
                     } else {
+                        dialog.ocultar_mensaje();
                         Toast.makeText(this, "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_SHORT).show();
                     }
                 } else {
+                    dialog.ocultar_mensaje();
                     Toast.makeText(this, "Contraseña no válida", Toast.LENGTH_SHORT).show();
                 }
             } else {
+                dialog.ocultar_mensaje();
                 Toast.makeText(this, "Correo no válido", Toast.LENGTH_SHORT).show();
             }
         });

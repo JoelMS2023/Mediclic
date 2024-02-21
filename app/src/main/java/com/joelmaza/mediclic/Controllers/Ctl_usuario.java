@@ -17,8 +17,7 @@ public class Ctl_usuario {
     DatabaseReference dbref;
 
 
-    public Ctl_usuario(DatabaseReference dbref) {
-        this.dbref = dbref;
+    public Ctl_usuario() {
     }
 
     public void crear_usuario(DatabaseReference dbref, String uid, Usuario usuario){

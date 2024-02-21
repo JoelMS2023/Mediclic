@@ -2,6 +2,7 @@ package com.joelmaza.mediclic.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,6 @@ public class fragmento_Usuario extends Fragment {
     Adaptador_usuarios adaptadorUsuarios;
     DatabaseReference dbRef;
     Button btn_add_usuario;
-    Ctl_usuario ctlUsuarios;
 
     @Nullable
     @Override
@@ -56,7 +56,6 @@ public class fragmento_Usuario extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerview_usuarios.setLayoutManager(linearLayoutManager);
         recyclerview_usuarios.setAdapter(adaptadorUsuarios);
-        ctlUsuarios = new Ctl_usuario(Principal.databaseReference);
 
         btn_add_usuario.setOnClickListener(v -> {
 
@@ -74,6 +73,8 @@ public class fragmento_Usuario extends Fragment {
                     for (DataSnapshot datos: snapshot.getChildren()) {
                         Usuario user = new Usuario();
                         user.uid = datos.getKey();
+
+                        Log.e("PRUEBA", user.uid.toString());
 
                         if(!MainActivity.mAuth.getUid().equals(user.uid)){
 
