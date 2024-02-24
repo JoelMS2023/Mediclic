@@ -16,9 +16,10 @@ import com.joelmaza.mediclic.Citas.Ver_citas;
 import com.joelmaza.mediclic.Doctores.Ver_doctores;
 import com.joelmaza.mediclic.Horarios.Ver_horarios;
 import com.joelmaza.mediclic.R;
+import com.joelmaza.mediclic.Ubicacion;
 
 public class Fragment_Home extends Fragment {
-    CardView card_horario, card_agendamiento, card_doctores;
+    CardView card_horario, card_agendamiento, card_doctores, card_reportes,card_editar;
 
     @Nullable
     @Override
@@ -29,6 +30,8 @@ public class Fragment_Home extends Fragment {
         card_horario = (CardView) vista.findViewById(R.id.card_horario);
         card_agendamiento=(CardView)vista.findViewById(R.id.card_agendamiento) ;
         card_doctores=(CardView)vista.findViewById(R.id.card_doctores) ;
+        card_editar=(CardView)vista.findViewById(R.id.card_editar) ;
+        card_reportes=(CardView)vista.findViewById(R.id.card_reportes) ;
 
 
         card_horario.setOnClickListener(view -> {
@@ -43,6 +46,14 @@ public class Fragment_Home extends Fragment {
         card_agendamiento.setOnClickListener(view -> {
             startActivity(new Intent(vista.getContext(), Add_citas.class));
         });
+        card_reportes.setOnClickListener(view -> {
+            startActivity(new Intent(vista.getContext(), Add_citas.class));
+        });
+        card_editar.setOnClickListener(view -> {
+            startActivity(new Intent(vista.getContext(), Ubicacion.class));
+        });
+
+
 
 
         return vista;

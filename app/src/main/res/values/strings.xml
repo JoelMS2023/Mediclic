@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mediclic</string>
+    <string name="app_name">Online Appointment</string>
     <string name="text_logo"> Logo institutional</string>
     <string name="title_cite">Schedule Appointment</string>
     <string name="text_back"> Back</string>
@@ -15,7 +15,7 @@
     <string name="text_createaccount"> Create new account</string>
     <string name="text_countexisten"> Do you already have an account?</string>
     <string name="text_image">Image</string>
-    <string name="text_username">User:</string>
+    <string name="text_username">User</string>
     <string name="text_myusername">Enter your username</string>
     <string name="text_phone">Phone:</string>
     <string name="text_address"> Address:</string>
@@ -57,7 +57,6 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-
 
 
     <string-array name="rol">

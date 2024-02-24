@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Mediclic</string>
+    <string name="app_name">Cita en línea</string>
     <string name="text_logo"> Logo institutional</string>
     <string name="title_cite">Agendar cita</string>
     <string name="text_back"> Atras</string>
@@ -16,7 +16,7 @@
     <string name="text_createaccount"> Crer cuenta nueva</string>
     <string name="text_countexisten"> Ya tienes una cuenta?</string>
     <string name="text_image">Imagen</string>
-    <string name="text_username">Usuario:</string>
+    <string name="text_username">Usuarios</string>
     <string name="text_myusername">Ingrese su nombre de usuario</string>
     <string name="text_phone">Telefono:</string>
     <string name="text_address"> Direccion:</string>
