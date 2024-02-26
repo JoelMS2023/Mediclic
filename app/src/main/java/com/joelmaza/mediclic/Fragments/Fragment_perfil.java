@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.joelmaza.mediclic.Controllers.Alert_dialog;
 import com.joelmaza.mediclic.Controllers.Progress_dialog;
+import com.joelmaza.mediclic.Login;
 import com.joelmaza.mediclic.MainActivity;
 import com.joelmaza.mediclic.Objetos.Usuario;
 import com.joelmaza.mediclic.Principal;
@@ -30,8 +31,8 @@ import com.joelmaza.mediclic.R;
 
 public class Fragment_perfil extends Fragment {
     Button btn_salir, btn_update_profile;
-    TextView txt_nombre, txt_cedula,txt_direccion,txt_rol ;
-    EditText editTextEmail, editTextTextPhone;
+    TextView txt_nombre, txt_cedula,txt_rol, TextEmail ;
+    EditText editxt_direccion, editTextTextPhone;
     Progress_dialog dialog;
     ImageView img_perfil;
     Alert_dialog alertDialog;
@@ -45,8 +46,8 @@ public class Fragment_perfil extends Fragment {
 
         txt_nombre = vista.findViewById(R.id.txt_nombre);
         txt_cedula = vista.findViewById(R.id.txt_cedula);
-        txt_direccion=vista.findViewById(R.id.txt_direccion);
-        editTextEmail = vista.findViewById(R.id.editTextEmail);
+        editxt_direccion=vista.findViewById(R.id.editxt_direccion);
+        TextEmail = vista.findViewById(R.id.TextEmail);
         editTextTextPhone = vista.findViewById(R.id.editTextTextPhone);
         btn_salir = vista.findViewById(R.id.btn_salir);
         img_perfil = vista.findViewById(R.id.img_perfil);
@@ -62,12 +63,17 @@ public class Fragment_perfil extends Fragment {
 
         if (usuario != null){
 
-            editTextEmail.setText(usuario.getEmail());
+            TextEmail.setText(usuario.getEmail());
 
             MainActivity.ctlUsuario.Obtener_usuario(dbReference,MainActivity.mAuth.getUid(), user -> {
 
                 txt_nombre.setText(user.nombre.trim());
                 txt_rol.setText(user.rol.toUpperCase().trim());
+                txt_cedula.setText(user.cedula);
+                editxt_direccion.setText(user.direccion);
+                TextEmail.setText(user.email);
+                editTextTextPhone.setText(user.telefono);
+
 
             });
 
@@ -86,7 +92,7 @@ public class Fragment_perfil extends Fragment {
                     editor.putString("uid","");
                     editor.putString("rol","");
                     editor.apply();
-                    startActivity(new Intent(vista.getContext(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                    startActivity(new Intent(vista.getContext(), Login.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
                     requireActivity().finish();
 
                 });
@@ -98,6 +104,22 @@ public class Fragment_perfil extends Fragment {
 
 
 
+        });
+        btn_update_profile.setOnClickListener(v -> {
+
+            String telefono = editTextTextPhone.getText().toString().trim();
+            String direccion = editxt_direccion.getText().toString().trim();
+
+            if(!direccion.isEmpty()){
+                Usuario user = new Usuario();
+                user.telefono = telefono;
+                user.direccion = direccion;
+                MainActivity.ctlUsuario.actualizar_usuario(usuario.getUid(),user);
+                Toast.makeText(vista.getContext(),"Usuario actualizado",Toast.LENGTH_SHORT).show();
+            }else{
+
+                Toast.makeText(vista.getContext(),"Completa los campos requeridos",Toast.LENGTH_SHORT).show();
+            }
         });
 
 

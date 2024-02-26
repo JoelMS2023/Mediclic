@@ -75,6 +75,9 @@ public class Ctl_usuario {
                     if (snapshot.child("telefono").exists()) {
                         user.telefono = Objects.requireNonNull(snapshot.child("telefono").getValue()).toString();
                     }
+                    if (snapshot.child("direccion").exists()) {
+                        user.telefono = Objects.requireNonNull(snapshot.child("direccion").getValue()).toString();
+                    }
 
                     perfil.verPerfil(user);
 
