@@ -1,6 +1,7 @@
 package com.joelmaza.mediclic.Citas;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,8 @@ public class Ver_citas extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver_citas);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setOnClickListener(view -> finish());
 
         add_citas =findViewById(R.id.add_citas);
 

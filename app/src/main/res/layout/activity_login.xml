@@ -13,8 +13,10 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:navigationIcon="@drawable/baseline_circle_left"
-        app:title="@string/text_back"
+        app:title="@string/text_login"
         app:titleTextColor="#FFFFFF"/>
+
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -27,17 +29,18 @@
             android:layout_gravity="center|end"
             android:layout_marginBottom="30dp"
             android:orientation="vertical">
-
-
             <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/bondrians"
-                android:text="@string/text_login"
+                android:layout_marginBottom="10dp"
+                android:text="@string/app_name"
                 android:textAlignment="center"
-                android:textSize="60sp" />
+                android:textSize="34sp"
+                android:textColor="@color/proyecto_light"
+                android:textStyle="bold" />
+
+
+
 
 
 
@@ -123,6 +126,20 @@
                 android:padding="15dp"
                 android:text="@string/text_login"
                 android:textSize="20sp" />
+            <TextView
+                android:id="@+id/text_forget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/text_forgot_password"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                />
             <Button
                 android:id="@+id/btn_registrarse"
                 android:layout_width="match_parent"
@@ -136,20 +153,12 @@
                 android:padding="15dp"
                 android:text="@string/title_resgister"
                 android:textSize="20sp" />
-            <Button
-                android:id="@+id/sign_in_button"
+
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/btnGoogle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Iniciar sesión con Google"
-                android:textSize="16sp"
-                android:textColor="#ffffff"
-                android:background="#ff5722"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center"/>
 
 
 

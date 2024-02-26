@@ -45,6 +45,7 @@ public class Fragment_Horario extends Fragment {
         progressBar = vista.findViewById(R.id.progressBar);
         txt_contador = vista.findViewById(R.id.txt_contador);
 
+
         dialog = new Progress_dialog(vista.getContext());
         alertDialog = new Alert_dialog(vista.getContext());
 

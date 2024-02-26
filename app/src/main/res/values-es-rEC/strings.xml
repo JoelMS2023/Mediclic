@@ -27,6 +27,7 @@
     <string name="text_rol">Post</string>
     <string name="btn_add"> Agregar</string>
     <string name="title_profile"> Perfil</string>
+    <string name="text_forgot_password">¿Olvidate tu contraseña?</string>
 
 
     <string name="home_op1">Agendar</string>
