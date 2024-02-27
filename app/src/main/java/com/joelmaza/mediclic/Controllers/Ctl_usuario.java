@@ -38,6 +38,26 @@ public class Ctl_usuario {
         dbref.child("usuarios").child(usuario.uid).updateChildren(datos);
 
     }
+    public void Obtener_rol(String uid, Interfaces.Obt_rol obtRol){
+
+        dbref.child("usuarios").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    if(snapshot.child("rol").exists()){
+                        obtRol.rol(Objects.requireNonNull(snapshot.child("rol").getValue()).toString());
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
 
     public void eliminar_usuario(DatabaseReference dbref, String uid_usuario){
 
@@ -62,10 +82,6 @@ public class Ctl_usuario {
                         user.email = Objects.requireNonNull(snapshot.child("email").getValue()).toString();
                     }
 
-                    if (snapshot.child("rol").exists()) {
-                        user.rol = Objects.requireNonNull(snapshot.child("rol").getValue()).toString();
-
-                    }
                     if (snapshot.child("url_foto").exists()) {
                         user.url_foto = Objects.requireNonNull(snapshot.child("url_foto").getValue()).toString();
                     }

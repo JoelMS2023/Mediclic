@@ -35,6 +35,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.joelmaza.mediclic.Controllers.Alert_dialog;
 import com.joelmaza.mediclic.Controllers.Progress_dialog;
+import com.joelmaza.mediclic.Objetos.Usuario;
 import com.joelmaza.mediclic.R;
 
 import com.google.android.gms.tasks.Task;
@@ -224,9 +225,18 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            irHome();
+
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
+
+                            Usuario usuario = new Usuario();
+                            usuario.uid = user.getUid();
+                            usuario.email = user.getEmail();
+                            usuario.rol = "paciente";
+                            MainActivity.ctlUsuario.actualizar_usuario(dbref,usuario);
+
+                            irHome();
+
                         } else {
                             // If sign in fails, display a message to the user.
                             //mTextViewRespuesta.setText(task.getException().toString());

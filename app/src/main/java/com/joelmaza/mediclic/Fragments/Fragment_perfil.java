@@ -76,51 +76,56 @@ public class Fragment_perfil extends Fragment {
 
 
             });
+            btn_salir.setOnClickListener(view -> {
+
+                alertDialog.crear_mensaje("Confirmacion","Estas Seguro que deseas salir",builder -> {
+                    builder.setPositiveButton("Aceptar",(dialog1, which) -> {
 
 
-        }
+                        MainActivity.mAuth.signOut();
 
-        btn_salir.setOnClickListener(view -> {
+                        SharedPreferences.Editor editor= Principal.preferences.edit();
+                        editor.putString("uid","");
+                        editor.putString("rol","");
+                        editor.apply();
+                        startActivity(new Intent(vista.getContext(), Login.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                        requireActivity().finish();
 
-            alertDialog.crear_mensaje("Confirmacion","Estas Seguro que deseas salir",builder -> {
-                builder.setPositiveButton("Aceptar",(dialog1, which) -> {
+                    });
 
-
-                    MainActivity.mAuth.signOut();
-
-                    SharedPreferences.Editor editor= Principal.preferences.edit();
-                    editor.putString("uid","");
-                    editor.putString("rol","");
-                    editor.apply();
-                    startActivity(new Intent(vista.getContext(), Login.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-                    requireActivity().finish();
-
+                    builder.setNegativeButton("Cancelar",(dialog1, which) -> {});
+                    builder.setCancelable(false);
+                    builder.create().show();
                 });
 
-                builder.setNegativeButton("Cancelar",(dialog1, which) -> {});
-                builder.setCancelable(false);
-                builder.create().show();
+
+
+            });
+            btn_update_profile.setOnClickListener(v -> {
+
+
+                String telefono = editTextTextPhone.getText().toString().trim();
+                String direccion = editxt_direccion.getText().toString().trim();
+
+                if(!telefono.isEmpty()){
+                    Usuario user = new Usuario();
+                    user.telefono = telefono;
+                    user.direccion = direccion;
+                    MainActivity.ctlUsuario.actualizar_usuario(usuario.getUid(),user);
+                    Toast.makeText(vista.getContext(),"Usuario actualizado",Toast.LENGTH_SHORT).show();
+                }else{
+
+                    Toast.makeText(vista.getContext(),"Completa los campos requeridos",Toast.LENGTH_SHORT).show();
+                }
             });
 
 
 
-        });
-        btn_update_profile.setOnClickListener(v -> {
 
-            String telefono = editTextTextPhone.getText().toString().trim();
-            String direccion = editxt_direccion.getText().toString().trim();
+        }
 
-            if(!direccion.isEmpty()){
-                Usuario user = new Usuario();
-                user.telefono = telefono;
-                user.direccion = direccion;
-                MainActivity.ctlUsuario.actualizar_usuario(usuario.getUid(),user);
-                Toast.makeText(vista.getContext(),"Usuario actualizado",Toast.LENGTH_SHORT).show();
-            }else{
 
-                Toast.makeText(vista.getContext(),"Completa los campos requeridos",Toast.LENGTH_SHORT).show();
-            }
-        });
+
 
 
         return vista;

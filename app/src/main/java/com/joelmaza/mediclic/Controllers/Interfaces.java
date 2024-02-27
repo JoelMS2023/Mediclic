@@ -15,6 +15,11 @@ public class Interfaces {
     public interface perfil{
         void verPerfil(Usuario user);
     }
+    public interface Obt_rol{
+
+        void rol(String rol);
+
+    }
 
 
 }
