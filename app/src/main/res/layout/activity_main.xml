@@ -20,6 +20,17 @@
             android:layout_gravity="center"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/welcomeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¡Bienvenido a la App de Citas Médicas!"
+                android:textColor="@android:color/background_dark"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:layout_marginTop="100dp"/>
+
+
 
 
             <Button

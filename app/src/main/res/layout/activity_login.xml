@@ -29,31 +29,16 @@
             android:layout_gravity="center|end"
             android:layout_marginBottom="30dp"
             android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="@string/app_name"
-                android:textAlignment="center"
-                android:textSize="34sp"
-                android:textColor="@color/proyecto_light"
-                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="120dp"
+                android:background="@drawable/ic_principal"
+                android:layout_gravity="center">
+
+            </ImageView>
 
 
-
-
-
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="15dp"
-                android:text="@string/text_email"
-                android:textSize="20sp"
-                android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -65,8 +50,8 @@
                     android:id="@+id/editText_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:ems="10"
                     android:textColor="@color/black"
                     android:hint="@string/text_personalemail"
@@ -78,23 +63,10 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-
-
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="15dp"
-                android:text="@string/text_password"
-                android:textSize="20sp"
-                android:textStyle="bold" />
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 app:passwordToggleEnabled="true"
                 app:hintEnabled="false" >
 
@@ -102,8 +74,8 @@
                     android:id="@+id/editText_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:ems="10"
                     android:drawableStart="@drawable/baseline_lock"
                     android:drawablePadding="10dp"
@@ -119,9 +91,9 @@
                 android:id="@+id/btn_ingresar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="30dp"
                 android:backgroundTint="@color/proyecto_light"
                 android:padding="15dp"
                 android:text="@string/text_login"
@@ -144,9 +116,9 @@
                 android:id="@+id/btn_registrarse"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="30dp"
                 android:layout_marginBottom="10dp"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/success"

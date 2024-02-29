@@ -31,11 +31,11 @@
 
 
     <string name="home_op1">Agendar</string>
-    <string name="home_op2">Horarios de atencion</string>
+    <string name="home_op2">Horarios</string>
     <string name="home_op3">Tratamientos</string>
-    <string name="home_op4">Doctores</string>
-    <string name="home_op5">Editar cita</string>
-    <string name="home_op6">Historial medico</string>
+    <string name="home_op4">Medicos</string>
+    <string name="home_op5">Ubicación</string>
+    <string name="home_op6">Reporte medico</string>
 
 
     <string name="menu_home">Inicio</string>
