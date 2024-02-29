@@ -51,10 +51,16 @@ public class Principal extends AppCompatActivity {
 
             View headerView = navigationView.getHeaderView(0);
             TextView headerTextView = headerView.findViewById(R.id.header_username);
+            TextView txt_correo = headerView.findViewById(R.id.header_correo);
+
+
+
 
             MainActivity.ctlUsuario.Obtener_usuario(databaseReference,MainActivity.mAuth.getUid(),user -> {
 
                 headerTextView.setText(user.nombre);
+                txt_correo.setText(user.email);
+
 
             });
 

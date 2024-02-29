@@ -1,5 +1,7 @@
 package com.joelmaza.mediclic.Controllers;
 
+import android.view.View;
+
 import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
@@ -38,25 +40,7 @@ public class Ctl_usuario {
         dbref.child("usuarios").child(usuario.uid).updateChildren(datos);
 
     }
-    public void Obtener_rol(String uid, Interfaces.Obt_rol obtRol){
 
-        dbref.child("usuarios").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    if(snapshot.child("rol").exists()){
-                        obtRol.rol(Objects.requireNonNull(snapshot.child("rol").getValue()).toString());
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-    }
 
 
     public void eliminar_usuario(DatabaseReference dbref, String uid_usuario){
@@ -80,6 +64,9 @@ public class Ctl_usuario {
                     }
                     if (snapshot.child("email").exists()) {
                         user.email = Objects.requireNonNull(snapshot.child("email").getValue()).toString();
+                    }
+                    if (snapshot.child("rol").exists()) {
+                        user.url_foto = Objects.requireNonNull(snapshot.child("rol").getValue()).toString();
                     }
 
                     if (snapshot.child("url_foto").exists()) {
@@ -106,6 +93,25 @@ public class Ctl_usuario {
 
             }
         });
+    }
+    public void Obtener_rol(String uid, Interfaces.Obt_rol obtRol){
+
+        dbref.child("usuarios").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    if(snapshot.child("rol").exists()){
+                        obtRol.rol(Objects.requireNonNull(snapshot.child("rol").getValue()).toString());
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
         public boolean Validar_Cedula(String cedula){
@@ -147,6 +153,62 @@ public class Ctl_usuario {
             Pattern patron = Pattern.compile("^(0|593)?9[0-9]\\d{7}$");
 
             return patron.matcher(celular).matches();
+
+        }
+
+        public void verUsuarios(){
+            progressBar.setVisibility(View.VISIBLE);
+            txt_existe.setVisibility(View.VISIBLE);
+
+
+            dbref.child("usuarios").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+
+                        lista_usuarios.Clear();
+                        int contador= 0;
+
+                        for (DataSnapshot usuarios : snapshot.getChildren()){
+                            if(!Objects.equals(usuarios.getKey(), uid)){
+                                Usuario user =new Usuario();
+                                user.uid =usuarios.getKey();
+
+                                if (usuarios.child("nombre").exists()) {
+                                    user.nombre = Objects.requireNonNull(snapshot.child("nombre").getValue()).toString();
+                                }
+                                if (usuarios.child("email").exists()) {
+                                    user.email = Objects.requireNonNull(snapshot.child("email").getValue()).toString();
+                                }
+                                if (usuarios.child("telefono").exists()) {
+                                    user.telefono = Objects.requireNonNull(snapshot.child("telefono").getValue()).toString();
+                                }
+                                if (usuarios.child("direccion").exists()) {
+                                    user.telefono = Objects.requireNonNull(snapshot.child("direccion").getValue()).toString();
+                                }
+
+                                lista_usuarios.Add_usuarios(user);
+                                contador++;
+                            }
+
+                        }
+                        txt_contador.setText(contador + "usuarios");
+                        progressBar.setVisibility(View.GONE);
+                        txt_existe.setVisibility(lista_usuarios.getItemCount() == 0 ? View.VISIBLE :View.GONE);
+                        lista_usuarios.notifyDataSetChanged();
+                    }else{
+                        lista_usuarios.Clear();
+                        lista_usuarios.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
+                        txt_existe.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
 
         }
 

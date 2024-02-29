@@ -55,7 +55,7 @@ public class Fragment_perfil extends Fragment {
         alertDialog = new Alert_dialog(vista.getContext());
         txt_rol = vista.findViewById(R.id.txt_rol);
 
-        btn_update_profile = vista.findViewById(R.id.btn_update_profile);
+
 
         dbReference = MainActivity.DB.getReference();
 
@@ -101,23 +101,7 @@ public class Fragment_perfil extends Fragment {
 
 
             });
-            btn_update_profile.setOnClickListener(v -> {
 
-
-                String telefono = editTextTextPhone.getText().toString().trim();
-                String direccion = editxt_direccion.getText().toString().trim();
-
-                if(!telefono.isEmpty()){
-                    Usuario user = new Usuario();
-                    user.telefono = telefono;
-                    user.direccion = direccion;
-                    MainActivity.ctlUsuario.actualizar_usuario(usuario.getUid(),user);
-                    Toast.makeText(vista.getContext(),"Usuario actualizado",Toast.LENGTH_SHORT).show();
-                }else{
-
-                    Toast.makeText(vista.getContext(),"Completa los campos requeridos",Toast.LENGTH_SHORT).show();
-                }
-            });
 
 
 

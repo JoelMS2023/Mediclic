@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,6 +42,7 @@ public class fragmento_Usuario extends Fragment {
     DatabaseReference dbRef;
     Button btn_add_usuario;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,13 +52,23 @@ public class fragmento_Usuario extends Fragment {
 
         recyclerview_usuarios = (RecyclerView) vista.findViewById(R.id.recyclerview_usuarios);
         dbRef = MainActivity.DB.getReference();
-        adaptadorUsuarios = new Adaptador_usuarios(getContext());
+        ProgressBar progressBar = vista.findViewById(R.id.progressBar);
+        TextView txt_existe = vista.findViewById(R.id.txt_existe);
+        TextView txt_contador = vista.findViewById(R.id.txt_contador);
+
+        //metodo para ver usuario.
+
+        adaptadorUsuarios lista_usuarios = new Adaptador_usuarios (vista.getContext());
 
         btn_add_usuario = vista.findViewById(R.id.btn_add_usuario);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerview_usuarios.setLayoutManager(linearLayoutManager);
-        recyclerview_usuarios.setAdapter(adaptadorUsuarios);
+        recyclerview_usuarios.setAdapter(lista_usuarios);
+
+        MainActivity.ctlUsuario.verUsuarios(lista_usuarios, MainActivity.mAuth.getUid(),txt_existe,txt_contador,progressBar);
+
+
 
         btn_add_usuario.setOnClickListener(v -> {
 
@@ -111,8 +124,6 @@ public class fragmento_Usuario extends Fragment {
 
             }
         });
-
-        //ctlUsuarios.Vi_det_usuario(adapterUsuario,"",Principal.id, txt_sinresultados, progressBar, txt_contador);
 
         return vista;
 

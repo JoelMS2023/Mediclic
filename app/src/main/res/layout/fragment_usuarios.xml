@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/layout_opciones"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:gravity="end"
         >
 
@@ -34,6 +34,7 @@
         android:id="@+id/txt_contador"
         android:textColor="@color/danger"
         android:layout_marginEnd="5dp"
+        android:textStyle="bold"
         >
     </TextView>
 
@@ -49,16 +50,14 @@
             android:layout_height="wrap_content"
             android:id="@+id/progressBar"
             android:indeterminate="true"
-            android:visibility="gone"
             />
 
         <TextView
-            android:id="@+id/txt_sinresultados"
+            android:id="@+id/txt_existe"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Aún no hay Usuarios..."
-            android:visibility="gone"
             />
 
     </LinearLayout>
