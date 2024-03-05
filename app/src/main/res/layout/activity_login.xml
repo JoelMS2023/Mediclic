@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Login">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -15,7 +16,6 @@
         app:navigationIcon="@drawable/baseline_circle_left"
         app:title="@string/text_login"
         app:titleTextColor="#FFFFFF"/>
-
 
 
     <ScrollView

@@ -61,6 +61,8 @@ dependencies {
 
     implementation ("com.airbnb.android:lottie:3.0.1")
 
+    implementation("androidx.biometric:biometric:1.1.0")
+
 
     //implementation("com.google.firebase:firebase-analytics")
 }

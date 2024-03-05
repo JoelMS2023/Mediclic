@@ -36,7 +36,6 @@ public class Fragment_perfil extends Fragment {
     Progress_dialog dialog;
     ImageView img_perfil;
     Alert_dialog alertDialog;
-    private FirebaseUser usuario;
     DatabaseReference dbReference;
 
     @Nullable
@@ -59,7 +58,7 @@ public class Fragment_perfil extends Fragment {
 
         dbReference = MainActivity.DB.getReference();
 
-        usuario = MainActivity.mAuth.getCurrentUser();
+        FirebaseUser usuario = MainActivity.mAuth.getCurrentUser();
 
         if (usuario != null){
 

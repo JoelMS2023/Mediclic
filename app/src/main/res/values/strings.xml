@@ -28,13 +28,16 @@
     <string name="title_profile"> Profile</string>
     <string name="text_forgot_password">Forgot your Password?</string>
 
-
+    //Pacientes
     <string name="home_op1">Schedule</string>
     <string name="home_op2">attention hours</string>
     <string name="home_op3">Treatments</string>
     <string name="home_op4">Doctors</string>
     <string name="home_op5">Location</string>
     <string name="home_op6">Medical history</string>
+
+    //Medicos
+    <string name="home_op1m">Assistance</string>
 
 
     <string name="screen1">Upload a Video</string>
@@ -59,11 +62,18 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
 
-
     <string-array name="rol">
         <item>Choose</item>
         <item>Administrator</item>
         <item>Doctor</item>
         <item>Patient</item>
+    </string-array>
+
+    <string-array name="tipo_marcacion">
+        <item>Choose</item>
+        <item>Start of the day</item>
+        <item>Inicio de Almuerzo</item>
+        <item>Fin de Almuerzo</item>
+        <item>Fin de Jornada</item>
     </string-array>
 </resources>

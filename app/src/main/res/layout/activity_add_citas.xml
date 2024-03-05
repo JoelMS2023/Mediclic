@@ -6,69 +6,88 @@
     android:layout_height="match_parent"
     tools:context=".Citas.Add_citas">
 
-    <ImageView
-        android:id="@+id/patientImageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/perfil"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:id="@+id/patientNameEditText"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nombre del paciente"
-        android:layout_below="@id/patientImageView"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"/>
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:navigationIcon="@drawable/baseline_circle_left"
+        app:title="@string/title_cite"
+        app:titleTextColor="#FFFFFF"/>
 
-    <EditText
-        android:id="@+id/appointmentReasonEditText"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Motivo de la cita"
-        android:layout_below="@id/patientNameEditText"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"/>
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
 
-    <Spinner
-        android:id="@+id/specialtySpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/appointmentReasonEditText"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:orientation="vertical">
 
-    <Spinner
-        android:id="@+id/doctorSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/specialtySpinner"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"/>
 
-    <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/doctorSpinner"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"/>
+            <ImageView
+                android:id="@+id/patientImageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/perfil"
+                android:layout_gravity="center"/>
 
-    <Button
-        android:id="@+id/scheduleAppointmentButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Agendar Cita"
-        android:layout_below="@id/calendarView"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"/>
+            <TextView
+                android:id="@+id/patientNameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/patientImageView"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:hint="Nombre del paciente" />
+
+
+
+            <Spinner
+                android:id="@+id/tratamiento_Spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp" />
+
+
+            <CalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp" />
+
+            <TimePicker
+                android:id="@+id/timePicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <Button
+                android:id="@+id/scheduleAppointmentButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="Agendar Cita" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
 
 
 

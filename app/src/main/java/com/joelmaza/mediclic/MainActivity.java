@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(usuario!=null && !preferences.getString("uid","").isEmpty()) {
             Intent i = new Intent();
+            Principal.id = usuario.getUid();
             i.setClass(this,Principal.class);
             startActivity(i);
         }

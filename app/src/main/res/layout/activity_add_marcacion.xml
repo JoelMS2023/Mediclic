@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".Marcacion.Add_marcacion">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -12,11 +13,10 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:title="Agregar Usuario"
+        app:title="Marcar asistencia"
         app:titleTextColor="#FFFFFF"
         app:navigationIcon="@drawable/baseline_circle_left"
         />
-
 
     <ScrollView
         android:layout_width="match_parent"
@@ -28,7 +28,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_gravity="center"
             >
 
             <androidx.cardview.widget.CardView
@@ -41,7 +40,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nuevo usuario"
+                    android:text="Información de asistencia"
                     android:gravity="center"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -61,131 +60,121 @@
                 android:layout_marginTop="15dp"
                 >
 
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp">
+
+                <TextView
+                    android:id="@+id/estado_gps"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Estado de GPS"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    >
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:padding="10dp"
-                    >
+                    android:padding="10dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Cedula:"
+                        android:text="Fecha y Hora de Ingreso:"
                         android:textStyle="bold"
                         android:layout_marginBottom="5dp"
                         />
 
-                    <EditText
-                        android:id="@+id/editTextcedula"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:ems="10"
-                        android:hint="Cedula de Identidad"
-                        android:inputType="number"
-                        android:textSize="15sp"/>
-
                     <TextView
+                        android:id="@+id/fecha_hora_ingreso"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Nombre:"
-                        android:textStyle="bold"
+                        android:text="dd/MM/yyyy - HH:mm:ss"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp"
                         />
 
-                    <EditText
-                        android:id="@+id/editTextnombre"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:ems="10"
-                        android:hint="Nombre completo"
-                        android:inputType="textPersonName"
-                        android:textSize="15sp"/>
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/text_email"
+                        android:text="Fecha y Hora de Salida:"
                         android:textStyle="bold"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp"
                         />
 
-                    <EditText
-                        android:id="@+id/editTextTextEmailAddress"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:ems="10"
-                        android:hint="@string/text_email"
-                        android:inputType="textEmailAddress"
-                        android:textSize="15sp"
-                        android:autofillHints="emailAddress" />
-
                     <TextView
+                        android:id="@+id/fecha_hora_salida"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/text_phone"
-                        android:textStyle="bold"
+                        android:text="dd/MM/yyyy - HH:mm:ss"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp"
                         />
 
-                    <EditText
-                        android:id="@+id/editTextTextPhone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:ems="10"
-                        android:hint="@string/text_phone"
-                        android:inputType="phone"
-                        android:textSize="15sp"
-                        android:autofillHints="Phone" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Rol:"
+                        android:text="Tipo de marcación:"
                         android:textStyle="bold"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp"
                         />
 
                     <Spinner
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/spinner_tipo"
-                        android:layout_marginBottom="10dp"
-                        android:padding="10dp"
                         >
 
                     </Spinner>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Fecha Inicio:"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="5dp"
-                        />
-
-                    <CalendarView
-                        android:id="@+id/fecha_inicio"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        >
-
-                    </CalendarView>
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
+
             <Button
-                android:id="@+id/btn_add_usuario"
+                android:id="@+id/btn_marcar_manual"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
@@ -194,14 +183,26 @@
                 android:backgroundTint="@color/success"
                 android:padding="15dp"
                 android:textColor="@color/white"
-                android:text="Crear Usuario"
+                android:text="Marcación Manual"
                 android:textSize="20sp" />
 
-
+            <Button
+                android:id="@+id/btn_marcar_huella"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="5dp"
+                android:backgroundTint="@color/proyecto_light"
+                android:padding="15dp"
+                android:textColor="@color/white"
+                android:text="Marcación Biométrica"
+                android:textSize="20sp"
+                android:drawableLeft="@drawable/baseline_fingerprint_24"
+                />
 
         </LinearLayout>
 
     </ScrollView>
-
 
 </RelativeLayout>

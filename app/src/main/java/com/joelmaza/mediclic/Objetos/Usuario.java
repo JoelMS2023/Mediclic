@@ -12,6 +12,7 @@ public class Usuario {
     public String rol;
     public String cedula;
     public String clave;
+    public String fecha_ini_contrato;
 
 
     public Usuario() {

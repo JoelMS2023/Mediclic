@@ -38,6 +38,10 @@
     <string name="home_op6">Reporte medico</string>
 
 
+
+    <string name="home_op1m">Marcacion</string>
+
+
     <string name="menu_home">Inicio</string>
     <string name="menu_gallery">Usuarios</string>
     <string name="menu_slideshow">Perfil</string>
@@ -68,6 +72,14 @@
         <item>Doctor</item>
         <item>Paciente</item>
 
+    </string-array>
+
+    <string-array name="tipo_marcacion">
+        <item>Selecciona</item>
+        <item>Inicio de Jornada</item>
+        <item>Inicio de Almuerzo</item>
+        <item>Fin de Almuerzo</item>
+        <item>Fin de Jornada</item>
     </string-array>
 
 

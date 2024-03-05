@@ -37,7 +37,7 @@ public class Add_usuario extends AppCompatActivity {
     EditText editTextcedula, editTextnombre, editTextTextEmailAddress, editTextTextPhone;
     Spinner spinner_tipo;
     Button btn_add_usuario;
-    ArrayAdapter<CharSequence> adapterspinner_tipo, adapterspinner_estado;
+    ArrayAdapter<CharSequence> adapterspinner_tipo;
     Alert_dialog alertDialog;
     Progress_dialog dialog;
     CalendarView fecha_inicio;
@@ -59,6 +59,9 @@ public class Add_usuario extends AppCompatActivity {
 
 
 
+        Date dia = new Date();
+        fecha_inicio = findViewById(R.id.fecha_inicio);
+        fecha_cal_ini = dia.getTime();
 
         dialog = new Progress_dialog(this);
         alertDialog = new Alert_dialog(this);
@@ -66,6 +69,13 @@ public class Add_usuario extends AppCompatActivity {
         adapterspinner_tipo = ArrayAdapter.createFromResource(this, R.array.rol, android.R.layout.simple_spinner_item);
         adapterspinner_tipo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_tipo.setAdapter(adapterspinner_tipo);
+
+        fecha_inicio.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(year,month,dayOfMonth);
+            view.setDate(calendar.getTimeInMillis());
+            fecha_cal_ini = view.getDate();
+        });
 
 
 
@@ -174,6 +184,7 @@ public class Add_usuario extends AppCompatActivity {
                 usuario.email = editTextTextEmailAddress.getText().toString();
                 usuario.telefono = editTextTextPhone.getText().toString();
                 usuario.rol = spinner_tipo.getSelectedItem().toString();
+                usuario.fecha_ini_contrato = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(fecha_cal_ini);
                 usuario.clave = usuario.cedula; //preguntarle al profesor
 
                 FirebaseUser actual = MainActivity.mAuth.getCurrentUser();

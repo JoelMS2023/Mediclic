@@ -1,6 +1,8 @@
 package com.joelmaza.mediclic.Controllers;
 
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -8,6 +10,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.joelmaza.mediclic.Adaptadores.Adaptador_usuarios;
 import com.joelmaza.mediclic.Objetos.Usuario;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +19,6 @@ import java.util.regex.Pattern;
 
 
 public class Ctl_usuario {
-    DatabaseReference dbref;
 
 
     public Ctl_usuario() {
@@ -66,7 +68,7 @@ public class Ctl_usuario {
                         user.email = Objects.requireNonNull(snapshot.child("email").getValue()).toString();
                     }
                     if (snapshot.child("rol").exists()) {
-                        user.url_foto = Objects.requireNonNull(snapshot.child("rol").getValue()).toString();
+                        user.rol = Objects.requireNonNull(snapshot.child("rol").getValue()).toString();
                     }
 
                     if (snapshot.child("url_foto").exists()) {
@@ -79,7 +81,7 @@ public class Ctl_usuario {
                         user.telefono = Objects.requireNonNull(snapshot.child("telefono").getValue()).toString();
                     }
                     if (snapshot.child("direccion").exists()) {
-                        user.telefono = Objects.requireNonNull(snapshot.child("direccion").getValue()).toString();
+                        user.direccion = Objects.requireNonNull(snapshot.child("direccion").getValue()).toString();
                     }
 
                     perfil.verPerfil(user);
@@ -94,7 +96,7 @@ public class Ctl_usuario {
             }
         });
     }
-    public void Obtener_rol(String uid, Interfaces.Obt_rol obtRol){
+    public void Obtener_rol(DatabaseReference dbref,String uid, Interfaces.Obt_rol obtRol){
 
         dbref.child("usuarios").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -156,11 +158,9 @@ public class Ctl_usuario {
 
         }
 
-        public void verUsuarios(){
+        public void verUsuarios(DatabaseReference dbref,Adaptador_usuarios lista_usuarios, String uid, final TextView txt_existe, final ProgressBar progressBar,TextView txt_contador){
             progressBar.setVisibility(View.VISIBLE);
             txt_existe.setVisibility(View.VISIBLE);
-
-
             dbref.child("usuarios").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -175,16 +175,16 @@ public class Ctl_usuario {
                                 user.uid =usuarios.getKey();
 
                                 if (usuarios.child("nombre").exists()) {
-                                    user.nombre = Objects.requireNonNull(snapshot.child("nombre").getValue()).toString();
+                                    user.nombre = Objects.requireNonNull(usuarios.child("nombre").getValue()).toString();
                                 }
                                 if (usuarios.child("email").exists()) {
-                                    user.email = Objects.requireNonNull(snapshot.child("email").getValue()).toString();
+                                    user.email = Objects.requireNonNull(usuarios.child("email").getValue()).toString();
                                 }
                                 if (usuarios.child("telefono").exists()) {
-                                    user.telefono = Objects.requireNonNull(snapshot.child("telefono").getValue()).toString();
+                                    user.telefono = Objects.requireNonNull(usuarios.child("telefono").getValue()).toString();
                                 }
                                 if (usuarios.child("direccion").exists()) {
-                                    user.telefono = Objects.requireNonNull(snapshot.child("direccion").getValue()).toString();
+                                    user.telefono = Objects.requireNonNull(usuarios.child("direccion").getValue()).toString();
                                 }
 
                                 lista_usuarios.Add_usuarios(user);

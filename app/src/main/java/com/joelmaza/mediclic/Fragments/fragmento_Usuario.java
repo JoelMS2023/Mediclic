@@ -38,7 +38,7 @@ import java.util.Objects;
 public class fragmento_Usuario extends Fragment {
 
     RecyclerView recyclerview_usuarios;
-    Adaptador_usuarios adaptadorUsuarios;
+    Adaptador_usuarios lista_usuarios;
     DatabaseReference dbRef;
     Button btn_add_usuario;
 
@@ -58,16 +58,21 @@ public class fragmento_Usuario extends Fragment {
 
         //metodo para ver usuario.
 
-        adaptadorUsuarios lista_usuarios = new Adaptador_usuarios (vista.getContext());
+        lista_usuarios = new  Adaptador_usuarios(vista.getContext());
 
         btn_add_usuario = vista.findViewById(R.id.btn_add_usuario);
+        if (Principal.rol.equals("Administrador")){
+            btn_add_usuario.setVisibility(View.VISIBLE);
+
+        }else{
+            btn_add_usuario.setVisibility(View.GONE);
+        }
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerview_usuarios.setLayoutManager(linearLayoutManager);
         recyclerview_usuarios.setAdapter(lista_usuarios);
 
-        MainActivity.ctlUsuario.verUsuarios(lista_usuarios, MainActivity.mAuth.getUid(),txt_existe,txt_contador,progressBar);
-
+        MainActivity.ctlUsuario.verUsuarios(dbRef,lista_usuarios, Principal.id,txt_existe,progressBar, txt_contador);
 
 
         btn_add_usuario.setOnClickListener(v -> {
@@ -75,13 +80,14 @@ public class fragmento_Usuario extends Fragment {
             startActivity(new Intent(vista.getContext(), Add_usuario.class));
         });
 
+        /*
         dbRef.child("usuarios").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 if(snapshot.exists()){
 
-                    adaptadorUsuarios.Clear();
+                    lista_usuarios.Clear();
 
                     for (DataSnapshot datos: snapshot.getChildren()) {
                         Usuario user = new Usuario();
@@ -107,13 +113,13 @@ public class fragmento_Usuario extends Fragment {
                                 user.direccion = Objects.requireNonNull(datos.child("email").getValue()).toString();
                             }
 
-                            adaptadorUsuarios.Add_usuarios(user);
+                            lista_usuarios.Add_usuarios(user);
 
                         }
 
                     }
 
-                    adaptadorUsuarios.notifyDataSetChanged();
+                    lista_usuarios.notifyDataSetChanged();
 
                 }
 
@@ -124,7 +130,7 @@ public class fragmento_Usuario extends Fragment {
 
             }
         });
-
+        */
         return vista;
 
     }

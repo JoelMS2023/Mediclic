@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".Marcacion.Det_marcacion">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -12,11 +13,10 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:title="Agregar Usuario"
+        app:title="Detalle de marcación"
         app:titleTextColor="#FFFFFF"
         app:navigationIcon="@drawable/baseline_circle_left"
         />
-
 
     <ScrollView
         android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nuevo usuario"
+                    android:text="Detalle de asistencia"
                     android:gravity="center"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -54,154 +54,182 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="15dp"
-                >
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:padding="10dp"
-                    >
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/txt_nombre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_name"
+                        android:gravity="center"
+                        android:layout_marginBottom="5dp"
+                        />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                >
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp">
+
+                <TextView
+                    android:id="@+id/estado_marcacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Estado"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:padding="5dp">
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Cedula:"
+                        android:text="Fecha y Hora de Ingreso:"
                         android:textStyle="bold"
                         android:layout_marginBottom="5dp"
                         />
 
-                    <EditText
-                        android:id="@+id/editTextcedula"
+                    <TextView
+                        android:id="@+id/fecha_hora_ingreso"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:ems="10"
-                        android:hint="Cedula de Identidad"
-                        android:inputType="number"
-                        android:textSize="15sp"/>
+                        android:text="dd/MM/yyyy - HH:mm:ss"
+                        android:layout_marginBottom="5dp"
+                        />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Nombre:"
+                        android:text="Fecha y Hora de Salida:"
                         android:textStyle="bold"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp"
                         />
 
-                    <EditText
-                        android:id="@+id/editTextnombre"
+                    <TextView
+                        android:id="@+id/fecha_hora_salida"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:ems="10"
-                        android:hint="Nombre completo"
-                        android:inputType="textPersonName"
-                        android:textSize="15sp"/>
+                        android:text="dd/MM/yyyy - HH:mm:ss"
+                        android:layout_marginBottom="5dp"
+                        />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/text_email"
+                        android:text="Fecha y hora de marcacion:"
                         android:textStyle="bold"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp"
                         />
 
-                    <EditText
-                        android:id="@+id/editTextTextEmailAddress"
+                    <TextView
+                        android:id="@+id/fecha_hora_marcacion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:ems="10"
-                        android:hint="@string/text_email"
-                        android:inputType="textEmailAddress"
-                        android:textSize="15sp"
-                        android:autofillHints="emailAddress" />
+                        android:text="dd/MM/yyyy - HH:mm:ss"
+                        android:layout_marginBottom="5dp"
+                        />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/text_phone"
+                        android:text="Tipo de marcación:"
                         android:textStyle="bold"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp"
                         />
-
-                    <EditText
-                        android:id="@+id/editTextTextPhone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:ems="10"
-                        android:hint="@string/text_phone"
-                        android:inputType="phone"
-                        android:textSize="15sp"
-                        android:autofillHints="Phone" />
 
                     <TextView
+                        android:id="@+id/tipo_marcacion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Rol:"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp"
-                        />
-
-                    <Spinner
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spinner_tipo"
-                        android:layout_marginBottom="10dp"
-                        android:padding="10dp"
-                        >
-
-                    </Spinner>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Fecha Inicio:"
-                        android:textStyle="bold"
+                        android:text="-"
                         android:layout_marginBottom="5dp"
                         />
-
-                    <CalendarView
-                        android:id="@+id/fecha_inicio"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        >
-
-                    </CalendarView>
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
             <Button
-                android:id="@+id/btn_add_usuario"
+                android:id="@+id/btn_del_marcacion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="5dp"
-                android:backgroundTint="@color/success"
+                android:backgroundTint="@color/danger"
                 android:padding="15dp"
                 android:textColor="@color/white"
-                android:text="Crear Usuario"
+                android:text="Eliminar Marcación"
                 android:textSize="20sp" />
-
-
 
         </LinearLayout>
 
     </ScrollView>
-
 
 </RelativeLayout>

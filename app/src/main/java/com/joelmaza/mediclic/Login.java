@@ -77,7 +77,7 @@ public class Login extends AppCompatActivity {
 
     //Configuracion de google
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken("58905270224-c8pdncnv7pl1ia92ieu2eom8c0ijp0io.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
@@ -130,6 +130,7 @@ public class Login extends AppCompatActivity {
                                                     editor.apply();
 
                                                     Intent i = new Intent();
+                                                    Principal.id = user.getUid();
                                                     i.setClass(getApplicationContext(), Principal.class);
                                                     startActivity(i);
 
@@ -232,9 +233,9 @@ public class Login extends AppCompatActivity {
                             Usuario usuario = new Usuario();
                             usuario.uid = user.getUid();
                             usuario.email = user.getEmail();
-                            usuario.rol = "paciente";
+                            usuario.rol = "Paciente";
                             MainActivity.ctlUsuario.actualizar_usuario(dbref,usuario);
-
+                            Principal.id = user.getUid();
                             irHome();
 
                         } else {
