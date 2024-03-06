@@ -72,7 +72,7 @@ public class fragmento_Usuario extends Fragment {
         recyclerview_usuarios.setLayoutManager(linearLayoutManager);
         recyclerview_usuarios.setAdapter(lista_usuarios);
 
-        MainActivity.ctlUsuario.verUsuarios(dbRef,lista_usuarios, Principal.id,txt_existe,progressBar, txt_contador);
+        MainActivity.ctlUsuario.verUsuarios(dbRef,"",lista_usuarios, Principal.id,txt_existe,progressBar, txt_contador);
 
 
         btn_add_usuario.setOnClickListener(v -> {

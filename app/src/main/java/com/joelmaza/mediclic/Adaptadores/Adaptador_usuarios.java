@@ -55,6 +55,7 @@ public class Adaptador_usuarios extends RecyclerView.Adapter<Holder_usuarios> {
         holder.card_nombre.setText(lista_usuarios.get(position).nombre);
         holder.card_direccion.setText(lista_usuarios.get(position).direccion);
         holder.card_telefono.setText(lista_usuarios.get(position).telefono);
+        holder.card_rol.setText(lista_usuarios.get(position).rol);
 
 
         holder.cardview_usuario.setOnClickListener(view ->{

@@ -12,6 +12,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.joelmaza.mediclic.Adaptadores.Adaptador_usuarios;
 import com.joelmaza.mediclic.Objetos.Usuario;
+import com.joelmaza.mediclic.Principal;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -158,7 +160,7 @@ public class Ctl_usuario {
 
         }
 
-        public void verUsuarios(DatabaseReference dbref,Adaptador_usuarios lista_usuarios, String uid, final TextView txt_existe, final ProgressBar progressBar,TextView txt_contador){
+        public void verUsuarios(DatabaseReference dbref,String rol,Adaptador_usuarios lista_usuarios, String uid, final TextView txt_existe, final ProgressBar progressBar,TextView txt_contador){
             progressBar.setVisibility(View.VISIBLE);
             txt_existe.setVisibility(View.VISIBLE);
             dbref.child("usuarios").addValueEventListener(new ValueEventListener() {
@@ -184,11 +186,20 @@ public class Ctl_usuario {
                                     user.telefono = Objects.requireNonNull(usuarios.child("telefono").getValue()).toString();
                                 }
                                 if (usuarios.child("direccion").exists()) {
-                                    user.telefono = Objects.requireNonNull(usuarios.child("direccion").getValue()).toString();
+                                    user.direccion = Objects.requireNonNull(usuarios.child("direccion").getValue()).toString();
+                                }
+                                if (usuarios.child("rol").exists()){
+
+                                    if (usuarios.child("rol").getValue().toString().equalsIgnoreCase(rol) || rol.isEmpty()){
+                                        lista_usuarios.Add_usuarios(user);
+                                        contador++;
+
+                                    }
+
                                 }
 
-                                lista_usuarios.Add_usuarios(user);
-                                contador++;
+
+
                             }
 
                         }

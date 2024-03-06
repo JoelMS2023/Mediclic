@@ -5,15 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.joelmaza.mediclic.Controllers.Ctl_doctores;
 import com.joelmaza.mediclic.Controllers.Ctl_usuario;
 
 
@@ -24,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static FirebaseDatabase DB = FirebaseDatabase.getInstance();
     public static Ctl_usuario ctlUsuario;
-    public static Ctl_doctores ctlDoctores;
+
     SharedPreferences preferences;
 
     @Override
@@ -37,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         ctlUsuario = new Ctl_usuario();
-        ctlDoctores=new Ctl_doctores();
+
 
         preferences=getSharedPreferences("Mediclic", MODE_PRIVATE);
 

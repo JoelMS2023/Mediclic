@@ -46,11 +46,12 @@
             android:name=".Doctores.Ver_doctores"
             android:exported="false" />
         <activity
-            android:name=".Doctores.Det_doctores"
+            android:name=".Vi_det_usuario"
             android:exported="false" />
         <activity
-            android:name=".Doctores.Add_doctores"
+            android:name=".Doctores.Det_doctores"
             android:exported="false" />
+
         <activity
             android:name=".Usuarios.Add_usuario"
             android:exported="false" />

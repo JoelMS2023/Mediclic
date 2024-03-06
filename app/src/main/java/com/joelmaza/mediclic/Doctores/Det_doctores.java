@@ -15,7 +15,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.joelmaza.mediclic.MainActivity;
-import com.joelmaza.mediclic.Objetos.Ob_doctores;
 
 import com.joelmaza.mediclic.R;
 
@@ -47,23 +46,7 @@ public class Det_doctores extends AppCompatActivity {
         btn_update  = findViewById(R.id.btn_update);
         btn_delete = findViewById(R.id.btn_delete);
 
-        btn_update.setOnClickListener(v -> {
 
-            if(editext_direccion.getText().toString().isEmpty() || editext_telefono.getText().toString().isEmpty()){
-                Toast.makeText(this,"Rellena todos los campos",Toast.LENGTH_SHORT).show();
-            }else{
-
-                Ob_doctores user = new Ob_doctores();
-                user.uid = uid;
-                user.direccion = editext_direccion.getText().toString();
-                user.telefono = editext_telefono.getText().toString();
-                MainActivity.ctlDoctores.actualizar_usuario(dbref,user);
-
-                Toast.makeText(this,"Usuario Actualizado Correctamente",Toast.LENGTH_SHORT).show();
-
-            }
-
-        });
 
         btn_delete.setOnClickListener(v ->{
 
