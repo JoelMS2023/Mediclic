@@ -82,6 +82,30 @@
         <item>Fin de Jornada</item>
     </string-array>
 
+    <string-array name="tipo_cita">
+        <item>Selecciona</item>
+        <item>Obesidad</item>
+        <item>Diabetis Mellitus tipo 1 y 2</item>
+        <item>Enfermedades del tiroides</item>
+        <item>Alteraciones de colesterol y triglicerios</item>
+        <item>Trastornos de diferenciacion sexual</item>
+        <item>Menopausia</item>
+        <item>Osteoporosis</item>
+        <item>Trastornos menstruales</item>
+        <item>Infertilidad</item>
+        <item>Talla baja</item>
+        <item>Tumores de la hipofisis</item>
+        <item>Ovarios Poliquisticos</item>
+        <item>Otra</item>
+    </string-array>
+
+    <string-array name="estado_actividad">
+        <item>Selecciona</item>
+        <item>Pendiente</item>
+        <item>Revisión</item>
+        <item>Finalizado</item>
+    </string-array>
+
 
 
 

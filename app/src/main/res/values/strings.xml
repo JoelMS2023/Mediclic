@@ -76,4 +76,28 @@
         <item>Fin de Almuerzo</item>
         <item>Fin de Jornada</item>
     </string-array>
+
+    <string-array name="tipo_cita">
+        <item>Select</item>
+        <item>Obesity</item>
+        <item>Diabetes Mellitus type 1 and 2</item>
+        <item>Thyroid diseases</item>
+        <item>Cholesterol and triglyceride alterations</item>
+        <item>Disorders of sexual differentiation</item>
+        <item>Menopause</item>
+        <item>Osteoporosis</item>
+        <item>Menstrual disorders</item>
+        <item>Infertility</item>
+        <item>Short stature</item>
+        <item>Pituitary tumors</item>
+        <item>Polycystic Ovarian Syndrome</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="estado_actividad">
+        <item>Select</item>
+        <item>Pending</item>
+        <item>Under Review</item>
+        <item>Completed</item>
+    </string-array>
 </resources>

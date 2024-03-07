@@ -106,7 +106,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/layout_cargar"
-        android:id="@+id/recyclerview_solicitudes"
+        android:id="@+id/recyclerview_cita"
         >
 
     </androidx.recyclerview.widget.RecyclerView>

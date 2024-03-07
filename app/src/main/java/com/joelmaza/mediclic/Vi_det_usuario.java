@@ -14,6 +14,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.joelmaza.mediclic.Controllers.Alert_dialog;
+import com.joelmaza.mediclic.Controllers.Progress_dialog;
 import com.joelmaza.mediclic.Objetos.Usuario;
 
 public class Vi_det_usuario extends AppCompatActivity {
@@ -24,6 +26,8 @@ public class Vi_det_usuario extends AppCompatActivity {
     DatabaseReference dbref;
     Button btn_update, btn_delete;
     String uid;
+    Alert_dialog alertDialog;
+    Progress_dialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +48,8 @@ public class Vi_det_usuario extends AppCompatActivity {
 
         btn_update  = findViewById(R.id.btn_update);
         btn_delete = findViewById(R.id.btn_delete);
+        dialog = new Progress_dialog(this);
+        alertDialog = new Alert_dialog(this);
 
         btn_update.setOnClickListener(v -> {
 
@@ -65,12 +71,17 @@ public class Vi_det_usuario extends AppCompatActivity {
 
         btn_delete.setOnClickListener(v ->{
 
-
-            MainActivity.ctlUsuario.eliminar_usuario(dbref,uid);
-
-            Toast.makeText(this,"Usuario Eliminado Correctamente",Toast.LENGTH_SHORT).show();
-
-            finish();
+            alertDialog.crear_mensaje("¿Estás Seguro de Eliminar el usuario?", "¡Esta acción no es reversible!", builder -> {
+                builder.setPositiveButton("Aceptar", (dialogInterface, i) -> {
+                    dialog.mostrar_mensaje("Eliminando Usuario...");
+                    MainActivity.ctlUsuario.eliminar_usuario(dbref,uid);
+                    dialog.ocultar_mensaje();
+                    finish();
+                });
+                builder.setNeutralButton("Cancelar", (dialogInterface, i) -> {});
+                builder.setCancelable(false);
+                builder.create().show();
+            });
 
         });
 

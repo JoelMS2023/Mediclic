@@ -15,6 +15,7 @@ import com.joelmaza.mediclic.Objetos.Usuario;
 import com.joelmaza.mediclic.R;
 import com.joelmaza.mediclic.Vi_det_usuario;
 
+
 import java.util.ArrayList;
 import java.util.List;
 

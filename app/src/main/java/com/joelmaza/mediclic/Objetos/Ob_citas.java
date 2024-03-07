@@ -1,11 +1,17 @@
 package com.joelmaza.mediclic.Objetos;
 
 public class Ob_citas {
-    private String uid;
-    private String paciente;
-    private String especialidad;
-    private String doctor;
-    private String hora;
+    public String uid;
+    public String fecha_inicio;
+    public String hora_inicio;
+    public String fecha_fin;
+    public String hora_fin;
+    public String estado;
+    public String tipo;
+    public String mensaje;
+    public String uid_empleado;
+    public String ced_empleado;
+    public String empleado;
 
 
 
