@@ -19,6 +19,12 @@
         android:theme="@style/Theme.Mediclic"
         tools:targetApi="31">
         <activity
+            android:name=".Reportes.Rpt_marcacion"
+            android:exported="false" />
+        <activity
+            android:name=".Reportes.Ver_reportes"
+            android:exported="false" />
+        <activity
             android:name=".Tratamientos.Ver_tratamientos"
             android:exported="false" />
         <activity

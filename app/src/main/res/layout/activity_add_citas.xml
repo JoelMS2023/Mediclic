@@ -97,6 +97,17 @@
                             android:layout_marginTop="5dp"
                             android:textSize="15sp"
                             />
+                        <Button
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="end"
+                            android:id="@+id/add_empleado"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Asignar Trabajador"
+                            android:backgroundTint="@color/proyecto_night"
+                            android:textColor="@color/white"
+                            >
+                        </Button>
 
 
 
@@ -242,7 +253,7 @@
                 android:backgroundTint="@color/success"
                 android:padding="15dp"
                 android:textColor="@color/white"
-                android:text="Crear Actividad"
+                android:text="Agendar Cita"
                 android:textSize="20sp" />
 
 

@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,7 @@ import com.joelmaza.mediclic.Adaptadores.Adapter_citas;
 import com.joelmaza.mediclic.Controllers.Ctl_citas;
 import com.joelmaza.mediclic.Principal;
 import com.joelmaza.mediclic.R;
+import com.joelmaza.mediclic.Usuarios.Add_usuario;
 
 public class Ver_citas extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -41,6 +43,12 @@ public class Ver_citas extends AppCompatActivity {
         cardview_nombre = findViewById(R.id.cardview_nombre);
 
         add_citas =findViewById(R.id.add_citas);
+
+        add_citas.setOnClickListener(View->{
+            Intent i = new Intent();
+            i.setClass(this, Add_citas.class);
+            startActivity(i);
+        });
 
         adapterActividad = new Adapter_citas(this);
         ctlActividad = new Ctl_citas(Principal.databaseReference);

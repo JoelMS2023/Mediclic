@@ -2,6 +2,7 @@ package com.joelmaza.mediclic.Doctores;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -41,6 +42,7 @@ public class Ver_doctores extends AppCompatActivity {
         TextView txt_existe = findViewById(R.id.txt_existe);
         TextView txt_contador = findViewById(R.id.txt_contador);
 
+        lista_usuarios = new  Adaptador_usuarios(this);
 
         btn_add_usuario= findViewById(R.id.btn_add_usuario);
         if (Principal.rol.equals("Administrador")){
@@ -50,16 +52,18 @@ public class Ver_doctores extends AppCompatActivity {
             btn_add_usuario.setVisibility(View.GONE);
         }
 
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerview_usuarios.setLayoutManager(linearLayoutManager);
+        recyclerview_usuarios.setAdapter(lista_usuarios);
+
         btn_add_usuario.setOnClickListener(view -> {
             Intent i = new Intent();
             i.setClass(this, Add_usuario.class);
             startActivity(i);
 
-
         });
 
         MainActivity.ctlUsuario.verUsuarios(dbRef,"Doctor",lista_usuarios, Principal.id,txt_existe,progressBar, txt_contador);
-
 
 
     }

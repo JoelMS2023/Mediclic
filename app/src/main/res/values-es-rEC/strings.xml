@@ -32,7 +32,7 @@
 
     <string name="home_op1">Agendar</string>
     <string name="home_op2">Horarios</string>
-    <string name="home_op3">Tratamientos</string>
+    <string name="home_op3">Servicios</string>
     <string name="home_op4">Medicos</string>
     <string name="home_op5">Ubicación</string>
     <string name="home_op6">Reporte medico</string>
@@ -64,6 +64,29 @@
 <string name="nav_header_subtitle">android.studio@android.com</string>
 <string name="nav_header_desc">Navigation header</string>
 <string name="action_settings">Settings</string>
+    <string name="description">Torre Medica para la Familia conscientes de que la salud es prioridad, por tal razón hacemos una cordial invitación a la ciudadanía en general a realizarse nuestros paquetes preventivos a precios al alcance de todos. Contamos con excelentes Especialistas en las diferentes áreas, con ética y calidad humana que es lo mas importante.
+
+    Estamos ubicados en la calle Rocafuerte entre Colon y Buenavista, diagonal a la Coop. De Ahorro y Crédito Santa Rosa.
+    </string>
+
+    <string name="description1"> INFORMACIÓN
+
+    Teléfonos: 2935-527 // 2935-453 // 2935-437
+
+    Celular: 0968171997 // 0993148219
+
+    Atención desde las 07:30 am. TE ESPERAMOS EN TORRE MEDICA PARA LA FAMILIA.</string>
+
+    <string name="texto_subrayado"><u>Nuestras redes</u></string>
+    <string name="text_horario">Horario</string>
+    <string name="text_contact">Contactanos</string>
+
+    <string name="text_description">Sobre nosotros</string>
+
+    <string name="title_fb">Facebook</string>
+    <string name="title_ws">Whatsapp</string>
+    <string name="title_ig">Instagram</string>
+
 
 
     <string-array name="rol">

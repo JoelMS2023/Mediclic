@@ -96,12 +96,12 @@ public class Principal extends AppCompatActivity {
 
             if(rol.equals("Administrador"))  {
                 mAppBarConfiguration = new AppBarConfiguration.Builder(
-                        R.id.nav_home, R.id.nav_profile, R.id.nav_horario,R.id.nav_user)
+                        R.id.nav_home, R.id.nav_profile, R.id.nav_horario,R.id.nav_user, R.id.nav_contact)
                         .setOpenableLayout(drawer)
                         .build();
             }else{
                 mAppBarConfiguration = new AppBarConfiguration.Builder(
-                        R.id.nav_home, R.id.nav_profile)
+                        R.id.nav_home, R.id.nav_profile,R.id.nav_contact)
                         .setOpenableLayout(drawer)
                         .build();
                 binding.navView.getMenu().findItem(R.id.nav_horario).setVisible(false);

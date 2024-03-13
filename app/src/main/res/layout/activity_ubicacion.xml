@@ -29,6 +29,27 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:id="@+id/estado_gps"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Estado de GPS"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    >
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -51,25 +72,29 @@
 
             </androidx.cardview.widget.CardView>
 
-            <TextView
-                android:id="@+id/txtLatitud"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Latitud"
-                android:text=""
-                android:textColorHint="@android:color/darker_gray"
-                android:textSize="20sp"
-                android:padding="16dp"/>
+
 
             <TextView
-                android:id="@+id/txtLongitud"
-                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:id="@+id/txtUbicacion"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Longitud"
-                android:text=""
-                android:textColorHint="@android:color/darker_gray"
-                android:textSize="20sp"
-                android:padding="16dp"/>
+                android:text="Ver en Google Maps"
+                android:textColor="@color/danger"
+                android:textSize="16sp"
+                android:layout_margin="16dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:onClick="openInGoogleMaps"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                />
+
+
+
+
+
+
 
 
 

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.glance.ImageProvider;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,6 +29,11 @@ import com.joelmaza.mediclic.MainActivity;
 import com.joelmaza.mediclic.Objetos.Usuario;
 import com.joelmaza.mediclic.Principal;
 import com.joelmaza.mediclic.R;
+import com.joelmaza.mediclic.Vi_fotos;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Fragment_perfil extends Fragment {
     Button btn_salir, btn_update_profile;
@@ -37,6 +43,7 @@ public class Fragment_perfil extends Fragment {
     ImageView img_perfil;
     Alert_dialog alertDialog;
     DatabaseReference dbReference;
+    String URL_FOTO = "", NOMBRE = "", clave ="";
 
     @Nullable
     @Override
@@ -53,6 +60,7 @@ public class Fragment_perfil extends Fragment {
         dialog = new Progress_dialog(vista.getContext());
         alertDialog = new Alert_dialog(vista.getContext());
         txt_rol = vista.findViewById(R.id.txt_rol);
+
 
 
 
@@ -101,17 +109,104 @@ public class Fragment_perfil extends Fragment {
 
             });
 
+            btn_update_profile.setOnClickListener(view -> {
+
+                dialog.mostrar_mensaje("Actualizando Perfil...");
+
+                if(!TextEmail.getText().toString().isEmpty() && TextEmail.getError() == null
+                        && !editTextTextPhone.getText().toString().isEmpty()  && editTextTextPhone.getError() == null
+                        && !editxt_direccion.getText().toString().isEmpty()) {
+
+                    Usuario user = new Usuario();
+                    user.uid = Principal.id;
+                    user.email = TextEmail.getText().toString();
+                    user.telefono = editTextTextPhone.getText().toString();
+                    update_perfil(user);
+
+                    dialog.ocultar_mensaje();
+                    alertDialog.crear_mensaje("Correcto", "Usuario Actualizado Correctamente", builder -> {
+                        builder.setCancelable(false);
+                        builder.setNeutralButton("Aceptar", (dialogInterface, i) -> {});
+                        builder.create().show();
+                    });
+
+                }else{
+                    dialog.ocultar_mensaje();
+                    alertDialog.crear_mensaje("¡Advertencia!", "Completa todos los campos", builder -> {
+                        builder.setCancelable(true);
+                        builder.setNeutralButton("Aceptar", (dialogInterface, i) -> {});
+                        builder.create().show();
+                    });
+                }
+            });
+
+
+
 
 
 
 
         }
+        img_perfil.setOnClickListener(view -> {
+
+            alertDialog.crear_mensaje("Información", "Selecciona una opción", builder -> {
+
+                if(!URL_FOTO.isEmpty()) {
+
+                    builder.setPositiveButton("Ver Foto", (dialogInterface, i) -> {
+
+                        startActivity(new Intent(getContext(), Vi_fotos.class)
+                                .putExtra("url", URL_FOTO)
+                                .putExtra("titulo", NOMBRE));
+
+                    });
+                    builder.setNeutralButton("Subir Foto", (dialogInterface, i) -> {
+
+
+                    });
+
+                    builder.setCancelable(true);
+                    builder.create().show();
+
+                }else{
+
+
+
+
+                }
+
+            });
+
+        });
+
 
 
 
 
 
         return vista;
+
+    }
+    public void update_perfil(Usuario usuario) {
+
+        if(usuario.uid != null) {
+            Map<String, Object> datos = new HashMap<>();
+            datos.put("email", usuario.email.toLowerCase());
+            datos.put("telefono", usuario.telefono);
+
+            if(!clave.equals(usuario.clave)){
+                if(!Principal.preferences.getString("uid_biometric","").isEmpty()){
+                    SharedPreferences.Editor editor = Principal.preferences.edit();
+                    editor.putString("uid_biometric","");
+                    editor.apply();
+                }
+                datos.put("clave", usuario.clave);
+            }
+
+            Principal.databaseReference.child("usuarios").child(usuario.uid).updateChildren(datos);
+
+
+        }
 
     }
 

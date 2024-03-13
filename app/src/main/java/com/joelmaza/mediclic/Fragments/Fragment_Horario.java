@@ -30,6 +30,7 @@ public class Fragment_Horario extends Fragment {
     ProgressBar progressBar;
     TextView txt_sinresultados, txt_contador;
     Adapter_horario adapterHorario;
+    Button add_horario;
     public static Ctl_horario ctlHorario;
     public static Alert_dialog alertDialog;
     public static Progress_dialog dialog;
@@ -49,7 +50,7 @@ public class Fragment_Horario extends Fragment {
         dialog = new Progress_dialog(vista.getContext());
         alertDialog = new Alert_dialog(vista.getContext());
 
-        btn_add = vista.findViewById(R.id.add_horario);
+        add_horario = vista.findViewById(R.id.add_horario);
 
         adapterHorario = new Adapter_horario(vista.getContext());
         ctlHorario = new Ctl_horario(Principal.databaseReference);
@@ -58,7 +59,7 @@ public class Fragment_Horario extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapterHorario);
 
-        btn_add.setOnClickListener(view -> {
+        add_horario.setOnClickListener(view -> {
             startActivity(new Intent(vista.getContext(), Add_horario.class));
         });
 

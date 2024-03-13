@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.joelmaza.mediclic.Controllers.Alert_dialog;
 import com.joelmaza.mediclic.Controllers.Progress_dialog;
+import com.joelmaza.mediclic.Fragments.Dialog_Fragment_Usuarios;
 import com.joelmaza.mediclic.MainActivity;
 import com.joelmaza.mediclic.Objetos.Ob_citas;
 import com.joelmaza.mediclic.R;
@@ -30,10 +31,10 @@ import java.util.Locale;
 
 public class Add_citas extends AppCompatActivity {
     Spinner spinner_tipo;
-    Button add_empleado, btn_add_actividad;
+    Button  btn_add_actividad, add_empleado;
     public static TextView card_nombre, card_cedula;
     ArrayAdapter<CharSequence> adapterspinner_tipo;
-    public static String UID_EMPLEADO;
+    public static String UID_EMPLEADO ="";
     EditText editTextActividad;
     CalendarView cal_inicio, cal_fin;
     TimePicker time_inicio, time_fin;
@@ -41,6 +42,7 @@ public class Add_citas extends AppCompatActivity {
     Progress_dialog dialog;
     long fecha_cal_ini, fecha_cal_fin;
     String hora_time_inicio, hora_time_fin;
+
 
 
     @Override
@@ -53,9 +55,12 @@ public class Add_citas extends AppCompatActivity {
 
 
         btn_add_actividad = findViewById(R.id.btn_add_actividad);
+        add_empleado = findViewById(R.id.add_empleado);
+
 
         card_nombre = findViewById(R.id.card_nombre);
         card_cedula = findViewById(R.id.card_cedula);
+
 
         editTextActividad = findViewById(R.id.editTextActividad);
         cal_inicio = findViewById(R.id.fecha_inicio);
@@ -79,6 +84,13 @@ public class Add_citas extends AppCompatActivity {
 
         fecha_cal_ini = dia.getTime();
         fecha_cal_fin = dia.getTime();
+
+        add_empleado.setOnClickListener(view -> {
+
+            Dialog_Fragment_Usuarios dialogFragmentUsuarios = new Dialog_Fragment_Usuarios();
+            dialogFragmentUsuarios.show(getSupportFragmentManager(),"EMPLEADOS");
+
+        });
 
         hora_time_inicio = String.format("%02d:%02d",dia.getHours(),dia.getMinutes()) + " "+ ((dia.getHours()<12) ? "am":"pm");
         hora_time_fin = String.format("%02d:%02d",dia.getHours()+1,dia.getMinutes()) + " "+ ((dia.getHours()<12) ? "am":"pm");

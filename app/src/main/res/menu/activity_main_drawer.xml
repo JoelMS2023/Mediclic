@@ -19,6 +19,15 @@
         <item
             android:id="@+id/nav_horario"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="HORARIO" />
+            android:title="Horario" />
+        <item
+            android:id="@+id/nav_contact"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/text_contact" />
+        <item
+            android:id="@+id/nav_Description"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/text_description" />
+
     </group>
 </menu>

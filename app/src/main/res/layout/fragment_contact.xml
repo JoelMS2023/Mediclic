@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.Fragment_contact">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <!-- Primer CardView -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_instagram"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:layout_margin="5dp"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:clickable="false">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/title_ig"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:clickable="false"/>
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        app:lottie_imageAssetsFolder="assets"
+                        app:lottie_fileName="instagram.json"
+                        app:lottie_loop="true"
+                        app:lottie_autoPlay="true"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Segundo CardView -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_facebook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:layout_margin="5dp"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:clickable="false">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/title_fb"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:clickable="false"/>
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        app:lottie_imageAssetsFolder="assets"
+                        app:lottie_fileName="facebook.json"
+                        app:lottie_loop="true"
+                        app:lottie_autoPlay="true"
+                        android:layout_gravity="center"/>
+
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Tercer CardView -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_whatsapp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:layout_margin="5dp"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:clickable="false">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/title_ws"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:clickable="false"/>
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        app:lottie_imageAssetsFolder="assets"
+                        app:lottie_fileName="ws.json"
+                        app:lottie_loop="true"
+                        app:lottie_autoPlay="true"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</RelativeLayout>
+

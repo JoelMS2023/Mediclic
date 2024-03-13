@@ -15,10 +15,10 @@
             android:id="@+id/add_horario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btn_add"
             android:backgroundTint="@color/success"
-            android:textColor="@color/white"
-            >
+            android:text="@string/btn_add"
+            android:textColor="@color/white">
+
         </Button>
 
     </LinearLayout>

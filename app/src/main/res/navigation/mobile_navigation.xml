@@ -27,4 +27,14 @@
         android:name="com.joelmaza.mediclic.Fragments.Fragment_Horario"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_horario" />
+    <fragment
+        android:id="@+id/nav_Description"
+        android:name="com.joelmaza.mediclic.Fragments.Fragment_Description"
+        android:label="fragment__description"
+        tools:layout="@layout/fragment__description" />
+    <fragment
+        android:id="@+id/nav_contact"
+        android:name="com.joelmaza.mediclic.Fragments.Fragment_contact"
+        android:label="fragment_contact"
+        tools:layout="@layout/fragment_contact" />
 </navigation>

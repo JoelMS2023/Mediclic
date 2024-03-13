@@ -12,13 +12,14 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class Ubicacion extends AppCompatActivity implements OnMapReadyCallback {
 
-    private static final double UBICACION_LATITUD = -3.2622787; // Latitud de "P2QV+3JJ, Machala"
-    private static final double UBICACION_LONGITUD = -79.9585661; // Longitud de "P2QV+3JJ, Machala"
+    private static final double UBICACION_LATITUD = -3.267922;
+    private static final double UBICACION_LONGITUD = -79.898226;
     private static final float DEFAULT_ZOOM = 15f;
 
     private GoogleMap mMap;
@@ -33,47 +34,43 @@ public class Ubicacion extends AppCompatActivity implements OnMapReadyCallback {
         assert mapFragment != null;
         mapFragment.getMapAsync(this);
 
-        // Mostrar la latitud y longitud en los EditText
-        // Suponiendo que tienes EditText con los IDs txtLatitud y txtLongitud
-        // Puedes mostrar los valores de latitud y longitud aquí si es necesario
+        // Botón para abrir la ubicación en Google Maps
+        TextView txtUbicacion = findViewById(R.id.txtUbicacion);
+        txtUbicacion.setOnClickListener(view -> openInGoogleMaps());
     }
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
 
+        // Configurar el estilo del puntero
+        mMap.getUiSettings().setMapToolbarEnabled(false); // Desactivar la barra de herramientas del mapa
+        mMap.getUiSettings().setMyLocationButtonEnabled(false); // Desactivar el botón de ubicación del usuario
+
         // Mover la cámara a la ubicación específica y establecer un zoom adecuado
         LatLng ubicacion = new LatLng(UBICACION_LATITUD, UBICACION_LONGITUD);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ubicacion, DEFAULT_ZOOM));
 
-        // Colocar un marcador en la ubicación específica
-        mMap.addMarker(new MarkerOptions().position(ubicacion).title("Ubicación deseada"));
-
-        // Mostrar la latitud y longitud en los EditText correspondientes
-        TextView txtLatitud = findViewById(R.id.txtLatitud);
-        TextView txtLongitud = findViewById(R.id.txtLongitud);
-        txtLatitud.setText(String.valueOf(UBICACION_LATITUD));
-        txtLongitud.setText(String.valueOf(UBICACION_LONGITUD));
+        // Agregar un marcador grande en la ubicación específica
+        mMap.addMarker(new MarkerOptions()
+                .position(ubicacion)
+                .title("Torre Médica Para La Familia")
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                .alpha(0.7f) // Opacidad del marcador
+                .anchor(0.5f, 0.5f)); // Anclaje del marcador (centrado)
 
         // Habilitar la funcionalidad de zoom en el mapa
         mMap.getUiSettings().setZoomControlsEnabled(true);
-
-        // Establecer un listener para el marcador, para abrir la aplicación de mapas cuando se haga clic en él
-        mMap.setOnMarkerClickListener(marker -> {
-            // Crear una Uri para la ubicación específica
-            Uri gmmIntentUri = Uri.parse("google.navigation:q=" + UBICACION_LATITUD + "," + UBICACION_LONGITUD);
-
-            // Crear un intent para la aplicación de mapas
-            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-            mapIntent.setPackage("com.google.android.apps.maps");
-
-            // Verificar si hay aplicaciones disponibles para manejar la intención
-            if (mapIntent.resolveActivity(getPackageManager()) != null) {
-                // Abrir la aplicación de mapas
-                startActivity(mapIntent);
-            }
-            return true;
-        });
     }
 
+    // Método para abrir la ubicación en Google Maps
+    private void openInGoogleMaps() {
+        Uri gmmIntentUri = Uri.parse("https://www.google.com/maps/place/Torre+Medica+Para+La+Familia/@-3.267922,-79.898226,11z/data=!4m6!3m5!1s0x90330e5b832d41dd:0x59af7e04e5c46b12!8m2!3d-3.2622841!4d-79.9559912!16s%2Fg%2F11clyth8r5?hl=es-419&entry=ttu");
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+
+        if (mapIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(mapIntent);
+        }
+    }
 }

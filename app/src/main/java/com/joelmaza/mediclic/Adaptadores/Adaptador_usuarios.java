@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.joelmaza.mediclic.Citas.Add_citas;
+import com.joelmaza.mediclic.Fragments.Dialog_Fragment_Usuarios;
 import com.joelmaza.mediclic.Holders.Holder_usuarios;
 import com.joelmaza.mediclic.Objetos.Usuario;
 import com.joelmaza.mediclic.R;
@@ -61,11 +63,21 @@ public class Adaptador_usuarios extends RecyclerView.Adapter<Holder_usuarios> {
 
         holder.cardview_usuario.setOnClickListener(view ->{
 
+            if(Dialog_Fragment_Usuarios.dialogFragment != null){
 
-            Intent i = new Intent();
-            i.setClass(context, Vi_det_usuario.class);
-            i.putExtra("uid",lista_usuarios.get(position).uid);
-            context.startActivity(i);
+                Add_citas.card_cedula.setText(lista_usuarios.get(position).cedula);
+                Add_citas.card_nombre.setText(lista_usuarios.get(position).nombre);
+                Add_citas.UID_EMPLEADO = lista_usuarios.get(position).uid;
+                Dialog_Fragment_Usuarios.dialogFragment.dismiss();
+
+            }else {
+
+
+                Intent i = new Intent();
+                i.setClass(context, Vi_det_usuario.class);
+                i.putExtra("uid", lista_usuarios.get(position).uid);
+                context.startActivity(i);
+            }
         });
     }
 

@@ -18,6 +18,7 @@ import com.joelmaza.mediclic.Horarios.Ver_horarios;
 import com.joelmaza.mediclic.Marcacion.Ver_marcaciones;
 import com.joelmaza.mediclic.Principal;
 import com.joelmaza.mediclic.R;
+import com.joelmaza.mediclic.Reportes.Ver_reportes;
 import com.joelmaza.mediclic.Tratamientos.Add_Tratamientos;
 import com.joelmaza.mediclic.Ubicacion;
 
@@ -51,10 +52,10 @@ public class Fragment_Home extends Fragment {
         });
 
         card_agendamiento.setOnClickListener(view -> {
-            startActivity(new Intent(vista.getContext(), Add_citas.class));
+            startActivity(new Intent(vista.getContext(), Ver_citas.class));
         });
         card_reportes.setOnClickListener(view -> {
-            startActivity(new Intent(vista.getContext(), Add_citas.class));
+            startActivity(new Intent(vista.getContext(), Ver_reportes.class));
         });
         card_tratamientos.setOnClickListener(view -> {
             startActivity(new Intent(vista.getContext(), Add_Tratamientos.class));

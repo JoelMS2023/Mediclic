@@ -31,7 +31,7 @@
     //Pacientes
     <string name="home_op1">Schedule</string>
     <string name="home_op2">attention hours</string>
-    <string name="home_op3">Treatments</string>
+    <string name="home_op3">Services</string>
     <string name="home_op4">Doctors</string>
     <string name="home_op5">Location</string>
     <string name="home_op6">Medical history</string>
@@ -61,6 +61,18 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="description">Medical Tower for the Family aware that health is a priority, for this reason we cordially invite citizens in general to receive our preventive packages at prices within everyone\'s reach. We have excellent Specialists in different areas, with ethics and human quality that is the most important thing.
+
+    We are located on Rocafuerte street between Colon and Buenavista, diagonal to the Coop. Santa Rosa Savings and Credit.
+    </string>
+
+    <string name="description1"> INFORMATION
+
+    Telephones: 2935-527 // 2935-453 // 2935-437
+
+    Cell: 0968171997 // 0993148219
+
+    Attention from 07:30 am. WE ARE WAITING FOR YOU AT THE MEDICAL TOWER FOR THE FAMILY.</string>
 
     <string-array name="rol">
         <item>Choose</item>
@@ -100,4 +112,15 @@
         <item>Under Review</item>
         <item>Completed</item>
     </string-array>
+
+    <string name="texto_subrayado"><u>Our networks</u></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="text_horario">Schedule</string>
+    <string name="text_contact">Contact us</string>
+    <string name="text_description">About us</string>
+    <string name="title_fb">Facebook</string>
+    <string name="title_ws">Whatsapp</string>
+    <string name="title_ig">Instagram</string>
+
+
 </resources>
