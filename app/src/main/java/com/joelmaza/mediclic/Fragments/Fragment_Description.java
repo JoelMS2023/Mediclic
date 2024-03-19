@@ -1,5 +1,7 @@
 package com.joelmaza.mediclic.Fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.joelmaza.mediclic.R;
 
@@ -54,6 +57,10 @@ public class Fragment_Description extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+
+
+
         }
     }
 
@@ -61,6 +68,39 @@ public class Fragment_Description extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment__description, container, false);
+        View vista= inflater.inflate(R.layout.fragment__description, container, false);
+
+
+        ImageButton btnInstagram = vista.findViewById(R.id.btnInstagram);
+        btnInstagram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                abrirSitioWeb("https://www.instagram.com/torremedparalafamilia/");
+            }
+        });
+
+        // Botón de Facebook
+        ImageButton btnFacebook = vista.findViewById(R.id.btnFacebook);
+        btnFacebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                abrirSitioWeb("https://www.facebook.com/profile.php?id=100047580051310");
+            }
+        });
+
+        // Botón de WhatsApp
+        ImageButton btnWhatsApp = vista.findViewById(R.id.btnWhatsApp);
+        btnWhatsApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                abrirSitioWeb("https://api.whatsapp.com/send?phone=+593968171997&text=Deseo%20agendar%20una%20cita%20en%20la%20especialidad%20de");
+            }
+        });
+
+        return vista;
+    }
+    private void abrirSitioWeb(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        startActivity(intent);
     }
 }

@@ -50,6 +50,32 @@
                 android:contentDescription="@string/text_image">
 
             </ImageView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_name"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="5sp"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:id="@+id/txt_nombre"
+                >
+
+            </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_myusername"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:id="@+id/txt_cedula"
+                android:layout_marginBottom="10sp"
+                >
+            </TextView>
 
 
 
@@ -67,24 +93,17 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:padding="10dp">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_name"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="5dp"
-                        />
-                    <TextView
-                        android:id="@+id/txt_nombre"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:ems="10"
-                        android:inputType="textEmailAddress"
-                        android:textSize="15sp"
-                        android:autofillHints="emailAddress"
-                        />
 
+                    <TextView
+                        android:id="@+id/txt_estado"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Estado"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -143,21 +162,6 @@
                         android:textColor="@color/black"
                         />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/text_identification"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp"
-                        />
-
-                    <TextView
-                        android:id="@+id/txt_cedula"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="-"
-                        />
 
 
 

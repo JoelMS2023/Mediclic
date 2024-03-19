@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -56,7 +57,8 @@ public class Ver_citas extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapterActividad);
-        if(!Principal.id.isEmpty() && !Principal.Nombre.isEmpty()) {
+
+        if(!Principal.id.isEmpty()) {
 
             if(Principal.rol.equals("Administrador")){
                 cardview_nombre.setVisibility(View.GONE);

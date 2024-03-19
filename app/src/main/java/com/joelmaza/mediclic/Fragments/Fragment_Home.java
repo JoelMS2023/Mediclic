@@ -20,6 +20,7 @@ import com.joelmaza.mediclic.Principal;
 import com.joelmaza.mediclic.R;
 import com.joelmaza.mediclic.Reportes.Ver_reportes;
 import com.joelmaza.mediclic.Tratamientos.Add_Tratamientos;
+import com.joelmaza.mediclic.Tratamientos.Ver_tratamientos;
 import com.joelmaza.mediclic.Ubicacion;
 
 public class Fragment_Home extends Fragment {
@@ -58,7 +59,7 @@ public class Fragment_Home extends Fragment {
             startActivity(new Intent(vista.getContext(), Ver_reportes.class));
         });
         card_tratamientos.setOnClickListener(view -> {
-            startActivity(new Intent(vista.getContext(), Add_Tratamientos.class));
+            startActivity(new Intent(vista.getContext(), Ver_tratamientos.class));
         });
         card_gps.setOnClickListener(view -> {
             startActivity(new Intent(vista.getContext(), Ubicacion.class));

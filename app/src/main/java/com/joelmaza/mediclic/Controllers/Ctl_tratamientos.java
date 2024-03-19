@@ -1,6 +1,5 @@
 package com.joelmaza.mediclic.Controllers;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -11,51 +10,47 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
-import com.joelmaza.mediclic.Adaptadores.Adapter_citas;
+import com.joelmaza.mediclic.Adaptadores.Adapter_tratamientos;
 import com.joelmaza.mediclic.Objetos.Ob_citas;
-import com.joelmaza.mediclic.Objetos.Ob_horario;
+import com.joelmaza.mediclic.Objetos.Ob_tratamientos;
+import com.joelmaza.mediclic.Objetos.Usuario;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class Ctl_citas {
+public class Ctl_tratamientos {
 
     DatabaseReference dbref;
 
-    public Ctl_citas(DatabaseReference dbref) {
+    public Ctl_tratamientos(DatabaseReference dbref) {
         this.dbref = dbref;
     }
 
-    public void crear_cita(String uid_user, Ob_citas obCitas) {
 
-        dbref.child("usuarios").child(uid_user).child("citas").push().setValue(obCitas);
+    public void crear_tratamientos(String uid_tratamiento, Ob_tratamientos obtratamientos) {
 
+        dbref.child("Tratamientos").child(uid_tratamiento).setValue(obtratamientos);
 
-    }
-
-    public void eliminar_citas(String uid_user, String uid_cita) {
-        dbref.child("usuarios").child(uid_user).child("citas").child(uid_cita).removeValue();
 
     }
+    public void actualizar_tratamientos(DatabaseReference dbref, Ob_tratamientos obtratamientos){
 
-    public void update_cita(String uid_user, Ob_citas obActividad) {
+        Map<String, Object> datos = new HashMap<>();
+        datos.put("nombre", obtratamientos.nombre);
+        datos.put("estado",obtratamientos.estado);
+        datos.put("mensaje",obtratamientos.mensaje);
+        datos.put("empleado",obtratamientos.empleado);
 
-        if (obActividad.uid != null) {
-            Map<String, Object> datos = new HashMap<>();
-            datos.put("mensaje", obActividad.mensaje);
-            datos.put("tipo", obActividad.tipo);
-            datos.put("estado", obActividad.estado);
-            datos.put("fecha_inicio", obActividad.fecha_inicio);
-            datos.put("fecha_fin", obActividad.fecha_fin);
-            datos.put("hora_inicio", obActividad.hora_inicio);
-            datos.put("hora_fin", obActividad.hora_fin);
-            dbref.child("usuarios").child(uid_user).child("citas").child(obActividad.uid).updateChildren(datos);
-        }
+        dbref.child("Tratamientos").child(obtratamientos.uid).updateChildren(datos);
 
     }
+    public void eliminar_tratamientos(DatabaseReference dbref, String uid_tratamiento){
 
-    public void VerActividades(Adapter_citas list_actividad, final TextView textView, final ProgressBar progressBar, TextView txt_contador) {
+        dbref.child("Tratamientos").child(uid_tratamiento).removeValue();
+
+    }
+    public void Vertratamientos(Adapter_tratamientos list_tratamientos, final TextView textView, final ProgressBar progressBar, TextView txt_contador) {
 
         progressBar.setVisibility(View.VISIBLE);
         textView.setVisibility(View.VISIBLE);
@@ -66,16 +61,16 @@ public class Ctl_citas {
 
                 if (dataSnapshot.exists()) {
 
-                    list_actividad.ClearActividad();
+                    list_tratamientos.ClearActividad();
                     int contador = 0;
 
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-                        if (snapshot.child("citas").exists()) {
+                        if (snapshot.child("Tratamientos").exists()) {
 
-                            for (DataSnapshot datos : snapshot.child("citas").getChildren()) {
+                            for (DataSnapshot datos : snapshot.child("tratamientos").getChildren()) {
 
-                                Ob_citas actividad = new Ob_citas();
+                                Ob_tratamientos actividad = new Ob_tratamientos();
                                 actividad.uid = datos.getKey();
 
                                 if (datos.child("fecha_inicio").exists()) {
@@ -83,12 +78,6 @@ public class Ctl_citas {
                                 }
                                 if (datos.child("hora_inicio").exists()) {
                                     actividad.hora_inicio = Objects.requireNonNull(datos.child("hora_inicio").getValue()).toString();
-                                }
-                                if (datos.child("fecha_fin").exists()) {
-                                    actividad.fecha_fin = Objects.requireNonNull(datos.child("fecha_fin").getValue()).toString();
-                                }
-                                if (datos.child("hora_fin").exists()) {
-                                    actividad.hora_fin = Objects.requireNonNull(datos.child("hora_fin").getValue()).toString();
                                 }
                                 if (datos.child("estado").exists()) {
                                     actividad.estado = Objects.requireNonNull(datos.child("estado").getValue()).toString();
@@ -108,25 +97,25 @@ public class Ctl_citas {
                                 actividad.uid_empleado = snapshot.getKey();
 
 
-                                list_actividad.AddActividad(actividad);
+                                list_tratamientos.AddActividad(actividad);
                                 contador++;
 
                             }
 
                         }
 
-
                     }
-                    txt_contador.setText(contador + " citas");
+
+                    txt_contador.setText(contador + " tratamientos");
                     progressBar.setVisibility(View.GONE);
 
-                    textView.setVisibility(list_actividad.getItemCount() == 0 ? View.VISIBLE : View.GONE);
+                    textView.setVisibility(list_tratamientos.getItemCount() == 0 ? View.VISIBLE : View.GONE);
 
-                    list_actividad.notifyDataSetChanged();
+                    list_tratamientos.notifyDataSetChanged();
 
                 } else {
-                    list_actividad.ClearActividad();
-                    list_actividad.notifyDataSetChanged();
+                    list_tratamientos.ClearActividad();
+                    list_tratamientos.notifyDataSetChanged();
                     progressBar.setVisibility(View.GONE);
                     textView.setVisibility(View.VISIBLE);
                 }
@@ -139,11 +128,8 @@ public class Ctl_citas {
             }
 
         });
-
-
     }
-
-    public void Ver_my_Actividades(Adapter_citas list_actividad, String uid, final TextView textView, final ProgressBar progressBar, TextView txt_contador) {
+    public void Ver_my_tratamientos(Adapter_tratamientos list_actividad, String uid, final TextView textView, final ProgressBar progressBar, TextView txt_contador) {
 
         progressBar.setVisibility(View.VISIBLE);
         textView.setVisibility(View.VISIBLE);
@@ -157,11 +143,11 @@ public class Ctl_citas {
                     list_actividad.ClearActividad();
                     int contador = 0;
 
-                    if (dataSnapshot.child("citas").exists()) {
+                    if (dataSnapshot.child("tratamientos").exists()) {
 
-                        for (DataSnapshot snapshot : dataSnapshot.child("citas").getChildren()) {
+                        for (DataSnapshot snapshot : dataSnapshot.child("tratamientos").getChildren()) {
 
-                            Ob_citas actividad = new Ob_citas();
+                            Ob_tratamientos actividad = new Ob_tratamientos();
                             actividad.uid = snapshot.getKey();
 
                             if (snapshot.child("fecha_inicio").exists()) {
@@ -169,12 +155,6 @@ public class Ctl_citas {
                             }
                             if (snapshot.child("hora_inicio").exists()) {
                                 actividad.hora_inicio = Objects.requireNonNull(snapshot.child("hora_inicio").getValue()).toString();
-                            }
-                            if (snapshot.child("fecha_fin").exists()) {
-                                actividad.fecha_fin = Objects.requireNonNull(snapshot.child("fecha_fin").getValue()).toString();
-                            }
-                            if (snapshot.child("hora_fin").exists()) {
-                                actividad.hora_fin = Objects.requireNonNull(snapshot.child("hora_fin").getValue()).toString();
                             }
                             if (snapshot.child("estado").exists()) {
                                 actividad.estado = Objects.requireNonNull(snapshot.child("estado").getValue()).toString();
@@ -193,6 +173,7 @@ public class Ctl_citas {
                             }
                             actividad.uid_empleado = dataSnapshot.getKey();
 
+
                             list_actividad.AddActividad(actividad);
                             contador++;
 
@@ -200,7 +181,7 @@ public class Ctl_citas {
 
                     }
 
-                    txt_contador.setText(contador + " citas");
+                    txt_contador.setText(contador + " tratamientos");
                     progressBar.setVisibility(View.GONE);
 
                     if (list_actividad.getItemCount() == 0) {

@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.glance.ImageProvider;
 
@@ -34,10 +35,11 @@ import com.joelmaza.mediclic.Vi_fotos;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class Fragment_perfil extends Fragment {
     Button btn_salir, btn_update_profile;
-    TextView txt_nombre, txt_cedula,txt_rol, TextEmail ;
+    TextView txt_nombre, txt_cedula,txt_rol, TextEmail, txt_estado ;
     EditText editxt_direccion, editTextTextPhone;
     Progress_dialog dialog;
     ImageView img_perfil;
@@ -60,6 +62,7 @@ public class Fragment_perfil extends Fragment {
         dialog = new Progress_dialog(vista.getContext());
         alertDialog = new Alert_dialog(vista.getContext());
         txt_rol = vista.findViewById(R.id.txt_rol);
+        txt_estado= vista.findViewById(R.id.txt_estado);
 
 
 
@@ -80,6 +83,8 @@ public class Fragment_perfil extends Fragment {
                 editxt_direccion.setText(user.direccion);
                 TextEmail.setText(user.email);
                 editTextTextPhone.setText(user.telefono);
+
+
 
 
             });

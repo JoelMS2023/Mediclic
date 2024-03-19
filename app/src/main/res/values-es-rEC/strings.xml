@@ -33,13 +33,13 @@
     <string name="home_op1">Agendar</string>
     <string name="home_op2">Horarios</string>
     <string name="home_op3">Servicios</string>
-    <string name="home_op4">Medicos</string>
+    <string name="home_op4">Médicos</string>
     <string name="home_op5">Ubicación</string>
-    <string name="home_op6">Reporte medico</string>
+    <string name="home_op6">Reportes</string>
 
 
 
-    <string name="home_op1m">Marcacion</string>
+    <string name="home_op1m">Marcación</string>
 
 
     <string name="menu_home">Inicio</string>
@@ -79,7 +79,7 @@
 
     <string name="texto_subrayado"><u>Nuestras redes</u></string>
     <string name="text_horario">Horario</string>
-    <string name="text_contact">Contactanos</string>
+    <string name="text_contact">Contáctanos</string>
 
     <string name="text_description">Sobre nosotros</string>
 
