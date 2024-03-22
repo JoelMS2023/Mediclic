@@ -3,6 +3,8 @@ package com.joelmaza.mediclic.Fragments;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.glance.ImageProvider;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,11 +39,12 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 public class Fragment_perfil extends Fragment {
     Button btn_salir, btn_update_profile;
-    TextView txt_nombre, txt_cedula,txt_rol, TextEmail, txt_estado ;
-    EditText editxt_direccion, editTextTextPhone;
+    TextView txt_nombre, txt_cedula,txt_rol, TextEmail, txt_estado;
+    EditText editxt_direccion, editTextTextPhone, editTextTextClave;
     Progress_dialog dialog;
     ImageView img_perfil;
     Alert_dialog alertDialog;
@@ -63,6 +67,7 @@ public class Fragment_perfil extends Fragment {
         alertDialog = new Alert_dialog(vista.getContext());
         txt_rol = vista.findViewById(R.id.txt_rol);
         txt_estado= vista.findViewById(R.id.txt_estado);
+        editTextTextClave = vista.findViewById(R.id.editTextTextClave);
 
 
 
@@ -83,6 +88,7 @@ public class Fragment_perfil extends Fragment {
                 editxt_direccion.setText(user.direccion);
                 TextEmail.setText(user.email);
                 editTextTextPhone.setText(user.telefono);
+                editTextTextClave.setText((user.clave));
 
 
 
@@ -120,12 +126,14 @@ public class Fragment_perfil extends Fragment {
 
                 if(!TextEmail.getText().toString().isEmpty() && TextEmail.getError() == null
                         && !editTextTextPhone.getText().toString().isEmpty()  && editTextTextPhone.getError() == null
-                        && !editxt_direccion.getText().toString().isEmpty()) {
+                        && !editxt_direccion.getText().toString().isEmpty()
+                        && !editTextTextClave.getText().toString().isEmpty()){
 
                     Usuario user = new Usuario();
                     user.uid = Principal.id;
                     user.email = TextEmail.getText().toString();
                     user.telefono = editTextTextPhone.getText().toString();
+                    user.clave = editTextTextClave.getText().toString();
                     update_perfil(user);
 
                     dialog.ocultar_mensaje();
@@ -145,12 +153,80 @@ public class Fragment_perfil extends Fragment {
                 }
             });
 
+            editTextTextPhone.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    if(editable.toString().trim().length() == 10) {
+                        if (!validar_celular(editable.toString().trim())) {
+                            editTextTextPhone.setError("Ingresa un celular válido");
+                        }
+                    }else{
+                        editTextTextPhone.setError("Ingresa 10 dígitos");
+                    }
+                }
+            });
+
+            txt_rol.setText(Principal.rol);
+            Principal.databaseReference.child("usuarios").child(Principal.id).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                    if(snapshot.exists()){
+
+                        if(snapshot.child("cedula").exists()) {
+                            txt_cedula.setText(Objects.requireNonNull(snapshot.child("cedula").getValue()).toString());
+                        }
+                        if(snapshot.child("estado").exists()) {
+                            txt_estado.setText(Objects.requireNonNull(snapshot.child("estado").getValue()).toString());
+                            switch (txt_estado.getText().toString().toLowerCase()){
+                                case "activo":
+                                    txt_estado.setTextColor(ContextCompat.getColor(vista.getContext(),R.color.success));
+                                    break;
+                                case "inactivo":
+                                    txt_estado.setTextColor(ContextCompat.getColor(vista.getContext(),R.color.danger));
+                                    break;
+                                default:
+                                    txt_estado.setTextColor(ContextCompat.getColor(vista.getContext(),R.color.proyecto_night));
+                                    break;
+                            }
+                        }
+                        if(snapshot.child("nombre").exists()) {
+                            NOMBRE = Objects.requireNonNull(snapshot.child("nombre").getValue()).toString();
+                            txt_nombre.setText(NOMBRE);
+                        }
+                        if(snapshot.child("url_foto").exists()){
+                            URL_FOTO = Objects.requireNonNull(snapshot.child("url_foto").getValue()).toString();
+                            Glide.with(vista.getContext()).load(URL_FOTO).centerCrop().into(img_perfil);
+                        }else{
+                            img_perfil.setImageResource(R.drawable.perfil);
+                        }
+                        if(snapshot.child("clave").exists()){
+                            editTextTextClave.setText(Objects.requireNonNull(snapshot.child("clave").getValue()).toString());
+                            clave = Objects.requireNonNull(snapshot.child("clave").getValue()).toString();
+                        }
+                        if(snapshot.child("telefono").exists()){
+                            editTextTextPhone.setText(Objects.requireNonNull(snapshot.child("telefono").getValue()).toString().trim());
+                        }
 
 
+                    }
 
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-
-
+                }
+            });
         }
         img_perfil.setOnClickListener(view -> {
 
@@ -212,6 +288,21 @@ public class Fragment_perfil extends Fragment {
 
 
         }
+
+    }
+    public boolean validar_celular(String celular){
+
+        Pattern patron = Pattern.compile("^(0|593)?9[0-9]\\d{7}$");
+
+        return patron.matcher(celular).matches();
+
+    }
+
+    public boolean validar_correo(String correo){
+
+        Pattern patron = Pattern.compile("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.([a-zA-Z]{2,4})+$");
+
+        return patron.matcher(correo).matches();
 
     }
 

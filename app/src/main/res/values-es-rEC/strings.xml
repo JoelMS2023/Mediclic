@@ -129,6 +129,19 @@
         <item>Finalizado</item>
     </string-array>
 
+    <string-array name="tipo_tratamiento">
+        <item>Selecciona</item>
+        <item>Disponible</item>
+        <item>No disponible</item>
+    </string-array>
+
+    <string-array name="tipo_doctor">
+        <item>Select</item>
+        <item>""</item>
+        <item>""</item>
+    </string-array>
+
+
 
 
 

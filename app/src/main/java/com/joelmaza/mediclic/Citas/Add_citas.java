@@ -88,7 +88,7 @@ public class Add_citas extends AppCompatActivity {
         add_empleado.setOnClickListener(view -> {
 
             Dialog_Fragment_Usuarios dialogFragmentUsuarios = new Dialog_Fragment_Usuarios();
-            dialogFragmentUsuarios.show(getSupportFragmentManager(),"EMPLEADOS");
+            dialogFragmentUsuarios.show(getSupportFragmentManager(),"Doctor");
 
         });
 

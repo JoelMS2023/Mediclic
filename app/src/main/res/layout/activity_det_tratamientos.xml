@@ -71,7 +71,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Fecha de solicitud:"
+                        android:text="Fecha de ingreso:"
                         android:textStyle="bold"
                         android:layout_marginBottom="5dp"
                         />
@@ -106,7 +106,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Tipo:"
+                        android:text="Doctor:"
                         android:textStyle="bold"
                         android:layout_marginBottom="5dp"
                         />
@@ -153,7 +153,7 @@
                 android:backgroundTint="@color/success"
                 android:padding="15dp"
                 android:textColor="@color/white"
-                android:text="Actualizar Solicitud"
+                android:text="Actualizar tratamiento"
                 android:textSize="20sp" />
 
             <Button
@@ -166,7 +166,7 @@
                 android:backgroundTint="@color/danger"
                 android:padding="15dp"
                 android:textColor="@color/white"
-                android:text="Eliminar Solicitud"
+                android:text="Eliminar Tratamiento"
                 android:textSize="20sp" />
 
         </LinearLayout>

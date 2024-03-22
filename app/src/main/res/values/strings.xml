@@ -123,4 +123,17 @@
     <string name="title_ig">Instagram</string>
 
 
+    <string-array name="tipo_tratamiento">
+        <item>Select</item>
+        <item>Available</item>
+        <item>Not available</item>
+    </string-array>
+
+    <string-array name="tipo_doctor">
+        <item>Select</item>
+        <item>""</item>
+        <item>""</item>
+    </string-array>
+
+
 </resources>

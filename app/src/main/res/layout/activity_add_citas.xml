@@ -103,7 +103,7 @@
                             android:id="@+id/add_empleado"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Asignar Trabajador"
+                            android:text="Asignar Médico"
                             android:backgroundTint="@color/proyecto_night"
                             android:textColor="@color/white"
                             >

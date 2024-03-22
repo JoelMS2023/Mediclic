@@ -13,4 +13,5 @@ public class Ob_tratamientos {
     public String empleado;
     public String url_foto;
     public String tipo;
+    public String fecha_hora;
 }
