@@ -32,12 +32,33 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="10dp">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Información del tratamiento"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:padding="10dp"
+                    >
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nombre del Tratamiento"
-                android:textSize="18sp"/>
+                android:textSize="18sp"
+                android:layout_marginTop="15dp"/>
 
             <EditText
                 android:id="@+id/editTextNombre"
@@ -63,7 +84,8 @@
                 android:layout_height="150dp"
                 android:adjustViewBounds="true"
                 android:layout_gravity="center"
-                android:src="@drawable/perfil" />
+                android:src="@drawable/perfil"
+                android:layout_marginTop="15dp"/>
 
             <Button
                 android:id="@+id/btnSeleccionarImagen"

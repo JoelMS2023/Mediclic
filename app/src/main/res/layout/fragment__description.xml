@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.Fragment_Description">
+    tools:context=".Fragments.Fragment_Description"
+    android:background="@color/proyecto_light">
 
 
     <ScrollView
@@ -18,12 +19,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:src="@drawable/ic_principal"
-                android:scaleType="centerCrop"
-                android:contentDescription="@string/text_image"/>
+
 
             <!-- CardView 1 -->
             <androidx.cardview.widget.CardView
@@ -34,14 +30,14 @@
                 app:cardElevation="6dp"
                 android:background="@color/proyecto_light">
 
-                <TextView
+                <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:text="@string/description"
-                    android:textColor="@color/proyecto_dark"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:layout_height="150dp"
+                    android:src="@drawable/logo_empresa"
+                    android:scaleType="center"
+                    android:contentDescription="@string/text_image"/>
+
+
 
             </androidx.cardview.widget.CardView>
 
@@ -53,6 +49,8 @@
                 app:cardCornerRadius="8dp"
                 app:cardElevation="6dp"
                 android:background="@color/proyecto_dark">
+
+
 
                 <TextView
                     android:layout_width="match_parent"

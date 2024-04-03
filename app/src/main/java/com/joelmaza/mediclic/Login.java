@@ -64,8 +64,6 @@ public class Login extends AppCompatActivity {
 
 
         mAuth = FirebaseAuth.getInstance();
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         Button btn_ingresar = (Button) findViewById(R.id.btn_ingresar);
         Button btn_registrarse= (Button) findViewById(R.id.btn_registrarse);
         mSignInButtonGoogle = findViewById(R.id.btnGoogle);
@@ -91,13 +89,6 @@ public class Login extends AppCompatActivity {
 
         preferences=getSharedPreferences("Mediclic", MODE_PRIVATE);
 
-        toolbar.setOnClickListener(view -> finish());
-        mSignInButtonGoogle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signIn();
-            }
-        });
 
         btn_ingresar.setOnClickListener(view -> {
             dialog.mostrar_mensaje("Iniciando sesión...");

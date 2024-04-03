@@ -34,12 +34,9 @@ public class Det_citas extends AppCompatActivity {
     ArrayAdapter<CharSequence> adapterspinner_tipo, adapterspinner_estado;
     Spinner spinner_tipo, spinner_estado;
     EditText editTextActividad;
-    CalendarView cal_inicio, cal_fin;
-    TimePicker time_inicio, time_fin;
     Alert_dialog alertDialog;
+    TextView txt_fecha, txt_hora;
     Progress_dialog dialog;
-    long fecha_cal_ini, fecha_cal_fin;
-    String hora_time_inicio, hora_time_fin;
     TextView card_nombre, card_cedula;
     String uid = "", ced_empleado = "", nom_empleado ="",uid_empleado = "";
     Button btn_edit_actividad, btn_del_actividad;
@@ -56,11 +53,21 @@ public class Det_citas extends AppCompatActivity {
         editTextActividad = findViewById(R.id.editTextActividad);
         card_nombre = findViewById(R.id.card_nombre);
         card_cedula = findViewById(R.id.card_cedula);
+        txt_fecha = findViewById(R.id.txt_fecha);
+        txt_hora = findViewById(R.id.txt_hora);
 
-        cal_inicio = findViewById(R.id.fecha_inicio);
-        cal_fin = findViewById(R.id.fecha_fin);
-        time_inicio = findViewById(R.id.hora_inicio);
-        time_fin = findViewById(R.id.hora_fin);
+
+        // Obtener la fecha y la hora de la cita de la actividad anterior
+        String fechaCita = getIntent().getStringExtra("fecha_cita");
+        String horaCita = getIntent().getStringExtra("hora_cita");
+
+        // Mostrar la fecha y la hora en los TextViews
+        txt_fecha.setText("Fecha de la cita: " + fechaCita);
+        txt_hora.setText("Hora de la cita: " + horaCita);
+
+
+
+
 
         btn_edit_actividad = findViewById(R.id.btn_edit_actividad);
         btn_del_actividad = findViewById(R.id.btn_del_actividad);
@@ -83,11 +90,6 @@ public class Det_citas extends AppCompatActivity {
 
         Date dia = new Date();
 
-        fecha_cal_ini = dia.getTime();
-        fecha_cal_fin = dia.getTime();
-
-        hora_time_inicio = String.format("%02d:%02d",dia.getHours(),dia.getMinutes()) + " "+ ((dia.getHours()<12) ? "am":"pm");
-        hora_time_fin = String.format("%02d:%02d",dia.getHours()+1,dia.getMinutes()) + " "+ ((dia.getHours()<12) ? "am":"pm");
 
         assert uid !=null;
         if(!uid.isEmpty() && !uid_empleado.isEmpty()) {
@@ -99,15 +101,13 @@ public class Det_citas extends AppCompatActivity {
                 btn_del_actividad.setVisibility(View.VISIBLE);
                 spinner_tipo.setEnabled(true);
                 editTextActividad.setEnabled(true);
-                time_inicio.setEnabled(true);
-                time_fin.setEnabled(true);
+
 
             }else{
                 btn_del_actividad.setVisibility(View.GONE);
                 spinner_tipo.setEnabled(false);
                 editTextActividad.setEnabled(false);
-                time_inicio.setEnabled(false);
-                time_fin.setEnabled(false);
+
 
             }
 
@@ -136,10 +136,6 @@ public class Det_citas extends AppCompatActivity {
                     Ob_citas obActividad = new Ob_citas();
                     obActividad.uid = uid;
                     obActividad.estado = spinner_estado.getSelectedItem().toString();
-                    obActividad.fecha_inicio = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(fecha_cal_ini);
-                    obActividad.fecha_fin = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(fecha_cal_fin);
-                    obActividad.hora_inicio = hora_time_inicio;
-                    obActividad.hora_fin = hora_time_fin;
                     obActividad.tipo = spinner_tipo.getSelectedItem().toString();
                     obActividad.mensaje = editTextActividad.getText().toString();
 
@@ -170,65 +166,13 @@ public class Det_citas extends AppCompatActivity {
                     if(snapshot.exists()){
 
                         if(snapshot.child("fecha_inicio").exists()) {
-                            String f_inicio = Objects.requireNonNull(snapshot.child("fecha_inicio").getValue()).toString();
-                            int dia = Integer.parseInt(f_inicio.split("/")[0]);
-                            int mes = Integer.parseInt(f_inicio.split("/")[1]) - 1;
-                            int anio = Integer.parseInt(f_inicio.split("/")[2]);
-                            Calendar calendar = Calendar.getInstance();
-                            calendar.set(anio,mes,dia);
-                            cal_inicio.setDate(calendar.getTimeInMillis());
-                            cal_inicio.setMinDate(calendar.getTimeInMillis());
-                            fecha_cal_ini = calendar.getTimeInMillis();
-
-                            if(!Principal.rol.equals("Administrador")){
-                                cal_inicio.setMaxDate(fecha_cal_ini);
-                            }
+                            txt_fecha.setText(Objects.requireNonNull(snapshot.child("fecha_inicio").getValue()).toString());
 
                         }
-                        if(snapshot.child("fecha_fin").exists()) {
-                            String f_fin = Objects.requireNonNull(snapshot.child("fecha_fin").getValue()).toString();
-                            int dia2 = Integer.parseInt(f_fin.split("/")[0]);
-                            int mes2 = Integer.parseInt(f_fin.split("/")[1]) - 1;
-                            int anio2 = Integer.parseInt(f_fin.split("/")[2]);
-                            Calendar calendar2 = Calendar.getInstance();
-                            calendar2.set(anio2,mes2,dia2);
-                            cal_fin.setDate(calendar2.getTimeInMillis());
-                            cal_fin.setMinDate(cal_inicio.getMinDate());
-                            fecha_cal_fin = calendar2.getTimeInMillis();
 
-                            if(!Principal.rol.equals("Administrador")){
-                                cal_fin.setMaxDate(fecha_cal_fin);
-                            }
-
-                        }
 
                         if(snapshot.child("hora_inicio").exists()) {
-                            String h_inicio = Objects.requireNonNull(snapshot.child("hora_inicio").getValue()).toString();
-                            int horas = Integer.parseInt(h_inicio.split(":")[0]);
-                            int minutos = Integer.parseInt(h_inicio.split(":")[1].split(" ")[0]);
-                            String ampm = h_inicio.split(":")[1].split(" ")[1];
-
-                            if(ampm.equalsIgnoreCase("pm") && horas != 12){
-                                horas  += 12;
-                            }
-                            time_inicio.setHour(horas);
-                            time_inicio.setMinute(minutos);
-
-                            hora_time_inicio = h_inicio;
-                        }
-
-                        if(snapshot.child("hora_fin").exists()) {
-                            String h_fin = Objects.requireNonNull(snapshot.child("hora_fin").getValue()).toString();
-                            int horas2 = Integer.parseInt(h_fin.split(":")[0]);
-                            int minutos2 = Integer.parseInt(h_fin.split(":")[1].split(" ")[0]);
-                            String ampm2 = h_fin.split(":")[1].split(" ")[1];
-
-                            if(ampm2.equalsIgnoreCase("pm") && horas2 != 12){
-                                horas2  += 12;
-                            }
-                            time_fin.setHour(horas2);
-                            time_fin.setMinute(minutos2);
-                            hora_time_fin = h_fin;
+                            txt_hora.setText(Objects.requireNonNull(snapshot.child("hora_inicio").getValue()).toString());
 
                         }
 
@@ -256,27 +200,7 @@ public class Det_citas extends AppCompatActivity {
                 }
             });
 
-            cal_inicio.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(year,month,dayOfMonth);
-                view.setDate(calendar.getTimeInMillis());
-                fecha_cal_ini = view.getDate();
-            });
 
-            cal_fin.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(year,month,dayOfMonth);
-                view.setDate(calendar.getTimeInMillis());
-                fecha_cal_fin = view.getDate();
-            });
-
-            time_inicio.setOnTimeChangedListener((view, hourOfDay, minute) -> {
-                hora_time_inicio = String.format("%02d:%02d",hourOfDay,minute) + " "+ ((hourOfDay<12) ? "am":"pm");
-            });
-
-            time_fin.setOnTimeChangedListener((view, hourOfDay, minute) -> {
-                hora_time_fin = String.format("%02d:%02d",hourOfDay,minute) + " "+ ((hourOfDay<12) ? "am":"pm");
-            });
 
 
         }

@@ -23,6 +23,8 @@ import java.util.regex.Pattern;
 public class Ctl_usuario {
 
 
+
+
     public Ctl_usuario() {
     }
 
@@ -32,14 +34,30 @@ public class Ctl_usuario {
 
     }
 
+    public void eliminar_fecha_fin_contrato(DatabaseReference dbref,String uid){
+        dbref.child("usuarios").child(uid).child("fecha_fin_contrato").removeValue();
+    }
+
 
     public void actualizar_usuario(DatabaseReference dbref, Usuario usuario){
 
         Map<String, Object> datos = new HashMap<>();
         datos.put("direccion", usuario.direccion);
         datos.put("telefono",usuario.telefono);
-        datos.put("email",usuario.email);
+        datos.put("email", usuario.email.toLowerCase());
         datos.put("cedula",usuario.cedula);
+        datos.put("rol", usuario.rol);
+        String estado = usuario.estado;
+        if(usuario.fecha_ini_contrato != null){
+            datos.put("fecha_ini_contrato", usuario.fecha_ini_contrato);
+        }
+        if(usuario.fecha_fin_contrato != null){
+            datos.put("fecha_fin_contrato", usuario.fecha_fin_contrato);
+            estado = "Inactivo";
+        }else{
+            estado = usuario.estado;
+        }
+        datos.put("estado", estado);
 
         dbref.child("usuarios").child(usuario.uid).updateChildren(datos);
 
@@ -60,6 +78,7 @@ public class Ctl_usuario {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 if (snapshot.exists()) {
+
 
                     Usuario user = new Usuario();
 
@@ -84,6 +103,9 @@ public class Ctl_usuario {
                     }
                     if (snapshot.child("direccion").exists()) {
                         user.direccion = Objects.requireNonNull(snapshot.child("direccion").getValue()).toString();
+                    }
+                    if (snapshot.child("estado").exists()) {
+                        user.estado = Objects.requireNonNull(snapshot.child("estado").getValue()).toString();
                     }
 
                     perfil.verPerfil(user);
@@ -176,17 +198,30 @@ public class Ctl_usuario {
                                 Usuario user =new Usuario();
                                 user.uid =usuarios.getKey();
 
-                                if (usuarios.child("nombre").exists()) {
-                                    user.nombre = Objects.requireNonNull(usuarios.child("nombre").getValue()).toString();
+                                if (snapshot.child("nombre").exists()) {
+                                    user.nombre = Objects.requireNonNull(snapshot.child("nombre").getValue()).toString();
                                 }
-                                if (usuarios.child("email").exists()) {
-                                    user.email = Objects.requireNonNull(usuarios.child("email").getValue()).toString();
+                                if (snapshot.child("email").exists()) {
+                                    user.email = Objects.requireNonNull(snapshot.child("email").getValue()).toString();
                                 }
-                                if (usuarios.child("telefono").exists()) {
-                                    user.telefono = Objects.requireNonNull(usuarios.child("telefono").getValue()).toString();
+                                if (snapshot.child("rol").exists()) {
+                                    user.rol = Objects.requireNonNull(snapshot.child("rol").getValue()).toString();
                                 }
-                                if (usuarios.child("direccion").exists()) {
-                                    user.direccion = Objects.requireNonNull(usuarios.child("direccion").getValue()).toString();
+
+                                if (snapshot.child("url_foto").exists()) {
+                                    user.url_foto = Objects.requireNonNull(snapshot.child("url_foto").getValue()).toString();
+                                }
+                                if (snapshot.child("cedula").exists()) {
+                                    user.cedula = Objects.requireNonNull(snapshot.child("cedula").getValue()).toString();
+                                }
+                                if (snapshot.child("telefono").exists()) {
+                                    user.telefono = Objects.requireNonNull(snapshot.child("telefono").getValue()).toString();
+                                }
+                                if (snapshot.child("direccion").exists()) {
+                                    user.direccion = Objects.requireNonNull(snapshot.child("direccion").getValue()).toString();
+                                }
+                                if (snapshot.child("estado").exists()) {
+                                    user.estado = Objects.requireNonNull(snapshot.child("estado").getValue()).toString();
                                 }
                                 if (usuarios.child("rol").exists()){
 

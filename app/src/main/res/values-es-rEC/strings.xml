@@ -64,16 +64,13 @@
 <string name="nav_header_subtitle">android.studio@android.com</string>
 <string name="nav_header_desc">Navigation header</string>
 <string name="action_settings">Settings</string>
-    <string name="description">Torre Medica para la Familia conscientes de que la salud es prioridad, por tal razón hacemos una cordial invitación a la ciudadanía en general a realizarse nuestros paquetes preventivos a precios al alcance de todos. Contamos con excelentes Especialistas en las diferentes áreas, con ética y calidad humana que es lo mas importante.
+
+
+    <string name="description1"> Torre Medica para la Familia conscientes de que la salud es prioridad, por tal razón hacemos una cordial invitación a la ciudadanía en general a realizarse nuestros paquetes preventivos a precios al alcance de todos. Contamos con excelentes Especialistas en las diferentes áreas, con ética y calidad humana que es lo mas importante.
 
     Estamos ubicados en la calle Rocafuerte entre Colon y Buenavista, diagonal a la Coop. De Ahorro y Crédito Santa Rosa.
-    </string>
 
-    <string name="description1"> INFORMACIÓN
 
-    Teléfonos: 2935-527 // 2935-453 // 2935-437
-
-    Celular: 0968171997 // 0993148219
 
     Atención desde las 07:30 am. TE ESPERAMOS EN TORRE MEDICA PARA LA FAMILIA.</string>
 
@@ -100,8 +97,6 @@
     <string-array name="tipo_marcacion">
         <item>Selecciona</item>
         <item>Inicio de Jornada</item>
-        <item>Inicio de Almuerzo</item>
-        <item>Fin de Almuerzo</item>
         <item>Fin de Jornada</item>
     </string-array>
 
@@ -125,8 +120,8 @@
     <string-array name="estado_actividad">
         <item>Selecciona</item>
         <item>Pendiente</item>
-        <item>Revisión</item>
-        <item>Finalizado</item>
+        <item>Cita Cancelada</item>
+        <item>Atendido</item>
     </string-array>
 
     <string-array name="tipo_tratamiento">
@@ -135,10 +130,11 @@
         <item>No disponible</item>
     </string-array>
 
-    <string-array name="tipo_doctor">
-        <item>Select</item>
-        <item>""</item>
-        <item>""</item>
+
+    <string-array name="estado_user">
+        <item>Selecciona</item>
+        <item>Activo</item>
+        <item>Inactivo</item>
     </string-array>
 
 

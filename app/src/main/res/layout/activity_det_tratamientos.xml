@@ -29,6 +29,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center"
+
             >
 
             <androidx.cardview.widget.CardView
@@ -68,21 +69,7 @@
                     android:padding="10dp"
                     >
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Fecha de ingreso:"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="5dp"
-                        />
 
-                    <TextView
-                        android:id="@+id/fecha_solicitud"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="dd/MM/yyyy - HH:mm:ss"
-                        android:layout_marginBottom="5dp"
-                        />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -103,22 +90,7 @@
 
 
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Doctor:"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="5dp"
-                        />
 
-                    <Spinner
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spinner_tipo"
-                        android:layout_marginBottom="5dp"
-                        >
-
-                    </Spinner>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -134,7 +106,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:ems="10"
-                        android:hint="Ingrese el motivo de la solicitud"
+                        android:hint=""
                         android:inputType="textMultiLine"
                         android:textSize="15sp"
                         tools:ignore="TextFields" />

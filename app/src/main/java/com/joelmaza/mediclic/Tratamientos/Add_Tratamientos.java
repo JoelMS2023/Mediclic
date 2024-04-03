@@ -1,6 +1,7 @@
 package com.joelmaza.mediclic.Tratamientos;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -11,6 +12,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.joelmaza.mediclic.Citas.Ver_citas;
+import com.joelmaza.mediclic.Controllers.Alert_dialog;
+import com.joelmaza.mediclic.Controllers.Progress_dialog;
+import com.joelmaza.mediclic.Objetos.Ob_citas;
+import com.joelmaza.mediclic.Objetos.Ob_tratamientos;
 import com.joelmaza.mediclic.R;
 
 import javax.annotation.Nullable;
@@ -21,51 +27,60 @@ public class Add_Tratamientos extends AppCompatActivity {
     ImageView imageViewTratamiento;
     Button btnSeleccionarImagen, btnGuardar;
     Bitmap imageBitmap;
+    Alert_dialog alertDialog;
+    public static String UID_TRATAMIENTO = "";
+    Progress_dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_tratamientos);
 
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setOnClickListener(view -> finish());
         editTextNombre = findViewById(R.id.editTextNombre);
         editTextDescripcion = findViewById(R.id.editTextDescripcion);
         imageViewTratamiento = findViewById(R.id.imageViewTratamiento);
         btnSeleccionarImagen = findViewById(R.id.btnSeleccionarImagen);
         btnGuardar = findViewById(R.id.btnGuardar);
-        btnSeleccionarImagen.setOnClickListener(v -> {
-            dispatchTakePictureIntent();
-        });
+
+        dialog = new Progress_dialog(this);
+        alertDialog = new Alert_dialog(this);
 
         btnGuardar.setOnClickListener(v -> {
-            guardarTratamiento();
+            dialog.mostrar_mensaje("Creando cita...");
+            if (!editTextNombre.getText().toString().isEmpty() && !editTextDescripcion.getText().toString().isEmpty()) {
+                Ob_tratamientos obTratamientos = new Ob_tratamientos();
+                obTratamientos.estado = "Disponibles";
+                obTratamientos.nombre = editTextNombre.getText().toString();
+                obTratamientos.mensaje = editTextDescripcion.getText().toString();
+
+                Ver_tratamientos.ctlTratamientos.crear_tratamientos(obTratamientos);
+
+                dialog.ocultar_mensaje();
+                alertDialog.crear_mensaje("Correcto", "Tratamiento Creado Correctamente", builder -> {
+                    builder.setCancelable(false);
+                    builder.setNeutralButton("Aceptar", (dialogInterface, i) -> finish());
+                    builder.create().show();
+                });
+            } else if (editTextNombre.getText().toString().isEmpty() || editTextDescripcion.getText().toString().isEmpty()) {
+                dialog.ocultar_mensaje();
+                alertDialog.crear_mensaje("¡Advertencia!", "Completa todos los campos", builder -> {
+                    builder.setCancelable(true);
+                    builder.setNeutralButton("Aceptar", (dialogInterface, i) -> {
+                    });
+                    builder.create().show();
+                });
+            } else {
+                dialog.ocultar_mensaje();
+                alertDialog.crear_mensaje("¡Advertencia!", "Selecciona un Tipo de Cita", builder -> {
+                    builder.setCancelable(true);
+                    builder.setNeutralButton("Aceptar", (dialogInterface, i) -> {
+                    });
+                    builder.create().show();
+                });
+            }
         });
-    }
-
-    private void guardarTratamiento() {
-        String nombre = editTextNombre.getText().toString();
-        String descripcion = editTextDescripcion.getText().toString();
-
-        // Aquí puedes agregar el código para guardar el tratamiento en tu base de datos o hacer lo que necesites con los datos ingresados
-        // Además, puedes guardar la imagen en la base de datos o en el almacenamiento local de tu dispositivo
-
-        // Por ahora, solo mostramos un mensaje de confirmación
-        Toast.makeText(this, "Tratamiento guardado:\nNombre: " + nombre + "\nDescripción: " + descripcion, Toast.LENGTH_LONG).show();
-    }
-
-    private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            imageBitmap = (Bitmap) extras.get("data");
-            imageViewTratamiento.setImageBitmap(imageBitmap);
-        }
     }
 }

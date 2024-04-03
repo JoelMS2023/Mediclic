@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Reportes.Ver_reportes">
 
-    
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -21,158 +20,135 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:ignore="UselessParent"
         android:layout_below="@id/toolbar"
-        >
+        android:layout_marginTop="30dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center"
-            >
+            android:orientation="vertical">
 
+            <!-- CardView 1 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="vertical"
+                android:layout_margin="5dp">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_rpt_marcacion"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:layout_weight="1"
-                    android:layout_margin="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:backgroundTint="#a7c5eb"
                     android:focusable="true"
-                    >
+                    android:layout_gravity="center">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:layout_margin="5dp"
-                        android:clickable="false"
-                        >
+                        android:gravity="center">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Reporte de Marcaciones"
-                            android:gravity="center"
+                            android:textColor="#0B0B0B"
                             android:textStyle="bold"
-                            android:textSize="20sp"
-                            android:clickable="false"
-                            >
-
-                        </TextView>
+                            android:textSize="18sp"/>
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="120dp"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
                             android:src="@drawable/marcacion"
-                            android:scaleType="fitCenter"
-                            android:clickable="false"
-                            android:contentDescription="@string/home_op6">
-
-                        </ImageView>
+                            android:contentDescription="@string/home_op6"/>
 
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <!-- CardView 2 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_rpt_citas"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:layout_weight="1"
-                    android:layout_margin="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:backgroundTint="#949cdf"
                     android:focusable="true"
-                    >
+                    android:layout_gravity="center">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:layout_margin="5dp"
-                        android:clickable="false"
-                        >
+                        android:gravity="center">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Reporte de Citas"
-                            android:gravity="center"
+                            android:textColor="#070707"
                             android:textStyle="bold"
-                            android:textSize="20sp"
-                            android:clickable="false"
-                            >
-
-                        </TextView>
+                            android:textSize="18sp"/>
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="145dp"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
                             android:src="@drawable/horario"
-                            android:scaleType="fitCenter"
-                            android:clickable="false"
-                            android:contentDescription="@string/home_op6">
-
-                        </ImageView>
+                            android:contentDescription="@string/home_op6"/>
 
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
-
-
-
-
-
-
-
             </LinearLayout>
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_rpt_medico"
+
+            <!-- CardView 3 -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:focusable="true">
+                android:orientation="vertical"
+                android:layout_margin="5dp">
 
-                <LinearLayout
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_rpt_medico"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="5dp"
-                    android:clickable="false">
+                    android:layout_height="150dp"
+                    android:backgroundTint="#ffaaa7"
+                    android:focusable="true"
+                    android:layout_gravity="center">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Reporte Médico"
-                        android:gravity="center"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-                        android:clickable="false"/>
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="120dp"
-                        android:src="@drawable/reporte"
-                        android:scaleType="fitCenter"
-                        android:clickable="false"
-                        android:contentDescription="Descripción del tercer reporte"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Reporte Médico"
+                            android:textColor="#050505"
+                            android:textStyle="bold"
+                            android:textSize="18sp"/>
 
-                </LinearLayout>
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:src="@drawable/reporte"
+                            android:contentDescription="Descripción del tercer reporte"/>
 
-            </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
         </LinearLayout>
-
     </ScrollView>
-
-
-
 
 </RelativeLayout>

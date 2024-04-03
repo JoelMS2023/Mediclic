@@ -47,9 +47,7 @@ public class Ctl_citas {
             datos.put("tipo", obActividad.tipo);
             datos.put("estado", obActividad.estado);
             datos.put("fecha_inicio", obActividad.fecha_inicio);
-            datos.put("fecha_fin", obActividad.fecha_fin);
             datos.put("hora_inicio", obActividad.hora_inicio);
-            datos.put("hora_fin", obActividad.hora_fin);
             dbref.child("usuarios").child(uid_user).child("citas").child(obActividad.uid).updateChildren(datos);
         }
 
@@ -83,12 +81,6 @@ public class Ctl_citas {
                                 }
                                 if (datos.child("hora_inicio").exists()) {
                                     actividad.hora_inicio = Objects.requireNonNull(datos.child("hora_inicio").getValue()).toString();
-                                }
-                                if (datos.child("fecha_fin").exists()) {
-                                    actividad.fecha_fin = Objects.requireNonNull(datos.child("fecha_fin").getValue()).toString();
-                                }
-                                if (datos.child("hora_fin").exists()) {
-                                    actividad.hora_fin = Objects.requireNonNull(datos.child("hora_fin").getValue()).toString();
                                 }
                                 if (datos.child("estado").exists()) {
                                     actividad.estado = Objects.requireNonNull(datos.child("estado").getValue()).toString();
@@ -169,12 +161,6 @@ public class Ctl_citas {
                             }
                             if (snapshot.child("hora_inicio").exists()) {
                                 actividad.hora_inicio = Objects.requireNonNull(snapshot.child("hora_inicio").getValue()).toString();
-                            }
-                            if (snapshot.child("fecha_fin").exists()) {
-                                actividad.fecha_fin = Objects.requireNonNull(snapshot.child("fecha_fin").getValue()).toString();
-                            }
-                            if (snapshot.child("hora_fin").exists()) {
-                                actividad.hora_fin = Objects.requireNonNull(snapshot.child("hora_fin").getValue()).toString();
                             }
                             if (snapshot.child("estado").exists()) {
                                 actividad.estado = Objects.requireNonNull(snapshot.child("estado").getValue()).toString();

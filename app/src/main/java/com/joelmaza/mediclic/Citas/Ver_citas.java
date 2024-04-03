@@ -46,9 +46,8 @@ public class Ver_citas extends AppCompatActivity {
         add_citas =findViewById(R.id.add_citas);
 
         add_citas.setOnClickListener(View->{
-            Intent i = new Intent();
-            i.setClass(this, Add_citas.class);
-            startActivity(i);
+            startActivity(new Intent(this, Add_citas.class));
+
         });
 
         adapterActividad = new Adapter_citas(this);
@@ -60,7 +59,7 @@ public class Ver_citas extends AppCompatActivity {
 
         if(!Principal.id.isEmpty()) {
 
-            if(Principal.rol.equals("Administrador")){
+            if(Principal.rol.equals("Doctor")|| Principal.rol.equals("Administrador")){
                 cardview_nombre.setVisibility(View.GONE);
 
                 txt_nombre.setText("");
@@ -75,7 +74,7 @@ public class Ver_citas extends AppCompatActivity {
 
 
 
-        if (Principal.rol.equals("Administrador")){
+        if (Principal.rol.equals("Administrador")|| Principal.rol.equals("Paciente")){
             add_citas.setVisibility(View.VISIBLE);
 
         }else{

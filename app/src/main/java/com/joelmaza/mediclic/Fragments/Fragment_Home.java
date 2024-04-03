@@ -39,30 +39,28 @@ public class Fragment_Home extends Fragment {
         card_reportes=(CardView)vista.findViewById(R.id.card_reportes) ;
         card_tratamientos=(CardView)vista.findViewById(R.id.card_tratamientos);
 
-        card_marcacion.setOnClickListener(v -> {
-            startActivity(new Intent(vista.getContext(), Ver_marcaciones.class));
-        });
 
+        if (!Principal.rol.isEmpty()) {
+            if (Principal.rol.equals("Administrador") || Principal.rol.equals("Doctor")) {
+                card_marcacion.setVisibility(View.VISIBLE);
+            } else {
+                card_marcacion.setVisibility(View.GONE);
+            }
+        }
+        card_marcacion.setOnClickListener(view -> {
+            startActivity(new Intent(vista.getContext(), Ver_marcaciones.class));
+
+        });
+        if (!Principal.rol.isEmpty()) {
+            if (Principal.rol.equals("Administrador") || Principal.rol.equals("Doctor")) {
+                card_horario.setVisibility(View.VISIBLE);
+            } else {
+                card_horario.setVisibility(View.GONE);
+            }
+        }
         card_horario.setOnClickListener(view -> {
             startActivity(new Intent(vista.getContext(), Ver_horarios.class));
 
-        });
-        card_doctores.setOnClickListener(view -> {
-            startActivity(new Intent(vista.getContext(), Ver_doctores.class));
-
-        });
-
-        card_agendamiento.setOnClickListener(view -> {
-            startActivity(new Intent(vista.getContext(), Ver_citas.class));
-        });
-        card_reportes.setOnClickListener(view -> {
-            startActivity(new Intent(vista.getContext(), Ver_reportes.class));
-        });
-        card_tratamientos.setOnClickListener(view -> {
-            startActivity(new Intent(vista.getContext(), Ver_tratamientos.class));
-        });
-        card_gps.setOnClickListener(view -> {
-            startActivity(new Intent(vista.getContext(), Ubicacion.class));
         });
         if (!Principal.rol.isEmpty()) {
             if (Principal.rol.equals("Administrador") || Principal.rol.equals("Paciente")) {
@@ -71,6 +69,38 @@ public class Fragment_Home extends Fragment {
                 card_doctores.setVisibility(View.GONE);
             }
         }
+        card_doctores.setOnClickListener(view -> {
+            startActivity(new Intent(vista.getContext(), Ver_doctores.class));
+
+        });
+        card_agendamiento.setOnClickListener(view -> {
+            startActivity(new Intent(vista.getContext(), Ver_citas.class));
+        });
+        card_reportes.setOnClickListener(view -> {
+            startActivity(new Intent(vista.getContext(), Ver_reportes.class));
+        });
+
+        if (!Principal.rol.isEmpty()) {
+            if (Principal.rol.equals("Administrador") || Principal.rol.equals("Paciente")) {
+                card_tratamientos.setVisibility(View.VISIBLE);
+            } else {
+                card_tratamientos.setVisibility(View.GONE);
+            }
+        }
+        card_tratamientos.setOnClickListener(view -> {
+            startActivity(new Intent(vista.getContext(), Ver_tratamientos.class));
+        });
+
+        if (!Principal.rol.isEmpty()) {
+            if (Principal.rol.equals("Administrador") || Principal.rol.equals("Paciente")) {
+                card_gps.setVisibility(View.VISIBLE);
+            } else {
+                card_gps.setVisibility(View.GONE);
+            }
+        }
+        card_gps.setOnClickListener(view -> {
+            startActivity(new Intent(vista.getContext(), Ubicacion.class));
+        });
 
 
         return vista;

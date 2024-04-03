@@ -23,9 +23,13 @@ public class Ver_reportes extends AppCompatActivity {
         toolbar.setOnClickListener(view -> finish());
 
         card_rpt_marcacion = findViewById(R.id.card_rpt_marcacion);
+        card_rpt_citas = findViewById(R.id.card_rpt_citas);
 
         card_rpt_marcacion.setOnClickListener(view -> {
             startActivity(new Intent(this, Rpt_marcacion.class));
+        });
+        card_rpt_citas.setOnClickListener(view -> {
+            startActivity(new Intent(this, Rpt_citas.class));
         });
     }
 }

@@ -26,21 +26,52 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_gravity="center"
             android:gravity="center"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+
 
             >
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Información del usuario"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:padding="10dp"
+                    >
+
+                </TextView>
+
+            </androidx.cardview.widget.CardView>
+
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/img_perfil"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginBottom="10dp"
                 android:src="@drawable/perfil"
                 android:contentDescription="@string/text_image"
                 />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_myusername"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:id="@+id/txt_cedula"
+                android:layout_marginBottom="10sp"
+                >
+            </TextView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -55,6 +86,9 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:padding="10dp">
+
+
+
 
                     <TextView
                         android:layout_width="match_parent"
@@ -121,10 +155,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Dirección:"
                         android:layout_marginEnd="5dp"
-                        android:textStyle="bold"
-                        />
+                        android:text="Dirección:"
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/editext_direccion"
@@ -166,6 +199,143 @@
                         android:hint="Celular o Whatsapp"
                         android:textColor="@color/black"
                         />
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="10dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Estado:"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="5dp"
+                        />
+
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/spinner_estado"
+                        android:layout_marginBottom="10dp"
+                        >
+                    </Spinner>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Fecha Inicio de Contrato:"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="5dp"
+                        />
+
+                    <Button
+                        android:id="@+id/btn_add_fecha_inicio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Agregar Fecha"
+                        android:textColor="@color/white"
+                        android:backgroundTint="@color/proyecto_light"
+                        >
+
+                    </Button>
+
+                    <CalendarView
+                        android:id="@+id/fecha_inicio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+
+                    </CalendarView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Fecha Fin de Contrato:"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="10dp"
+                        />
+
+                    <Button
+                        android:id="@+id/btn_add_fecha_fin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Agregar Fecha"
+                        android:textColor="@color/white"
+                        android:backgroundTint="@color/proyecto_light"
+                        >
+
+                    </Button>
+
+                    <CalendarView
+                        android:id="@+id/fecha_fin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:datePickerMode="spinner"
+                        android:calendarViewShown="false">
+
+                    </CalendarView>
+
+                    <Button
+                        android:id="@+id/btn_del_fecha_fin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Eliminar Fecha"
+                        android:textColor="@color/white"
+                        android:backgroundTint="@color/danger"
+                        >
+
+                    </Button>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cantidad de Citas:"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="10dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/cant_solicitudes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="0 Solicitudes"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cantidad de Marcaciones:"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="10dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/cant_marcaciones"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="0 Marcaciones"
+                        android:layout_marginBottom="5dp"
+                        />
+
+
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>

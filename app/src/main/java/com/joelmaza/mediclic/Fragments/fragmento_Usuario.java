@@ -41,6 +41,9 @@ public class fragmento_Usuario extends Fragment {
     Adaptador_usuarios lista_usuarios;
     DatabaseReference dbRef;
     Button btn_add_usuario;
+    Adaptador_usuarios adapterUsuario;
+    public static Ctl_usuario ctlUsuarios;
+
 
 
     @Nullable
@@ -56,9 +59,12 @@ public class fragmento_Usuario extends Fragment {
         TextView txt_existe = vista.findViewById(R.id.txt_existe);
         TextView txt_contador = vista.findViewById(R.id.txt_contador);
 
+
         //metodo para ver usuario.
 
         lista_usuarios = new  Adaptador_usuarios(vista.getContext());
+        ctlUsuarios = new Ctl_usuario();
+
 
         btn_add_usuario = vista.findViewById(R.id.btn_add_usuario);
         if (Principal.rol.equals("Administrador")){
@@ -79,6 +85,7 @@ public class fragmento_Usuario extends Fragment {
 
             startActivity(new Intent(vista.getContext(), Add_usuario.class));
         });
+
 
         /*
         dbRef.child("usuarios").addValueEventListener(new ValueEventListener() {

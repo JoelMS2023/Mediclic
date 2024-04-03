@@ -51,7 +51,6 @@ public class Adapter_citas extends RecyclerView.Adapter<Holder_citas> {
     public void onBindViewHolder(@NonNull Holder_citas holder, int position) {
 
         holder.card_fecha.setText(list_actividad.get(position).fecha_inicio + " - " +list_actividad.get(position).hora_inicio);
-        holder.card_fecha_fin.setText(list_actividad.get(position).fecha_fin + " - " +list_actividad.get(position).hora_fin);
         holder.card_tipo.setText(list_actividad.get(position).tipo);
         holder.card_estado.setText(list_actividad.get(position).estado);
 
@@ -60,7 +59,7 @@ public class Adapter_citas extends RecyclerView.Adapter<Holder_citas> {
                 case "pendiente":
                     holder.card_estado.setTextColor(ContextCompat.getColor(context,R.color.warning));
                     break;
-                case "finalizado":
+                case "Atendido":
                     holder.card_estado.setTextColor(ContextCompat.getColor(context,R.color.success));
                     break;
                 default:

@@ -68,8 +68,7 @@ public class Fragment_perfil extends Fragment {
         txt_rol = vista.findViewById(R.id.txt_rol);
         txt_estado= vista.findViewById(R.id.txt_estado);
         editTextTextClave = vista.findViewById(R.id.editTextTextClave);
-
-
+        btn_update_profile = vista.findViewById(R.id.btn_update_profile);
 
 
         dbReference = MainActivity.DB.getReference();

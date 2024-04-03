@@ -84,7 +84,7 @@
                             android:id="@+id/card_nombre"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Nombre del Paciente"
+                            android:text="Nombre del doctor"
                             android:textSize="15sp"
                             android:textStyle="bold"
                             />
@@ -93,7 +93,7 @@
                             android:id="@+id/card_cedula"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Cédula del Paciente"
+                            android:text="Cédula del Doctor"
                             android:layout_marginTop="5dp"
                             android:textSize="15sp"
                             />
@@ -103,7 +103,7 @@
                             android:id="@+id/add_empleado"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Asignar Médico"
+                            android:text="Escoger Doctor"
                             android:backgroundTint="@color/proyecto_night"
                             android:textColor="@color/white"
                             >
@@ -152,7 +152,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Actividad:"
+                        android:text="Motivo:"
                         android:textStyle="bold"
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="10dp"
@@ -178,6 +178,7 @@
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="10dp"
                         />
+
 
                     <CalendarView
                         android:id="@+id/fecha_inicio"
@@ -206,40 +207,15 @@
 
                     </TimePicker>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Fecha de Fin:"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="5dp"
-                        />
 
-                    <CalendarView
-                        android:id="@+id/fecha_fin"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp">
 
-                    </CalendarView>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Hora de Fin:"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="5dp"
-                        />
 
-                    <TimePicker
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:timePickerMode="spinner"
-                        android:id="@+id/hora_fin"
-                        >
 
-                    </TimePicker>
 
                 </LinearLayout>
+
+
 
             </androidx.cardview.widget.CardView>
 

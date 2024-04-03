@@ -13,6 +13,11 @@ public class Usuario {
     public String cedula;
     public String clave;
     public String fecha_ini_contrato;
+    public String fecha_fin_contrato;
+
+
+
+    public String estado;
 
 
     public Usuario() {

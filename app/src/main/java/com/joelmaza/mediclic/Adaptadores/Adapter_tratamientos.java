@@ -46,8 +46,7 @@ public class Adapter_tratamientos extends RecyclerView.Adapter<Holder_tratamient
     @Override
     public void onBindViewHolder(@NonNull Holder_tratamientos holder, int position) {
 
-        holder.card_fecha.setText(list_tratamientos.get(position).fecha_inicio + " - " +list_tratamientos.get(position).hora_inicio);
-        holder.card_tipo.setText(list_tratamientos.get(position).tipo);
+
         holder.card_estado.setText(list_tratamientos.get(position).estado);
 
         if(list_tratamientos.get(position).estado!=null){
@@ -66,7 +65,6 @@ public class Adapter_tratamientos extends RecyclerView.Adapter<Holder_tratamient
 
         if(Principal.rol.equals("Administrador")) {
             holder.card_empleado.setVisibility(View.VISIBLE);
-            holder.card_empleado.setText(list_tratamientos.get(position).empleado + " - " + list_tratamientos.get(position).ced_empleado);
         }else{
             holder.card_empleado.setVisibility(View.GONE);
             holder.card_empleado.setText("");
@@ -77,9 +75,7 @@ public class Adapter_tratamientos extends RecyclerView.Adapter<Holder_tratamient
             Intent i = new Intent();
             i.setClass(context, Det_tratamientos.class);
             i.putExtra("uid",list_tratamientos.get(position).uid);
-            i.putExtra("uid_empleado",list_tratamientos.get(position).uid_empleado);
-            i.putExtra("ced_empleado",list_tratamientos.get(position).ced_empleado);
-            i.putExtra("nom_empleado",list_tratamientos.get(position).empleado);
+
             context.startActivity(i);
 
         });

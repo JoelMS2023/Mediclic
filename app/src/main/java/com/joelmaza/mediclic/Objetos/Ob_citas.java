@@ -4,8 +4,7 @@ public class Ob_citas {
     public String uid;
     public String fecha_inicio;
     public String hora_inicio;
-    public String fecha_fin;
-    public String hora_fin;
+
     public String estado;
     public String tipo;
     public String mensaje;
