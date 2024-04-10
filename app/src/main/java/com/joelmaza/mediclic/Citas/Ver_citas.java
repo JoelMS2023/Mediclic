@@ -57,24 +57,32 @@ public class Ver_citas extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapterActividad);
 
-        if(!Principal.id.isEmpty()) {
-
-            if(Principal.rol.equals("Doctor")|| Principal.rol.equals("Administrador")){
-                cardview_nombre.setVisibility(View.GONE);
-
-                txt_nombre.setText("");
-                ctlActividad.VerActividades(adapterActividad, txt_sinresultados, progressBar, txt_contador);
-                //ctlMarcacion.VerMarcaciones(adapterMarcacion, txt_sinresultados, progressBar, txt_contador);
-            }else{
+        if (!Principal.id.isEmpty() && !Principal.Nombre.isEmpty()) {
+            if (Principal.rol.equals("Administrador")) {
+                // Mostrar elementos específicos para el administrador
                 cardview_nombre.setVisibility(View.VISIBLE);
                 txt_nombre.setText(Principal.Nombre);
+                ctlActividad.VerActividades(adapterActividad, txt_sinresultados, progressBar, txt_contador);
+            }
+            if (Principal.rol.equals("paciente")) {
+                // Mostrar elementos específicos para el paciente
+                cardview_nombre.setVisibility(View.VISIBLE);
+                txt_nombre.setText(Principal.Nombre);
+                ctlActividad.Ver_my_Actividades(adapterActividad, Principal.id, txt_sinresultados, progressBar, txt_contador);
+
+            }
+            if (Principal.rol.equals("Doctor")) {
+                // Mostrar elementos específicos para el doctor
+                cardview_nombre.setVisibility(View.GONE);
+                txt_nombre.setText("");
                 ctlActividad.Ver_my_Actividades(adapterActividad, Principal.id, txt_sinresultados, progressBar, txt_contador);
             }
         }
 
 
 
-        if (Principal.rol.equals("Administrador")|| Principal.rol.equals("Paciente")){
+
+        if (Principal.rol.equals("Administrador")|| Principal.rol.equals("paciente")){
             add_citas.setVisibility(View.VISIBLE);
 
         }else{

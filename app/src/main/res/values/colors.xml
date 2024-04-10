@@ -10,4 +10,8 @@
     <color name="danger">#F44336</color>
     <color name="warning">#FF9800</color>
     <color name="plomo">#807C77</color>
+    <color name="light_purple">#dbdffd</color>
+    <color name="lavender">#8692F7</color>
+
+
 </resources>

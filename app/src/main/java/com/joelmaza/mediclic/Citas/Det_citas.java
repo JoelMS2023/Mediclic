@@ -35,7 +35,7 @@ public class Det_citas extends AppCompatActivity {
     Spinner spinner_tipo, spinner_estado;
     EditText editTextActividad;
     Alert_dialog alertDialog;
-    TextView txt_fecha, txt_hora;
+    TextView txt_fecha, txt_hora, txt_nombre,txt_cedula;
     Progress_dialog dialog;
     TextView card_nombre, card_cedula;
     String uid = "", ced_empleado = "", nom_empleado ="",uid_empleado = "";
@@ -55,6 +55,9 @@ public class Det_citas extends AppCompatActivity {
         card_cedula = findViewById(R.id.card_cedula);
         txt_fecha = findViewById(R.id.txt_fecha);
         txt_hora = findViewById(R.id.txt_hora);
+        txt_nombre = findViewById(R.id.txt_nombre);
+        txt_cedula=findViewById(R.id.txt_cedula);
+
 
 
         // Obtener la fecha y la hora de la cita de la actividad anterior
@@ -169,7 +172,13 @@ public class Det_citas extends AppCompatActivity {
                             txt_fecha.setText(Objects.requireNonNull(snapshot.child("fecha_inicio").getValue()).toString());
 
                         }
+                        if(snapshot.child("nombre").exists()) {
+                            txt_nombre.setText(Objects.requireNonNull(snapshot.child("nombre").getValue()).toString());
 
+                        }
+                        if(snapshot.child("cedula").exists()) {
+                            txt_cedula.setText(Objects.requireNonNull(snapshot.child("cedula").getValue()).toString());
+                        }
 
                         if(snapshot.child("hora_inicio").exists()) {
                             txt_hora.setText(Objects.requireNonNull(snapshot.child("hora_inicio").getValue()).toString());

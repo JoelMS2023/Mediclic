@@ -5,63 +5,152 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.Fragment_Description"
-    android:background="@color/proyecto_light">
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+   >
+
 
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:ignore="UselessParent"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
-
-            <!-- CardView 1 -->
-            <androidx.cardview.widget.CardView
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="6dp"
-                android:background="@color/proyecto_light">
+                android:layout_height="150dp"
+                android:src="@drawable/logo_empresa"
+                android:scaleType="center"
+                android:contentDescription="@string/text_image"/>
 
-                <ImageView
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:src="@drawable/logo_empresa"
-                    android:scaleType="center"
-                    android:contentDescription="@string/text_image"/>
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_margin="20dp"
+                    android:elevation="20dp"
+                    android:padding="2dp"
+                    android:background="@drawable/shadow" >
+
+                    <LinearLayout
+                        android:id="@+id/cardiologyDepartment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_margin="1dp"
+                        android:background="@drawable/border"
+                        android:clickable="true" >
 
 
 
-            </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginHorizontal="16dp"
+                            android:text="@string/description1"
+                            android:textColor="@color/proyecto_dark"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:gravity="center"/>
 
-            <!-- CardView 2 -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="6dp"
-                android:background="@color/proyecto_dark">
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="-20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_margin="20dp"
+                        android:elevation="20dp"
+                        android:padding="2dp"
+                        android:background="@drawable/shadow" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_margin="1dp"
+                            android:background="@drawable/border"
+                            android:clickable="true" >
+
+
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginHorizontal="16dp"
+                                android:text="@string/description2"
+                                android:textColor="@color/proyecto_dark"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:gravity="center"/>
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    >
+
+
+                    <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/map"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:name="com.google.android.gms.maps.SupportMapFragment"
+                        map:cameraZoom="10"
+                        map:uiRotateGestures="true"
+                        map:uiZoomControls="true"
+                        >
+
+                    </androidx.fragment.app.FragmentContainerView>
+
+                </androidx.cardview.widget.CardView>
 
 
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_gravity="center"
+                    android:id="@+id/txtUbicacion"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:text="@string/description1"
-                    android:textColor="@color/proyecto_dark"
+                    android:text="Ver en Google Maps"
+                    android:textColor="@color/danger"
                     android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:layout_margin="16dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:onClick="openInGoogleMaps"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    />
 
-            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
 
             <TextView
                 android:id="@+id/mi_textview"

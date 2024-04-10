@@ -32,6 +32,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 
 public class Add_citas extends AppCompatActivity {
@@ -117,6 +118,8 @@ public class Add_citas extends AppCompatActivity {
         time_inicio.setOnTimeChangedListener((view, hourOfDay, minute) -> {
             hora_time_inicio = String.format("%02d:%02d", hourOfDay, minute) + " " + ((hourOfDay < 12) ? "am" : "pm");
 
+
+
             String fecha_calendario = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(fecha_cal_ini);
             Principal.databaseReference.child("usuarios").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -126,7 +129,7 @@ public class Add_citas extends AppCompatActivity {
                             if (snapshot.child("citas").exists()) {
                                 for (DataSnapshot datos : snapshot.child("citas").getChildren()) {
 
-                                    String fechaCita = datos.child("fecha_inicio").getValue().toString();
+                                    String fechaCita = Objects.requireNonNull(datos.child("fecha_inicio").getValue()).toString();
 
                                     if(fechaCita.equals(fecha_calendario)) {
 

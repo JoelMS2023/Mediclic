@@ -43,7 +43,7 @@ import java.util.regex.Pattern;
 
 public class Fragment_perfil extends Fragment {
     Button btn_salir, btn_update_profile;
-    TextView txt_nombre, txt_cedula,txt_rol, TextEmail, txt_estado;
+    TextView txt_nombre, txt_cedula,txt_rol, TextEmail, txt_estado,cant_solicitudes,txtfecha_ini_contrato;
     EditText editxt_direccion, editTextTextPhone, editTextTextClave;
     Progress_dialog dialog;
     ImageView img_perfil;
@@ -69,6 +69,8 @@ public class Fragment_perfil extends Fragment {
         txt_estado= vista.findViewById(R.id.txt_estado);
         editTextTextClave = vista.findViewById(R.id.editTextTextClave);
         btn_update_profile = vista.findViewById(R.id.btn_update_profile);
+        cant_solicitudes = vista.findViewById(R.id.cant_solicitudes);
+        txtfecha_ini_contrato = vista.findViewById(R.id.txtfecha_ini_contrato);
 
 
         dbReference = MainActivity.DB.getReference();
@@ -215,6 +217,12 @@ public class Fragment_perfil extends Fragment {
                         }
                         if(snapshot.child("telefono").exists()){
                             editTextTextPhone.setText(Objects.requireNonNull(snapshot.child("telefono").getValue()).toString().trim());
+                        }
+                        if(snapshot.child("fecha_ini_contrato").exists()){
+                            txtfecha_ini_contrato.setText(Objects.requireNonNull(snapshot.child("fecha_ini_contrato").getValue()).toString());
+                        }
+                        if(snapshot.child("citas").exists()){
+                            cant_solicitudes.setText(snapshot.child("citas").getChildrenCount()+" Citas");
                         }
 
 

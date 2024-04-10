@@ -6,9 +6,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +33,8 @@ import com.joelmaza.mediclic.R;
 import com.joelmaza.mediclic.Registro;
 import com.joelmaza.mediclic.Usuarios.Add_usuario;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.Objects;
 
 
@@ -41,8 +46,8 @@ public class fragmento_Usuario extends Fragment {
     Adaptador_usuarios lista_usuarios;
     DatabaseReference dbRef;
     Button btn_add_usuario;
-    Adaptador_usuarios adapterUsuario;
     public static Ctl_usuario ctlUsuarios;
+    EditText txt_buscador;
 
 
 
@@ -58,6 +63,7 @@ public class fragmento_Usuario extends Fragment {
         ProgressBar progressBar = vista.findViewById(R.id.progressBar);
         TextView txt_existe = vista.findViewById(R.id.txt_existe);
         TextView txt_contador = vista.findViewById(R.id.txt_contador);
+        txt_buscador = vista.findViewById(R.id.txt_buscador);
 
 
         //metodo para ver usuario.
@@ -139,6 +145,7 @@ public class fragmento_Usuario extends Fragment {
         });
         */
         return vista;
+
 
     }
 }

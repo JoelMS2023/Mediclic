@@ -97,6 +97,12 @@ public class Ctl_citas {
                                 if (snapshot.child("cedula").exists()) {
                                     actividad.ced_empleado = Objects.requireNonNull(snapshot.child("cedula").getValue()).toString();
                                 }
+                                if (snapshot.child("cedula").exists()) {
+                                    actividad.ced_doctor = Objects.requireNonNull(snapshot.child("cedula").getValue()).toString();
+                                }
+                                if (snapshot.child("nombre").exists()) {
+                                    actividad.doctor = Objects.requireNonNull(snapshot.child("nombre").getValue()).toString();
+                                }
                                 actividad.uid_empleado = snapshot.getKey();
 
 
@@ -134,6 +140,91 @@ public class Ctl_citas {
 
 
     }
+
+    public void BuscarActividades(Adapter_citas list_actividad, String cedula, final TextView textView, final ProgressBar progressBar, TextView txt_contador) {
+
+        progressBar.setVisibility(View.VISIBLE);
+        textView.setVisibility(View.VISIBLE);
+
+        dbref.child("usuarios").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()) {
+
+                    list_actividad.ClearActividad();
+                    int contador = 0;
+
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                        if (snapshot.child("citas").exists()) {
+
+                            for (DataSnapshot datos : snapshot.child("citas").getChildren()) {
+
+                                Ob_citas actividad = new Ob_citas();
+                                actividad.uid = datos.getKey();
+
+                                if (datos.child("fecha_inicio").exists()) {
+                                    actividad.fecha_inicio = Objects.requireNonNull(datos.child("fecha_inicio").getValue()).toString();
+                                }
+                                if (datos.child("hora_inicio").exists()) {
+                                    actividad.hora_inicio = Objects.requireNonNull(datos.child("hora_inicio").getValue()).toString();
+                                }
+                                if (datos.child("estado").exists()) {
+                                    actividad.estado = Objects.requireNonNull(datos.child("estado").getValue()).toString();
+                                }
+                                if (datos.child("tipo").exists()) {
+                                    actividad.tipo = Objects.requireNonNull(datos.child("tipo").getValue()).toString();
+                                }
+                                if (datos.child("mensaje").exists()) {
+                                    actividad.mensaje = Objects.requireNonNull(datos.child("mensaje").getValue()).toString();
+                                }
+                                if (snapshot.child("nombre").exists()) {
+                                    actividad.empleado = Objects.requireNonNull(snapshot.child("nombre").getValue()).toString();
+                                }
+                                if (snapshot.child("cedula").exists()) {
+                                    actividad.ced_empleado = Objects.requireNonNull(snapshot.child("cedula").getValue()).toString();
+                                }
+
+                                actividad.uid_empleado = snapshot.getKey();
+
+                                if(actividad.ced_empleado.contains(cedula)) {
+                                    list_actividad.AddActividad(actividad);
+                                    contador++;
+                                }
+
+                            }
+
+                        }
+
+
+                    }
+                    txt_contador.setText(contador + " citas");
+                    progressBar.setVisibility(View.GONE);
+
+                    textView.setVisibility(list_actividad.getItemCount() == 0 ? View.VISIBLE : View.GONE);
+
+                    list_actividad.notifyDataSetChanged();
+
+                } else {
+                    list_actividad.ClearActividad();
+                    list_actividad.notifyDataSetChanged();
+                    progressBar.setVisibility(View.GONE);
+                    textView.setVisibility(View.VISIBLE);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        });
+
+
+    }
+
 
     public void Ver_my_Actividades(Adapter_citas list_actividad, String uid, final TextView textView, final ProgressBar progressBar, TextView txt_contador) {
 
@@ -175,7 +266,13 @@ public class Ctl_citas {
                                 actividad.empleado = Objects.requireNonNull(dataSnapshot.child("nombre").getValue()).toString();
                             }
                             if (dataSnapshot.child("cedula").exists()) {
+                                actividad.ced_doctor = Objects.requireNonNull(dataSnapshot.child("cedula").getValue()).toString();
+                            }
+                            if (dataSnapshot.child("cedula").exists()) {
                                 actividad.ced_empleado = Objects.requireNonNull(dataSnapshot.child("cedula").getValue()).toString();
+                            }
+                            if (dataSnapshot.child("nombre").exists()) {
+                                actividad.doctor = Objects.requireNonNull(dataSnapshot.child("nombre").getValue()).toString();
                             }
                             actividad.uid_empleado = dataSnapshot.getKey();
 

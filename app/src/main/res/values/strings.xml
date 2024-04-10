@@ -30,7 +30,7 @@
 
     //Pacientes
     <string name="home_op1">Schedule</string>
-    <string name="home_op2">attention hours</string>
+    <string name="home_op2">Schedule</string>
     <string name="home_op3">Services</string>
     <string name="home_op4">Doctors</string>
     <string name="home_op5">Location</string>
@@ -63,15 +63,12 @@
     <string name="menu_slideshow">Slideshow</string>
 
 
-    <string name="description1"> Medical Tower for the Family aware that health is a priority, for this reason we cordially invite citizens in general to receive our preventive packages at prices within everyone\'s reach. We have excellent Specialists in different areas, with ethics and human quality that is the most important thing.
-
-    We are located on Rocafuerte street between Colon and Buenavista, diagonal to the Coop. Santa Rosa Savings and Credit.
-
-
-
-
-
-    Attention from 07:30 am. WE ARE WAITING FOR YOU AT THE MEDICAL TOWER FOR THE FAMILY.</string>
+    <string name="description1"><b><center>MISSION</center></b>
+    \n\n<b> Provide excellent medical care, with warmth, through a health team committed to training and technological innovation, meeting the highest quality and safety standards and achieving maximum patient satisfaction.</b>
+    </string>
+    <string name="description2"><b><center>VISIÓN</center></b>
+         \n\n<b>Be a reference in the province of El Oro and area of influence for quality care, safety and patient satisfaction.</b>
+    </string>
 
     <string-array name="rol">
         <item>Choose</item>

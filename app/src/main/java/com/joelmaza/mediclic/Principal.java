@@ -11,20 +11,28 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 
 
+import com.google.firebase.database.ValueEventListener;
 import com.joelmaza.mediclic.Controllers.Alert_dialog;
 import com.joelmaza.mediclic.databinding.ActivityPrincipalBinding;
+
+import java.util.Objects;
 
 public class Principal extends AppCompatActivity {
 
@@ -62,6 +70,8 @@ public class Principal extends AppCompatActivity {
             View headerView = navigationView.getHeaderView(0);
             TextView headerTextView = headerView.findViewById(R.id.header_username);
             TextView txt_correo = headerView.findViewById(R.id.header_correo);
+            ImageView headerImageView = headerView.findViewById(R.id.header_imagen);
+
 
             alertDialog = new Alert_dialog(this);
 
@@ -80,6 +90,56 @@ public class Principal extends AppCompatActivity {
                     builder.create().show();
                 });
             }
+
+            databaseReference.child("usuarios").child(id).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                    if (snapshot.exists()) {
+
+                        if (snapshot.child("nombre").exists()) {
+                            Nombre = Objects.requireNonNull(snapshot.child("nombre").getValue()).toString();
+                            headerTextView.setText(Nombre);
+                        }
+
+                        if (snapshot.child("estado").exists()) {
+
+                            if(Objects.requireNonNull(snapshot.child("estado").getValue()).toString().equalsIgnoreCase("inactivo")){
+
+                                /*alertDialog.crear_mensaje("Tu usuario está Inactivo", "Se va a Cerrar tu sesión", builder -> {
+                                    builder.setCancelable(false);
+                                    builder.setNeutralButton("Aceptar", (dialogInterface, i) -> {
+                                        SharedPreferences.Editor editor = MainActivity.preferences.edit();
+                                        editor.putString("uid", "");
+                                        editor.putString("rol", "");
+                                        editor.putString("estado", "");
+                                        editor.apply();
+                                        finish();
+                                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                    });
+                                    builder.create().show();
+                                });*/
+
+                            }
+
+                        }
+
+                        if (snapshot.child("url_foto").exists()) {
+                            String foto = Objects.requireNonNull(snapshot.child("url_foto").getValue()).toString();
+                            Glide.with(getBaseContext()).load(foto).centerCrop().into(headerImageView);
+                        } else {
+                            headerImageView.setImageResource(R.drawable.perfil);
+                        }
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
 
 
             MainActivity.ctlUsuario.Obtener_usuario(databaseReference,MainActivity.mAuth.getUid(),user -> {

@@ -161,6 +161,36 @@
                         android:textSize="15sp"
                         android:textColor="@color/black"
                         />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Fecha Inicio :"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="10dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/txtfecha_ini_contrato"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cantidad de Citas:"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="10dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/cant_solicitudes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="0 Citas"
+                        />
 
                     <TextView
                         android:layout_width="match_parent"

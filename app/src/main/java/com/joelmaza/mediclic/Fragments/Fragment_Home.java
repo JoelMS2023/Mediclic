@@ -1,5 +1,6 @@
 package com.joelmaza.mediclic.Fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,8 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
-import com.joelmaza.mediclic.Citas.Add_citas;
 import com.joelmaza.mediclic.Citas.Ver_citas;
 import com.joelmaza.mediclic.Doctores.Ver_doctores;
 import com.joelmaza.mediclic.Horarios.Ver_horarios;
@@ -19,12 +20,17 @@ import com.joelmaza.mediclic.Marcacion.Ver_marcaciones;
 import com.joelmaza.mediclic.Principal;
 import com.joelmaza.mediclic.R;
 import com.joelmaza.mediclic.Reportes.Ver_reportes;
-import com.joelmaza.mediclic.Tratamientos.Add_Tratamientos;
 import com.joelmaza.mediclic.Tratamientos.Ver_tratamientos;
 import com.joelmaza.mediclic.Ubicacion;
 
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TimerTask;
+
 public class Fragment_Home extends Fragment {
-    CardView card_horario, card_marcacion, card_agendamiento, card_doctores, card_reportes,card_gps,card_tratamientos;
+
+    CardView card_horario, card_marcacion, card_agendamiento, card_doctores, card_reportes, card_gps, card_tratamientos;
 
     @Nullable
     @Override
@@ -33,11 +39,11 @@ public class Fragment_Home extends Fragment {
 
         card_marcacion = (CardView) vista.findViewById(R.id.card_marcacion);
         card_horario = (CardView) vista.findViewById(R.id.card_horario);
-        card_agendamiento=(CardView)vista.findViewById(R.id.card_agendamiento) ;
-        card_doctores=(CardView)vista.findViewById(R.id.card_doctores) ;
-        card_gps=(CardView)vista.findViewById(R.id.card_gps) ;
-        card_reportes=(CardView)vista.findViewById(R.id.card_reportes) ;
-        card_tratamientos=(CardView)vista.findViewById(R.id.card_tratamientos);
+        card_agendamiento = (CardView) vista.findViewById(R.id.card_agendamiento);
+        card_doctores = (CardView) vista.findViewById(R.id.card_doctores);
+        card_gps = (CardView) vista.findViewById(R.id.card_gps);
+        card_reportes = (CardView) vista.findViewById(R.id.card_reportes);
+        card_tratamientos = (CardView) vista.findViewById(R.id.card_tratamientos);
 
 
         if (!Principal.rol.isEmpty()) {
@@ -63,7 +69,7 @@ public class Fragment_Home extends Fragment {
 
         });
         if (!Principal.rol.isEmpty()) {
-            if (Principal.rol.equals("Administrador") || Principal.rol.equals("Paciente")) {
+            if (Principal.rol.equals("Administrador") || Principal.rol.equals("paciente")) {
                 card_doctores.setVisibility(View.VISIBLE);
             } else {
                 card_doctores.setVisibility(View.GONE);
@@ -81,7 +87,7 @@ public class Fragment_Home extends Fragment {
         });
 
         if (!Principal.rol.isEmpty()) {
-            if (Principal.rol.equals("Administrador") || Principal.rol.equals("Paciente")) {
+            if (Principal.rol.equals("Administrador") || Principal.rol.equals("paciente")) {
                 card_tratamientos.setVisibility(View.VISIBLE);
             } else {
                 card_tratamientos.setVisibility(View.GONE);
@@ -92,7 +98,7 @@ public class Fragment_Home extends Fragment {
         });
 
         if (!Principal.rol.isEmpty()) {
-            if (Principal.rol.equals("Administrador") || Principal.rol.equals("Paciente")) {
+            if (Principal.rol.equals("Administrador") || Principal.rol.equals("paciente")) {
                 card_gps.setVisibility(View.VISIBLE);
             } else {
                 card_gps.setVisibility(View.GONE);
@@ -104,6 +110,11 @@ public class Fragment_Home extends Fragment {
 
 
         return vista;
-    }
 
+
+    }
 }
+
+
+
+

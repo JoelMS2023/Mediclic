@@ -15,15 +15,13 @@ public class Usuario {
     public String fecha_ini_contrato;
     public String fecha_fin_contrato;
 
-
-
     public String estado;
 
 
     public Usuario() {
     }
 
-    public Usuario(String uid, String nombre, String direccion, String telefono, String email, String url_foto, String rol, String cedula, String clave) {
+    public Usuario(String uid, String nombre, String direccion, String telefono, String email, String url_foto, String rol, String cedula, String clave,String estado) {
         this.uid = uid;
         this.nombre=nombre;
         this.direccion=direccion;
@@ -33,6 +31,7 @@ public class Usuario {
         this.rol=rol;
         this.cedula=cedula;
         this.clave=clave;
+        this.estado=estado;
     }
 }
 

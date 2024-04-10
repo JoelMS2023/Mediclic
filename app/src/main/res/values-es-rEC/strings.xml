@@ -30,7 +30,7 @@
     <string name="text_forgot_password">¿Olvidate tu contraseña?</string>
 
 
-    <string name="home_op1">Agendar</string>
+    <string name="home_op1">Citas</string>
     <string name="home_op2">Horarios</string>
     <string name="home_op3">Servicios</string>
     <string name="home_op4">Médicos</string>
@@ -66,13 +66,12 @@
 <string name="action_settings">Settings</string>
 
 
-    <string name="description1"> Torre Medica para la Familia conscientes de que la salud es prioridad, por tal razón hacemos una cordial invitación a la ciudadanía en general a realizarse nuestros paquetes preventivos a precios al alcance de todos. Contamos con excelentes Especialistas en las diferentes áreas, con ética y calidad humana que es lo mas importante.
-
-    Estamos ubicados en la calle Rocafuerte entre Colon y Buenavista, diagonal a la Coop. De Ahorro y Crédito Santa Rosa.
-
-
-
-    Atención desde las 07:30 am. TE ESPERAMOS EN TORRE MEDICA PARA LA FAMILIA.</string>
+    <string name="description1"><b><center>MISION</center></b>
+         \n\n<b>Brindar atención médica de excelencia, con calidez, a través de un equipo de salud comprometido con la capacitación y la innovación tecnológica, cumpliendo con los más altos estándares de calidad y seguridad y logrando la máxima satisfacción de los pacientes.</b>
+    </string>
+    <string name="description2"><b><center>VISIÓN</center></b>
+         \n\n<b>Ser referente en la provincia de El Oro y zona de influencia por la calidad asistencias, seguridad y satisfacción del paciente.</b>
+    </string>
 
     <string name="texto_subrayado"><u>Nuestras redes</u></string>
     <string name="text_horario">Horario</string>

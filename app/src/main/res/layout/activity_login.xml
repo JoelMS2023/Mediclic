@@ -5,14 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Login"
+    android:background="@color/lavender"
 
     >
-    <ImageView
-        android:layout_width="3000dp"
-        android:layout_height="180dp"
-        android:layout_gravity="center"
-        android:background="@drawable/by_iniciocolor"
-        />
+
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -49,8 +45,8 @@
                     android:background="@drawable/custom_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:ems="10"
                     android:textColor="@color/black"
                     android:hint="@string/text_personalemail"
@@ -74,8 +70,8 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:ems="10"
                     android:drawableStart="@drawable/baseline_lock"
                     android:drawablePadding="10dp"
@@ -117,16 +113,6 @@
                 android:backgroundTint="@color/success"
                 android:text="@string/title_resgister"
                 android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="— o —"
-                android:textSize="14sp"
-                android:textColor="@android:color/black"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:maxLines="1"/>
 
             <com.google.android.gms.common.SignInButton
                 android:id="@+id/btnGoogle"

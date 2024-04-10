@@ -1,16 +1,27 @@
 package com.joelmaza.mediclic.Fragments;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.joelmaza.mediclic.R;
 
 /**
@@ -18,12 +29,15 @@ import com.joelmaza.mediclic.R;
  * Use the {@link Fragment_Description#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fragment_Description extends Fragment {
+public class Fragment_Description extends Fragment implements OnMapReadyCallback {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private GoogleMap mMap;
+    private static final LatLng LOCATION_MACHALA = new LatLng(-3.264545, -79.958322);
+    private static final float DEFAULT_ZOOM = 15f;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -57,11 +71,9 @@ public class Fragment_Description extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-
-
-
-
         }
+
+
     }
 
     @Override
@@ -70,8 +82,17 @@ public class Fragment_Description extends Fragment {
         // Inflate the layout for this fragment
         View vista= inflater.inflate(R.layout.fragment__description, container, false);
 
+        TextView txtUbicacion = vista.findViewById( R.id.txtUbicacion);
+        txtUbicacion.setOnClickListener(view -> openInGoogleMaps());
+
 
         ImageButton btnInstagram = vista.findViewById(R.id.btnInstagram);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+        if (mapFragment != null) {
+            mapFragment.getMapAsync(this);
+        }
+
         btnInstagram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,8 +120,42 @@ public class Fragment_Description extends Fragment {
 
         return vista;
     }
+
+    private void openInGoogleMaps() {
+        // Crear la URI para la ubicación específica en Google Maps
+        Uri gmmIntentUri = Uri.parse("https://www.google.com/maps/place/Torre+Medica+Para+La+Familia/@-3.267922,-79.898226,11z/data=!4m6!3m5!1s0x90330e5b832d41dd:0x59af7e04e5c46b12!8m2!3d-3.2622841!4d-79.9559912!16s%2Fg%2F11clyth8r5?hl=es-419&entry=ttu");
+
+        // Crear un intent para ver la ubicación en la aplicación de Google Maps
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+
+        // Especificar que queremos abrir el intent en la aplicación de Google Maps
+        mapIntent.setPackage("com.google.android.apps.maps");
+
+        // Verificar si hay una aplicación que pueda manejar el intent
+        if (mapIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            // Si hay una aplicación, iniciar el intent
+            startActivity(mapIntent);
+        }
+    }
+
     private void abrirSitioWeb(String url) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         startActivity(intent);
     }
+
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+
+        mMap = googleMap;
+
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.getUiSettings().setZoomGesturesEnabled(true);
+
+        // Mover la cámara a la ubicación específica y establecer un zoom adecuado
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LOCATION_MACHALA, DEFAULT_ZOOM));
+
+        // Agregar marcador en la ubicación específica
+        mMap.addMarker(new MarkerOptions().position(LOCATION_MACHALA).title("Torre Medica Para la familia"));
+    }
 }
+

@@ -54,9 +54,10 @@ public class Adapter_citas extends RecyclerView.Adapter<Holder_citas> {
         holder.card_tipo.setText(list_actividad.get(position).tipo);
         holder.card_estado.setText(list_actividad.get(position).estado);
 
+
         if(list_actividad.get(position).estado!=null){
             switch (list_actividad.get(position).estado.toLowerCase()){
-                case "pendiente":
+                case "Pendiente":
                     holder.card_estado.setTextColor(ContextCompat.getColor(context,R.color.warning));
                     break;
                 case "Atendido":
@@ -67,14 +68,19 @@ public class Adapter_citas extends RecyclerView.Adapter<Holder_citas> {
                     break;
             }
         }
-
         if(Principal.rol.equals("Administrador")) {
             holder.card_empleado.setVisibility(View.VISIBLE);
             holder.card_empleado.setText(list_actividad.get(position).empleado + " - " + list_actividad.get(position).ced_empleado);
+            holder.card_paciente.setVisibility(View.VISIBLE);
+            holder.card_paciente.setText(list_actividad.get(position).doctor + " - " + list_actividad.get(position).ced_doctor);
         }else{
             holder.card_empleado.setVisibility(View.GONE);
             holder.card_empleado.setText("");
+            holder.card_paciente.setVisibility(View.GONE);
+            holder.card_paciente.setText("");
         }
+
+
 
         holder.cardView.setOnClickListener(view -> {
 
@@ -84,6 +90,9 @@ public class Adapter_citas extends RecyclerView.Adapter<Holder_citas> {
             i.putExtra("uid_empleado",list_actividad.get(position).uid_empleado);
             i.putExtra("ced_empleado",list_actividad.get(position).ced_empleado);
             i.putExtra("nom_empleado",list_actividad.get(position).empleado);
+            i.putExtra("uid_paciente",list_actividad.get(position).uid_doctor);
+            i.putExtra("ced_paciente",list_actividad.get(position).ced_doctor);
+            i.putExtra("nom_paciente",list_actividad.get(position).doctor);
             context.startActivity(i);
 
         });

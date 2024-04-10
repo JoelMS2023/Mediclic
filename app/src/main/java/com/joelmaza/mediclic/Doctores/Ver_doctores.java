@@ -63,7 +63,7 @@ public class Ver_doctores extends AppCompatActivity {
 
         });
 
-        MainActivity.ctlUsuario.verUsuarios(dbRef,"Doctor",lista_usuarios, Principal.id,txt_existe,progressBar, txt_contador);
+        MainActivity.ctlUsuario.verUsuarios(dbRef,"Doctor",lista_usuarios,Principal.id,txt_existe,progressBar, txt_contador);
 
 
     }

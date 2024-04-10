@@ -20,13 +20,13 @@ public class Holder_usuarios extends RecyclerView.ViewHolder {
 
     public Holder_usuarios(@NonNull View itemView) {
         super(itemView);
-        card_nombre=(TextView) itemView.findViewById(R.id.card_nombre);
-        card_cedula=(TextView) itemView.findViewById(R.id.card_cedula);
-        card_telefono=(TextView) itemView.findViewById(R.id.card_telefono);
+        card_cedula = itemView.findViewById(R.id.card_cedula);
+        card_nombre = itemView.findViewById(R.id.card_nombre);
         card_estado = itemView.findViewById(R.id.card_estado);
-        card_foto=(ImageView) itemView.findViewById(R.id.card_foto);
-        card_rol=(TextView) itemView.findViewById(R.id.card_rol);
-        cardview_usuario=(CardView) itemView.findViewById(R.id.cardview_usuario);
+        card_telefono = itemView.findViewById(R.id.card_telefono);
+        card_rol = itemView.findViewById(R.id.card_rol);
+        card_foto = itemView.findViewById(R.id.card_foto);
+        cardview_usuario = itemView.findViewById(R.id.cardview_usuario);
 
 
 

@@ -85,7 +85,6 @@ public class Rpt_citas extends AppCompatActivity {
             if(card_filtro.getVisibility() == View.VISIBLE){
                 fecha_now =  new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(fecha);
             }
-
             //ctlCitas.VerActividades(adapterCitas,txt_buscador.getText().toString().trim(),fecha_now, txt_sinresultados, progressBar, txt_contador);
 
         });
@@ -105,7 +104,7 @@ public class Rpt_citas extends AppCompatActivity {
                         fecha_now = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(fecha);
                     }
 
-                    ctlCitas.Ver_my_Actividades(adapterCitas, txt_buscador.getText().toString().trim(), txt_sinresultados, progressBar, txt_contador);
+                    ctlCitas.BuscarActividades(adapterCitas, txt_buscador.getText().toString().trim(), txt_sinresultados, progressBar, txt_contador);
 
                 }else{
 
