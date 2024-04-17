@@ -65,7 +65,7 @@ public class Login extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         Button btn_ingresar = (Button) findViewById(R.id.btn_ingresar);
-        Button btn_registrarse= (Button) findViewById(R.id.btn_registrarse);
+        TextView btn_registrarse= (TextView) findViewById(R.id.btn_registrarse);
         mSignInButtonGoogle = findViewById(R.id.btnGoogle);
         text_forget = findViewById(R.id.text_forget);
 

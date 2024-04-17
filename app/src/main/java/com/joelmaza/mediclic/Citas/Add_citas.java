@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.graphics.pdf.PdfDocument;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -21,12 +23,16 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.element.Paragraph;
 import com.joelmaza.mediclic.Controllers.Alert_dialog;
 import com.joelmaza.mediclic.Controllers.Progress_dialog;
 import com.joelmaza.mediclic.Fragments.Dialog_Fragment_Usuarios;
 import com.joelmaza.mediclic.Objetos.Ob_citas;
 import com.joelmaza.mediclic.Principal;
 import com.joelmaza.mediclic.R;
+
+
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -50,6 +56,8 @@ public class Add_citas extends AppCompatActivity {
     long fecha_cal_ini;
     String hora_time_inicio;
     DatabaseReference dbref;
+    String pdfFilePath = getExternalFilesDir(null) + "/Actividad.pdf";
+
 
 
 
@@ -71,6 +79,7 @@ public class Add_citas extends AppCompatActivity {
 
         card_nombre = findViewById(R.id.card_nombre);
         card_cedula = findViewById(R.id.card_cedula);
+
 
 
         editTextActividad = findViewById(R.id.editTextActividad);

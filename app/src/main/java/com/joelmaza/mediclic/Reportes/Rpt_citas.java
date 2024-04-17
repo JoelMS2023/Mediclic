@@ -1,6 +1,7 @@
 package com.joelmaza.mediclic.Reportes;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -58,6 +59,9 @@ public class Rpt_citas extends AppCompatActivity {
         txt_buscador = findViewById(R.id.txt_buscador);
         fecha_busqueda = findViewById(R.id.fecha_busqueda);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setOnClickListener(view -> finish());
+
 
         Date dia = new Date();
         fecha = dia.getTime();
@@ -85,7 +89,7 @@ public class Rpt_citas extends AppCompatActivity {
             if(card_filtro.getVisibility() == View.VISIBLE){
                 fecha_now =  new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(fecha);
             }
-            //ctlCitas.VerActividades(adapterCitas,txt_buscador.getText().toString().trim(),fecha_now, txt_sinresultados, progressBar, txt_contador);
+            ctlCitas.BuscarActividades(adapterCitas, txt_buscador.getText().toString().trim(),fecha_now, txt_sinresultados, progressBar, txt_contador);
 
         });
 
@@ -104,7 +108,7 @@ public class Rpt_citas extends AppCompatActivity {
                         fecha_now = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(fecha);
                     }
 
-                    ctlCitas.BuscarActividades(adapterCitas, txt_buscador.getText().toString().trim(), txt_sinresultados, progressBar, txt_contador);
+                    ctlCitas.BuscarActividades(adapterCitas, txt_buscador.getText().toString().trim(),fecha_now, txt_sinresultados, progressBar, txt_contador);
 
                 }else{
 

@@ -67,7 +67,7 @@
                         android:id="@+id/card_foto"
                         android:layout_width="125dp"
                         android:layout_height="match_parent"
-                        android:src="@drawable/perfil"
+                        android:src="@drawable/doctor"
                         android:scaleType="fitCenter"
                         android:layout_margin="5dp"
                         android:contentDescription="@string/text_image" />

@@ -54,9 +54,7 @@ public class Ver_tratamientos extends AppCompatActivity {
         add_tratamientos =findViewById(R.id.add_tratamientos);
 
         add_tratamientos.setOnClickListener(View->{
-            Intent i = new Intent();
-            i.setClass(this, Add_Tratamientos.class);
-            startActivity(i);
+            startActivity(new Intent(this, Add_Tratamientos.class));
         });
 
         adaptertratamientos = new Adapter_tratamientos(this);

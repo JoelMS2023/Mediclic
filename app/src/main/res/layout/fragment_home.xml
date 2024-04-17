@@ -17,17 +17,92 @@
         >
 
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <ImageView
-                android:layout_width="200dp"
-                android:layout_height="120dp"
-                android:background="@drawable/logo_empresa"
-                android:id="@+id/image"
-                android:layout_gravity="center"
-                />
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:gravity="center">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    app:cardUseCompatPadding="true"
+                    app:cardBackgroundColor="@color/light_purple"
+                    android:padding="0.2dp"
+                    app:cardCornerRadius="5dp">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:orientation="vertical">
+                        
+                        <TextView
+                            android:text="Bienvenido(a)"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:typeface="monospace"
+                            android:textColor="@color/lavender"
+                            >
+
+                        </TextView>
+                        <ProgressBar
+                            android:id="@+id/progressBardatos"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_gravity="center">
+
+                        </ProgressBar>
+                        <TextView
+                            android:id="@+id/nombre_home"
+                            android:text="--"
+                            android:visibility="gone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:typeface="monospace"
+                            android:textColor="@color/lavender"
+                            >
+
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/correo_home"
+                            android:text="--"
+                            android:visibility="gone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:typeface="monospace"
+                            android:textColor="@color/lavender"
+                            >
+
+                        </TextView>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                </androidx.cardview.widget.CardView>
+
+
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
 
             <!-- Primer CardView -->
             <androidx.cardview.widget.CardView
@@ -36,6 +111,7 @@
                 android:layout_height="75dp"
                 android:layout_margin="20dp"
                 android:elevation="20dp"
+                app:cardCornerRadius="20dp"
                 android:focusable="true"
                 android:padding="2dp"
                 android:background="@drawable/shadow">
@@ -81,7 +157,8 @@
                 android:elevation="20dp"
                 android:focusable="true"
                 android:padding="2dp"
-                android:background="@drawable/shadow">
+                android:background="@drawable/shadow"
+                app:cardCornerRadius="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -126,6 +203,7 @@
                     android:layout_margin="20dp"
                     android:elevation="20dp"
                     android:focusable="true"
+                    app:cardCornerRadius="20dp"
                     android:padding="2dp"
                     android:background="@drawable/shadow">
 
@@ -171,6 +249,7 @@
                     android:layout_height="75dp"
                     android:layout_margin="20dp"
                     android:elevation="20dp"
+                    app:cardCornerRadius="20dp"
                     android:focusable="true"
                     android:padding="2dp"
                     android:background="@drawable/shadow">
@@ -217,6 +296,7 @@
                     android:layout_height="75dp"
                     android:layout_margin="20dp"
                     android:elevation="20dp"
+                    app:cardCornerRadius="20dp"
                     android:focusable="true"
                     android:padding="2dp"
                     android:background="@drawable/shadow">
@@ -263,6 +343,7 @@
                     android:layout_margin="20dp"
                     android:elevation="20dp"
                     android:focusable="true"
+                    app:cardCornerRadius="20dp"
                     android:padding="2dp"
                     android:background="@drawable/shadow">
 
@@ -309,6 +390,7 @@
                     android:layout_margin="20dp"
                     android:elevation="20dp"
                     android:focusable="true"
+                    app:cardCornerRadius="20dp"
                     android:padding="2dp"
                     android:background="@drawable/shadow">
 

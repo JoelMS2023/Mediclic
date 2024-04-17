@@ -63,33 +63,32 @@ public class Ctl_tratamientos {
                     list_tratamientos.ClearActividad();
                     int contador = 0;
 
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    if (dataSnapshot.child("Tratamientos").exists()) {
 
-                        if (snapshot.child("Tratamientos").exists()) {
+                        for (DataSnapshot datos : dataSnapshot.child("Tratamientos").getChildren()) {
 
-                            for (DataSnapshot datos : snapshot.child("tratamientos").getChildren()) {
+                            Ob_tratamientos actividad = new Ob_tratamientos();
+                            actividad.uid = datos.getKey();
 
-                                Ob_tratamientos actividad = new Ob_tratamientos();
-                                actividad.uid = datos.getKey();
-
-                                if (datos.child("mensaje").exists()) {
-                                    actividad.mensaje = Objects.requireNonNull(datos.child("mensaje").getValue()).toString();
-                                }
-                                if (snapshot.child("nombre").exists()) {
-                                    actividad.nombre = Objects.requireNonNull(snapshot.child("nombre").getValue()).toString();
-                                }
-
-                                actividad.uid_tratamiento = snapshot.getKey();
-                                list_tratamientos.AddActividad(actividad);
-                                contador++;
-
+                            if (datos.child("mensaje").exists()) {
+                                actividad.mensaje = Objects.requireNonNull(datos.child("mensaje").getValue()).toString();
                             }
+                            if (datos.child("nombre").exists()) {
+                                actividad.nombre = Objects.requireNonNull(datos.child("nombre").getValue()).toString();
+                            }
+                            if (datos.child("estado").exists()) {
+                                actividad.mensaje = Objects.requireNonNull(datos.child("estado").getValue()).toString();
+                            }
+
+                            actividad.uid_tratamiento = dataSnapshot.getKey();
+                            list_tratamientos.AddActividad(actividad);
+                            contador++;
 
                         }
 
                     }
 
-                    txt_contador.setText(contador + " tratamientos");
+                    txt_contador.setText(contador + " Tratamientos");
                     progressBar.setVisibility(View.GONE);
 
                     textView.setVisibility(list_tratamientos.getItemCount() == 0 ? View.VISIBLE : View.GONE);
@@ -102,7 +101,6 @@ public class Ctl_tratamientos {
                     progressBar.setVisibility(View.GONE);
                     textView.setVisibility(View.VISIBLE);
                 }
-
             }
 
             @Override

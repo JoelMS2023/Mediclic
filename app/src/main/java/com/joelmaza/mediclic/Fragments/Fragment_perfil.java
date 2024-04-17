@@ -92,8 +92,6 @@ public class Fragment_perfil extends Fragment {
                 editTextTextClave.setText((user.clave));
 
 
-
-
             });
             btn_salir.setOnClickListener(view -> {
 

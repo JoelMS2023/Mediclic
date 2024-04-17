@@ -141,7 +141,7 @@ public class Ctl_citas {
 
     }
 
-    public void BuscarActividades(Adapter_citas list_actividad, String cedula, final TextView textView, final ProgressBar progressBar, TextView txt_contador) {
+    public void BuscarActividades(Adapter_citas list_actividad, String usuario,String fecha, final TextView textView, final ProgressBar progressBar, TextView txt_contador) {
 
         progressBar.setVisibility(View.VISIBLE);
         textView.setVisibility(View.VISIBLE);
@@ -179,6 +179,8 @@ public class Ctl_citas {
                                 if (datos.child("mensaje").exists()) {
                                     actividad.mensaje = Objects.requireNonNull(datos.child("mensaje").getValue()).toString();
                                 }
+                                String cedula = "";
+
                                 if (snapshot.child("nombre").exists()) {
                                     actividad.empleado = Objects.requireNonNull(snapshot.child("nombre").getValue()).toString();
                                 }
@@ -186,10 +188,18 @@ public class Ctl_citas {
                                     actividad.ced_empleado = Objects.requireNonNull(snapshot.child("cedula").getValue()).toString();
                                 }
 
+
+                                if (snapshot.child("cedula").exists()) {
+                                    cedula = Objects.requireNonNull(snapshot.child("cedula").getValue()).toString();
+                                    actividad.empleado  += " - " + cedula;
+                                }
                                 actividad.uid_empleado = snapshot.getKey();
 
-                                if(actividad.ced_empleado.contains(cedula)) {
-                                    list_actividad.AddActividad(actividad);
+                                if(actividad.empleado.toLowerCase().contains(usuario.toLowerCase()) || cedula.contains(usuario.toLowerCase())){
+
+                                    if (fecha.isEmpty() || actividad.fecha_inicio.contains(fecha)) {
+                                        list_actividad.AddActividad(actividad);
+                                    }
                                     contador++;
                                 }
 

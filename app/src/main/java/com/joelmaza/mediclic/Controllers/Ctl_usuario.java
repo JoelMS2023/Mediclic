@@ -29,6 +29,8 @@ public class Ctl_usuario {
     public void crear_usuario(DatabaseReference dbref, String uid, Usuario usuario) {
 
         dbref.child("usuarios").child(uid).setValue(usuario);
+        //dbref.child("usuarios").push().setValue(usuario);
+
 
     }
 
@@ -261,7 +263,83 @@ public class Ctl_usuario {
             });
 
 
+
+
         }
+    public void BuscarUsuarios(DatabaseReference dbref,String cedula,Adaptador_usuarios lista_usuarios, final TextView txt_existe, final ProgressBar progressBar,TextView txt_contador){
+        progressBar.setVisibility(View.VISIBLE);
+        txt_existe.setVisibility(View.VISIBLE);
+        dbref.child("usuarios").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+
+                    lista_usuarios.Clear();
+                    int contador= 0;
+
+                    for (DataSnapshot usuarios : snapshot.getChildren()){
+                        Usuario user =new Usuario();
+                        user.uid =usuarios.getKey();
+
+                        if (usuarios.child("nombre").exists()) {
+                            user.nombre = Objects.requireNonNull(usuarios.child("nombre").getValue()).toString();
+                        }
+                        if (usuarios.child("email").exists()) {
+                            user.email = Objects.requireNonNull(usuarios.child("email").getValue()).toString();
+                        }
+                        if (usuarios.child("rol").exists()) {
+                            user.rol = Objects.requireNonNull(usuarios.child("rol").getValue()).toString();
+                        }
+
+                        if (usuarios.child("url_foto").exists()) {
+                            user.url_foto = Objects.requireNonNull(usuarios.child("url_foto").getValue()).toString();
+                        }
+                        if (usuarios.child("cedula").exists()) {
+                            user.cedula = Objects.requireNonNull(usuarios.child("cedula").getValue()).toString();
+                        }
+                        if (usuarios.child("telefono").exists()) {
+                            user.telefono = Objects.requireNonNull(usuarios.child("telefono").getValue()).toString();
+                        }
+                        if (usuarios.child("direccion").exists()) {
+                            user.direccion = Objects.requireNonNull(usuarios.child("direccion").getValue()).toString();
+                        }
+
+                        if (usuarios.child("estado").exists()) {
+                            user.estado = Objects.requireNonNull(usuarios.child("estado").getValue()).toString();
+                        }
+                        if(user.cedula.contains(cedula)){
+                            lista_usuarios.Add_usuarios(user);
+                            contador++;
+                        }
+
+
+                    }
+                    txt_contador.setText(contador + "Usuarios");
+                    progressBar.setVisibility(View.GONE);
+                    txt_existe.setVisibility(lista_usuarios.getItemCount() == 0 ? View.VISIBLE :View.GONE);
+                    lista_usuarios.notifyDataSetChanged();
+                }else{
+                    lista_usuarios.Clear();
+                    lista_usuarios.notifyDataSetChanged();
+                    progressBar.setVisibility(View.GONE);
+                    txt_existe.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
 
 
     }
+
+
+
+
+
+
+}

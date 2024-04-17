@@ -64,7 +64,7 @@ public class Ver_citas extends AppCompatActivity {
                 txt_nombre.setText(Principal.Nombre);
                 ctlActividad.VerActividades(adapterActividad, txt_sinresultados, progressBar, txt_contador);
             }
-            if (Principal.rol.equals("paciente")) {
+            if (Principal.rol.equals("Paciente")) {
                 // Mostrar elementos específicos para el paciente
                 cardview_nombre.setVisibility(View.VISIBLE);
                 txt_nombre.setText(Principal.Nombre);
@@ -82,7 +82,7 @@ public class Ver_citas extends AppCompatActivity {
 
 
 
-        if (Principal.rol.equals("Administrador")|| Principal.rol.equals("paciente")){
+        if (Principal.rol.equals("Administrador")|| Principal.rol.equals("Paciente")){
             add_citas.setVisibility(View.VISIBLE);
 
         }else{

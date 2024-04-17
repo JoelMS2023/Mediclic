@@ -6,16 +6,30 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.firebase.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.joelmaza.mediclic.Citas.Ver_citas;
 import com.joelmaza.mediclic.Doctores.Ver_doctores;
 import com.joelmaza.mediclic.Horarios.Ver_horarios;
+import com.joelmaza.mediclic.Login;
+import com.joelmaza.mediclic.MainActivity;
 import com.joelmaza.mediclic.Marcacion.Ver_marcaciones;
 import com.joelmaza.mediclic.Principal;
 import com.joelmaza.mediclic.R;
@@ -26,11 +40,17 @@ import com.joelmaza.mediclic.Ubicacion;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.TimerTask;
 
 public class Fragment_Home extends Fragment {
 
     CardView card_horario, card_marcacion, card_agendamiento, card_doctores, card_reportes, card_gps, card_tratamientos;
+    TextView correo_home,nombre_home;
+    ProgressBar progressBardatos;
+    DatabaseReference usuarios;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser user;
 
     @Nullable
     @Override
@@ -44,6 +64,23 @@ public class Fragment_Home extends Fragment {
         card_gps = (CardView) vista.findViewById(R.id.card_gps);
         card_reportes = (CardView) vista.findViewById(R.id.card_reportes);
         card_tratamientos = (CardView) vista.findViewById(R.id.card_tratamientos);
+        correo_home= vista.findViewById(R.id.correo_home);
+        nombre_home= vista.findViewById(R.id.nombre_home);
+        progressBardatos=vista.findViewById(R.id.progressBardatos);
+        usuarios= FirebaseDatabase.getInstance().getReference("usuarios");
+
+
+        firebaseAuth =FirebaseAuth.getInstance();
+        user=firebaseAuth.getCurrentUser();
+
+
+
+
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle("Citas médicas");
+        }
+
 
 
         if (!Principal.rol.isEmpty()) {
@@ -69,7 +106,7 @@ public class Fragment_Home extends Fragment {
 
         });
         if (!Principal.rol.isEmpty()) {
-            if (Principal.rol.equals("Administrador") || Principal.rol.equals("paciente")) {
+            if (Principal.rol.equals("Administrador") || Principal.rol.equals("Paciente")) {
                 card_doctores.setVisibility(View.VISIBLE);
             } else {
                 card_doctores.setVisibility(View.GONE);
@@ -87,7 +124,7 @@ public class Fragment_Home extends Fragment {
         });
 
         if (!Principal.rol.isEmpty()) {
-            if (Principal.rol.equals("Administrador") || Principal.rol.equals("paciente")) {
+            if (Principal.rol.equals("Administrador") || Principal.rol.equals("Paciente")) {
                 card_tratamientos.setVisibility(View.VISIBLE);
             } else {
                 card_tratamientos.setVisibility(View.GONE);
@@ -98,7 +135,7 @@ public class Fragment_Home extends Fragment {
         });
 
         if (!Principal.rol.isEmpty()) {
-            if (Principal.rol.equals("Administrador") || Principal.rol.equals("paciente")) {
+            if (Principal.rol.equals("Administrador") || Principal.rol.equals("Paciente")) {
                 card_gps.setVisibility(View.VISIBLE);
             } else {
                 card_gps.setVisibility(View.GONE);
@@ -113,6 +150,52 @@ public class Fragment_Home extends Fragment {
 
 
     }
+
+    @Override
+    public void onStart() {
+        Comprobarinicio();
+        super.onStart();
+    }
+
+    private void  Cargardatos(){
+        usuarios.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (snapshot.exists()) {
+                    progressBardatos.setVisibility(View.GONE);
+
+                    nombre_home.setVisibility(View.VISIBLE);
+                    correo_home.setVisibility(View.VISIBLE);
+
+                    String nombre=""+snapshot.child("nombre").getValue();
+                    String rol=""+snapshot.child("rol").getValue();
+
+                    nombre_home.setText(nombre);
+                    correo_home.setText((rol));
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    private void Comprobarinicio() {
+        if (user != null) {
+            Cargardatos();
+        } else {
+            // Si el usuario es nulo, iniciar la actividad de Login
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
+
+            // Cerrar la actividad actual (si es necesario)
+            getActivity().finish();
+        }
+    }
+
 }
 
 

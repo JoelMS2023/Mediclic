@@ -67,6 +67,10 @@ dependencies {
     implementation ("com.github.chrisbanes:PhotoView:2.1.3")
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
+    //Pra los pdf
+    implementation ("com.itextpdf:itext7-core:7.1.15")
+
+
 
     //implementation("com.google.firebase:firebase-analytics")
 }

@@ -9,5 +9,4 @@ public class Ob_tratamientos {
     public String mensaje;
     public String uid_tratamiento;
 
-    public String url_foto;
 }

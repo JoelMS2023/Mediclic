@@ -25,8 +25,8 @@ public class Add_Tratamientos extends AppCompatActivity {
     private static final int REQUEST_IMAGE_CAPTURE = 101;
     EditText editTextNombre, editTextDescripcion;
     ImageView imageViewTratamiento;
-    Button btnSeleccionarImagen, btnGuardar;
-    Bitmap imageBitmap;
+    Button  btnGuardar;
+
     Alert_dialog alertDialog;
     public static String UID_TRATAMIENTO = "";
     Progress_dialog dialog;
@@ -42,17 +42,16 @@ public class Add_Tratamientos extends AppCompatActivity {
         editTextNombre = findViewById(R.id.editTextNombre);
         editTextDescripcion = findViewById(R.id.editTextDescripcion);
         imageViewTratamiento = findViewById(R.id.imageViewTratamiento);
-        btnSeleccionarImagen = findViewById(R.id.btnSeleccionarImagen);
         btnGuardar = findViewById(R.id.btnGuardar);
 
         dialog = new Progress_dialog(this);
         alertDialog = new Alert_dialog(this);
 
         btnGuardar.setOnClickListener(v -> {
-            dialog.mostrar_mensaje("Creando cita...");
+            dialog.mostrar_mensaje("Creando Tratamiento...");
             if (!editTextNombre.getText().toString().isEmpty() && !editTextDescripcion.getText().toString().isEmpty()) {
                 Ob_tratamientos obTratamientos = new Ob_tratamientos();
-                obTratamientos.estado = "Disponibles";
+                obTratamientos.estado = "Disponible";
                 obTratamientos.nombre = editTextNombre.getText().toString();
                 obTratamientos.mensaje = editTextDescripcion.getText().toString();
 

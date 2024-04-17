@@ -47,37 +47,16 @@
                 android:orientation="horizontal"
                 >
 
-                <TextView
-                    android:layout_marginEnd="5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fecha de inicio: "
-                    android:textStyle="bold"
-                    android:textSize="15sp"
-                    />
 
-                <TextView
-                    android:id="@+id/card_fecha"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="dd/mm/yyyy hh:mm:ss"
-                    android:textSize="15sp"
-                    android:layout_weight="1"
-                    />
+
+
 
 
             </LinearLayout>
 
 
 
-            <TextView
-                android:id="@+id/card_empleado"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nombre del doctor"
-                android:textSize="15sp"
-                android:textStyle="italic"
-                />
+
 
             <TextView
                 android:id="@+id/card_estado"

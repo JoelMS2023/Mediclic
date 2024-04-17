@@ -63,12 +63,6 @@ public class Adapter_tratamientos extends RecyclerView.Adapter<Holder_tratamient
             }
         }
 
-        if(Principal.rol.equals("Administrador")) {
-            holder.card_empleado.setVisibility(View.VISIBLE);
-        }else{
-            holder.card_empleado.setVisibility(View.GONE);
-            holder.card_empleado.setText("");
-        }
 
         holder.cardView.setOnClickListener(view -> {
 

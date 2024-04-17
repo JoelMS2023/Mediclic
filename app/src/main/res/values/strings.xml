@@ -125,8 +125,8 @@
 
     <string-array name="estado_user">
         <item>Selecciona</item>
-        <item>Activo</item>
-        <item>Inactivo</item>
+        <item>Available</item>
+        <item>Not available</item>
     </string-array>
 
 

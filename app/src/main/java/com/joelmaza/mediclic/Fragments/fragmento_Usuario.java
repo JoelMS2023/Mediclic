@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -92,60 +93,36 @@ public class fragmento_Usuario extends Fragment {
             startActivity(new Intent(vista.getContext(), Add_usuario.class));
         });
 
+        txt_buscador.setOnEditorActionListener((v, actionId, event) -> {
 
-        /*
-        dbRef.child("usuarios").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                if(snapshot.exists()){
 
-                    lista_usuarios.Clear();
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
 
-                    for (DataSnapshot datos: snapshot.getChildren()) {
-                        Usuario user = new Usuario();
-                        user.uid = datos.getKey();
+                if(!txt_buscador.getText().toString().trim().isEmpty()) {
 
-                        Log.e("PRUEBA", user.uid.toString());
 
-                        if(!MainActivity.mAuth.getUid().equals(user.uid)){
+                    MainActivity.ctlUsuario.BuscarUsuarios(dbRef,txt_buscador.getText().toString().trim(),lista_usuarios, txt_existe, progressBar, txt_contador);
 
-                            user.nombre = Objects.requireNonNull(datos.child("nombre").getValue()).toString();
 
-                            if(datos.child("url_foto").exists()){
-                                user.url_foto = Objects.requireNonNull(datos.child("url_foto").getValue()).toString();
-                            }
+                }else{
 
-                            if(datos.child("telefono").exists()){
-                                user.telefono = Objects.requireNonNull(datos.child("telefono").getValue()).toString();
-                            }
-                            if(datos.child("direccion").exists()){
-                                user.direccion = Objects.requireNonNull(datos.child("direccion").getValue()).toString();
-                            }
-                            if(datos.child("email").exists()){
-                                user.direccion = Objects.requireNonNull(datos.child("email").getValue()).toString();
-                            }
-
-                            lista_usuarios.Add_usuarios(user);
-
-                        }
-
-                    }
-
-                    lista_usuarios.notifyDataSetChanged();
-
+                    Toast.makeText(getContext(),"Ingresa la cédula o nombre a buscar",Toast.LENGTH_SHORT).show();
                 }
 
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                return true;
 
             }
+
+            return false;
+
         });
-        */
+
+
+
         return vista;
 
 
     }
+
 }

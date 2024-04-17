@@ -57,10 +57,10 @@ public class Adapter_citas extends RecyclerView.Adapter<Holder_citas> {
 
         if(list_actividad.get(position).estado!=null){
             switch (list_actividad.get(position).estado.toLowerCase()){
-                case "Pendiente":
+                case "pendiente":
                     holder.card_estado.setTextColor(ContextCompat.getColor(context,R.color.warning));
                     break;
-                case "Atendido":
+                case "atendido":
                     holder.card_estado.setTextColor(ContextCompat.getColor(context,R.color.success));
                     break;
                 default:
@@ -90,9 +90,9 @@ public class Adapter_citas extends RecyclerView.Adapter<Holder_citas> {
             i.putExtra("uid_empleado",list_actividad.get(position).uid_empleado);
             i.putExtra("ced_empleado",list_actividad.get(position).ced_empleado);
             i.putExtra("nom_empleado",list_actividad.get(position).empleado);
-            i.putExtra("uid_paciente",list_actividad.get(position).uid_doctor);
-            i.putExtra("ced_paciente",list_actividad.get(position).ced_doctor);
-            i.putExtra("nom_paciente",list_actividad.get(position).doctor);
+            i.putExtra("uid_doctor",list_actividad.get(position).uid_doctor);
+            i.putExtra("ced_doctor",list_actividad.get(position).ced_doctor);
+            i.putExtra("nom_doctor",list_actividad.get(position).doctor);
             context.startActivity(i);
 
         });
