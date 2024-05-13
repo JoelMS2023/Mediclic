@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_purple">
+    >
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,7 +16,6 @@
             android:orientation="vertical"
             android:gravity="center"
             >
-
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -25,28 +24,61 @@
                 android:layout_marginTop="10dp"
                 >
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_rol"
-                    android:textStyle="bold"
-                    android:textSize="15sp"
-                    android:id="@+id/txt_rol"
-                    android:gravity="center"
-                    android:layout_margin="5dp"
-                    android:textColor="@color/proyecto_dark"
+                    android:orientation="horizontal"
                     >
-                </TextView>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1"
+                        >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="REGISTRO DE CITAS"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:gravity="center"
+                            />
+
+                    </LinearLayout>
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:background="@color/success"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_eye"
+                        android:id="@+id/btn_ver_asist"
+
+                        />
+
+                </LinearLayout>
 
             </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                >
 
+            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:layout_marginBottom="10dp"
                 >
 
                 <LinearLayout
@@ -54,6 +86,18 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:padding="10dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_rol"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:id="@+id/txt_rol"
+                        android:gravity="center"
+                        android:textColor="@color/proyecto_dark"
+                        android:layout_margin="5dp"
+                        >
+                    </TextView>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -94,6 +138,7 @@
 
                     </ImageView>
 
+
                     <TextView
                         android:id="@+id/txt_estado"
                         android:layout_width="match_parent"
@@ -114,11 +159,10 @@
                         android:layout_marginTop="5dp"
                         />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/TextEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:ems="10"
                         android:hint="@string/text_personalemail"
                         android:inputType="textEmailAddress"
@@ -138,7 +182,6 @@
                         android:id="@+id/editTextTextPhone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:ems="10"
                         android:inputType="phone"
                         android:textSize="15sp"
@@ -157,9 +200,9 @@
                         android:id="@+id/editxt_direccion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="-"
                         android:textSize="15sp"
-                        android:textColor="@color/black"
+                        android:clickable="true"
+                        android:inputType="textCapCharacters"
                         />
                     <TextView
                         android:layout_width="match_parent"
@@ -174,23 +217,9 @@
                         android:id="@+id/txtfecha_ini_contrato"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="-"
-                        />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Cantidad de Citas:"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp"
+                        android:text=" "
                         />
 
-                    <TextView
-                        android:id="@+id/cant_solicitudes"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="0 Citas"
-                        />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -212,7 +241,6 @@
                             android:id="@+id/editTextTextClave"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/black"
                             android:ems="10"
                             android:hint="Clave de Acceso"
                             android:inputType="textPassword"
@@ -225,13 +253,11 @@
                         android:id="@+id/btn_update_profile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
                         android:backgroundTint="@color/success"
-                        android:padding="15dp"
                         android:textColor="@color/white"
-                        android:layout_marginTop="15dp"
                         android:text="@string/text_update_profile"
                         android:textSize="20sp" />
 
@@ -239,11 +265,10 @@
                         android:id="@+id/btn_salir"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
                         android:backgroundTint="@color/danger"
-                        android:padding="15dp"
                         android:textColor="@color/white"
                         android:text="@string/text_logout"
                         android:textSize="20sp" />

@@ -11,7 +11,7 @@ import com.joelmaza.mediclic.R;
 
 public class Holder_tratamientos extends RecyclerView.ViewHolder {
 
-    public TextView   card_tipo, card_estado;
+    public TextView   card_tipo, card_mensaje;
     public CardView cardView;
 
 
@@ -19,7 +19,7 @@ public class Holder_tratamientos extends RecyclerView.ViewHolder {
         super(itemView);
 
         card_tipo = itemView.findViewById(R.id.card_tipo);
-        card_estado = itemView.findViewById(R.id.card_estado);
+        card_mensaje=itemView.findViewById(R.id.card_mensaje);
         cardView =  itemView.findViewById(R.id.cardview_tratamientos);
 
     }

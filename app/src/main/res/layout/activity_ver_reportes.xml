@@ -37,6 +37,27 @@
                 android:orientation="vertical"
                 android:layout_margin="5dp"
                 >
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:id="@+id/txt_consolidado"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Reporte de Usuarios"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_margin="15dp"
+                        android:textSize="20sp"
+                        android:textColor="@color/success"
+                        >
+
+                    </TextView>
+
+                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_rpt_marcacion"

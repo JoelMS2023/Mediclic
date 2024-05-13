@@ -6,9 +6,9 @@
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     android:id="@+id/cardview_doctores"
-    android:focusable="true"
+    android:focusable="false"
     android:foreground="?android:attr/selectableItemBackground"
-    android:clickable="true"
+    android:clickable="false"
     >
 
     <LinearLayout

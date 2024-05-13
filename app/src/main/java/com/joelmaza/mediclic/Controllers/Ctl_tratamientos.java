@@ -37,8 +37,7 @@ public class Ctl_tratamientos {
     public void actualizar_tratamientos(DatabaseReference dbref, Ob_tratamientos obtratamientos){
 
         Map<String, Object> datos = new HashMap<>();
-        datos.put("nombre", obtratamientos.nombre);
-        datos.put("estado",obtratamientos.estado);
+        datos.put("tipo", obtratamientos.tipo);
         datos.put("mensaje",obtratamientos.mensaje);
 
         dbref.child("Tratamientos").child(obtratamientos.uid).updateChildren(datos);
@@ -63,28 +62,21 @@ public class Ctl_tratamientos {
                     list_tratamientos.ClearActividad();
                     int contador = 0;
 
-                    if (dataSnapshot.child("Tratamientos").exists()) {
+                    for (DataSnapshot datos : dataSnapshot.getChildren()) { // Cambio aquí
 
-                        for (DataSnapshot datos : dataSnapshot.child("Tratamientos").getChildren()) {
+                        Ob_tratamientos actividad = new Ob_tratamientos();
+                        actividad.uid = datos.getKey();
 
-                            Ob_tratamientos actividad = new Ob_tratamientos();
-                            actividad.uid = datos.getKey();
-
-                            if (datos.child("mensaje").exists()) {
-                                actividad.mensaje = Objects.requireNonNull(datos.child("mensaje").getValue()).toString();
-                            }
-                            if (datos.child("nombre").exists()) {
-                                actividad.nombre = Objects.requireNonNull(datos.child("nombre").getValue()).toString();
-                            }
-                            if (datos.child("estado").exists()) {
-                                actividad.mensaje = Objects.requireNonNull(datos.child("estado").getValue()).toString();
-                            }
-
-                            actividad.uid_tratamiento = dataSnapshot.getKey();
-                            list_tratamientos.AddActividad(actividad);
-                            contador++;
-
+                        if (datos.child("mensaje").exists()) {
+                            actividad.mensaje = Objects.requireNonNull(datos.child("mensaje").getValue()).toString();
                         }
+                        if (datos.child("tipo").exists()) {
+                            actividad.tipo = Objects.requireNonNull(datos.child("tipo").getValue()).toString();
+                        }
+
+                        actividad.uid_tratamiento = dataSnapshot.getKey();
+                        list_tratamientos.AddActividad(actividad);
+                        contador++;
 
                     }
 

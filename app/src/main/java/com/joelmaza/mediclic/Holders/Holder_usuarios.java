@@ -14,7 +14,7 @@ import com.joelmaza.mediclic.R;
 public class Holder_usuarios extends RecyclerView.ViewHolder {
 
 
-    public TextView card_nombre, card_cedula, card_telefono, card_rol,card_estado;
+    public TextView card_nombre, card_cedula, card_telefono, card_rol,card_estado,card_canton;
     public ImageView card_foto;
     public CardView cardview_usuario;
 
@@ -26,7 +26,10 @@ public class Holder_usuarios extends RecyclerView.ViewHolder {
         card_telefono = itemView.findViewById(R.id.card_telefono);
         card_rol = itemView.findViewById(R.id.card_rol);
         card_foto = itemView.findViewById(R.id.card_foto);
+        card_canton = itemView.findViewById(R.id.card_canton);
         cardview_usuario = itemView.findViewById(R.id.cardview_usuario);
+
+
 
 
 

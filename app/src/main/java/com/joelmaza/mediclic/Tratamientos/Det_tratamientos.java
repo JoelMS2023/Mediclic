@@ -29,11 +29,10 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Det_tratamientos extends AppCompatActivity {
-    Spinner  spinner_estado;
 
     EditText editTextMotivo;
+    TextView txt_nombre;
 
-    ArrayAdapter<CharSequence>  adapterspinner_estado;
     Button btn_edit_solicitud, btn_del_solicitud;;
     Alert_dialog alertDialog;
     Progress_dialog dialog;
@@ -53,8 +52,9 @@ public class Det_tratamientos extends AppCompatActivity {
         btn_del_solicitud = findViewById(R.id.btn_del_solicitud);
 
 
-        spinner_estado = findViewById(R.id.spinner_estado);
+
         editTextMotivo = findViewById(R.id.editTextMotivo);
+        txt_nombre= findViewById(R.id.txt_nombre);
 
 
 
@@ -63,20 +63,14 @@ public class Det_tratamientos extends AppCompatActivity {
 
 
 
-        adapterspinner_estado = ArrayAdapter.createFromResource(this, R.array.tipo_tratamiento, android.R.layout.simple_spinner_item);
-        adapterspinner_estado.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_estado.setAdapter(adapterspinner_estado);
 
         if(Principal.rol.equals("Administrador")){
             btn_del_solicitud.setVisibility(View.VISIBLE);
             btn_edit_solicitud.setVisibility(View.VISIBLE);
-            spinner_estado.setEnabled(true);
             editTextMotivo.setEnabled(true);
         }else{
             btn_del_solicitud.setVisibility(View.GONE);
             btn_edit_solicitud.setVisibility(View.GONE);
-            spinner_estado.setEnabled(false);
-
             editTextMotivo.setEnabled(false);
             }
 
@@ -100,13 +94,12 @@ public class Det_tratamientos extends AppCompatActivity {
 
                 dialog.mostrar_mensaje("Actualizando Solicitud...");
 
-                if(!editTextMotivo.getText().toString().isEmpty()  && !spinner_estado.getSelectedItem().toString().equals("Selecciona")) {
+                if(!editTextMotivo.getText().toString().isEmpty()  ) {
 
 
                     Ob_tratamientos tratamiento = new Ob_tratamientos();
                     tratamiento.uid = uid;
                     tratamiento.mensaje = editTextMotivo.getText().toString();
-                    tratamiento.estado = spinner_estado.getSelectedItem().toString();
 
 
                     Ver_tratamientos.ctlTratamientos.actualizar_tratamientos(Principal.databaseReference,tratamiento);
@@ -129,35 +122,20 @@ public class Det_tratamientos extends AppCompatActivity {
 
             });
 
-            Principal.databaseReference.child("Tratamientos").child(uid_tratamiento).child("solicitudes").child(uid).addValueEventListener(new ValueEventListener() {
+        Principal.databaseReference.child("Tratamientos").child(uid_tratamiento).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                     if(snapshot.exists()){
 
 
-                        if(snapshot.child("motivo").exists()){
-                            editTextMotivo.setText(Objects.requireNonNull(snapshot.child("motivo").getValue()).toString());
+                        if(snapshot.child("tipo").exists()){
+                            txt_nombre.setText(Objects.requireNonNull(snapshot.child("tipo").getValue()).toString());
+                        }
+                        if(snapshot.child("mensaje").exists()){
+                            editTextMotivo.setText(Objects.requireNonNull(snapshot.child("mensaje").getValue()).toString());
                         }
 
-                        if(snapshot.child("estado").exists()){
-                            String estado = Objects.requireNonNull(snapshot.child("estado").getValue()).toString();
-                            int spinnerPosition = adapterspinner_estado.getPosition(estado);
-                            spinner_estado.setSelection(spinnerPosition);
-
-                            if(Principal.rol.equals("Administrador")) {
-                                if (estado.equalsIgnoreCase("aprobado") || estado.equalsIgnoreCase("rechazado")) {
-                                    spinner_estado.setEnabled(false);
-                                    editTextMotivo.setEnabled(false);
-                                    btn_edit_solicitud.setVisibility(View.GONE);
-                                } else {
-                                    spinner_estado.setEnabled(true);
-                                    editTextMotivo.setEnabled(true);
-                                    btn_edit_solicitud.setVisibility(View.VISIBLE);
-                                }
-                            }
-
-                        }
 
                     }
 

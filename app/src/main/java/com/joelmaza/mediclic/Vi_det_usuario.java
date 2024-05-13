@@ -1,8 +1,10 @@
 package com.joelmaza.mediclic;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -35,62 +37,67 @@ import java.util.Locale;
 import java.util.Objects;
 
 public class Vi_det_usuario extends AppCompatActivity {
-
-
-    TextView txt_nombre, txt_email, txt_cedula, cant_marcaciones, cant_solicitudes;
-    EditText editext_direccion, editext_telefono;
-    DatabaseReference dbref;
+    EditText editTextcedula, editTextnombre, editTextTextEmailAddress, editTextTextPhone;
+    TextView cant_marcaciones, cant_solicitudes;
     CalendarView fecha_inicio, fecha_fin;
-    Button btn_update, btn_delete, btn_add_fecha_fin, btn_add_fecha_inicio, btn_del_fecha_fin;
-    Spinner spinner_estado;
-    String uid;
-    Alert_dialog alertDialog;
-    Progress_dialog dialog;
     long fecha_cal_ini = -1, fecha_cal_fin = -1;
     ImageView img_perfil;
-
-    ArrayAdapter<CharSequence> adapterspinner_estado;
+    Spinner spinner_tipo, spinner_estado;
+    String uid = "";
+    Button btn_edit_usuario, btn_del_usuario, btn_add_fecha_fin, btn_add_fecha_inicio, btn_del_fecha_fin;
+    ArrayAdapter<CharSequence> adapterspinner_tipo, adapterspinner_estado;
+    Alert_dialog alertDialog;
+    Progress_dialog dialog;
+    DatabaseReference dbref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vi_det_usuario);
 
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setOnClickListener(view -> finish());
 
+        editTextcedula = findViewById(R.id.editTextcedula);
+        editTextnombre = findViewById(R.id.editTextnombre);
+        editTextTextEmailAddress = findViewById(R.id.editTextTextEmailAddress);
+        editTextTextPhone = findViewById(R.id.editTextTextPhone);
+        img_perfil = findViewById(R.id.img_perfil);
         dbref = MainActivity.DB.getReference();
 
-        uid = getIntent().getExtras().getString("uid");
 
-        txt_nombre = findViewById(R.id.txt_nombre);
-        txt_email = findViewById(R.id.txt_email);
-        editext_direccion = findViewById(R.id.editext_direccion);
-        editext_telefono = findViewById(R.id.editext_telefono);
-        btn_update = findViewById(R.id.btn_update);
-        btn_delete = findViewById(R.id.btn_delete);
-        dialog = new Progress_dialog(this);
-        alertDialog = new Alert_dialog(this);
+        btn_edit_usuario = findViewById(R.id.btn_edit_usuario);
+        btn_del_usuario = findViewById(R.id.btn_del_usuario);
         btn_add_fecha_inicio = findViewById(R.id.btn_add_fecha_inicio);
         btn_add_fecha_fin = findViewById(R.id.btn_add_fecha_fin);
         btn_del_fecha_fin = findViewById(R.id.btn_del_fecha_fin);
-        img_perfil = findViewById(R.id.img_perfil);
-        spinner_estado = findViewById(R.id.spinner_estado);
-
-        uid = Objects.requireNonNull(getIntent().getExtras()).getString("uid", "");
-
 
         cant_marcaciones = findViewById(R.id.cant_marcaciones);
         cant_solicitudes = findViewById(R.id.cant_solicitudes);
+
+        fecha_inicio = findViewById(R.id.fecha_inicio);
+        fecha_fin = findViewById(R.id.fecha_fin);
+
+        dialog = new Progress_dialog(this);
+        alertDialog = new Alert_dialog(this);
+
+        uid = Objects.requireNonNull(getIntent().getExtras()).getString("uid","");
+
+        spinner_tipo = findViewById(R.id.spinner_tipo);
+        spinner_estado = findViewById(R.id.spinner_estado);
+
+        adapterspinner_tipo = ArrayAdapter.createFromResource(this, R.array.rol, android.R.layout.simple_spinner_item);
+        adapterspinner_tipo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_tipo.setAdapter(adapterspinner_tipo);
 
         adapterspinner_estado = ArrayAdapter.createFromResource(this, R.array.estado_user, android.R.layout.simple_spinner_item);
         adapterspinner_estado.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_estado.setAdapter(adapterspinner_estado);
 
 
-        assert uid != null;
-        if (!uid.isEmpty()) {
+
+        assert uid!=null;
+        if(!uid.isEmpty()) {
 
             btn_add_fecha_inicio.setOnClickListener(v -> {
                 fecha_inicio.setVisibility(View.VISIBLE);
@@ -103,69 +110,90 @@ public class Vi_det_usuario extends AppCompatActivity {
             });
 
             btn_del_fecha_fin.setOnClickListener(v -> {
-                fragmento_Usuario.ctlUsuarios.eliminar_fecha_fin_contrato(dbref, uid);
+                fragmento_Usuario.ctlUsuarios.eliminar_fecha_fin_contrato(dbref,uid);
                 btn_del_fecha_fin.setVisibility(View.GONE);
             });
 
-            btn_update.setOnClickListener(v -> {
-
-                if (editext_direccion.getText().toString().isEmpty() || editext_telefono.getText().toString().isEmpty()
-                        || (editext_telefono.getText().toString().trim().isEmpty() && editext_telefono.getError() == null)
-                        || spinner_estado.getSelectedItem().toString().equals("Selecciona")) {
-
-                    Usuario user = new Usuario();
-                    user.uid = uid;
-                    user.direccion = editext_direccion.getText().toString();
-                    user.telefono = editext_telefono.getText().toString();
-                    user.estado = spinner_estado.getSelectedItem().toString();
-                    MainActivity.ctlUsuario.actualizar_usuario(dbref, user);
-
-                    if (fecha_inicio.getVisibility() == View.VISIBLE) {
-                        long fechaContrato = (fecha_cal_ini != -1) ? fecha_cal_ini : new Date().getTime();
-                        user.fecha_ini_contrato = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(fechaContrato);
-                    }
-
-                    if (fecha_fin.getVisibility() == View.VISIBLE) {
-                        long fechaContratoFin = (fecha_cal_fin != -1) ? fecha_cal_fin : new Date().getTime();
-                        user.fecha_fin_contrato = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(fechaContratoFin);
-                    }
-                    fragmento_Usuario.ctlUsuarios.actualizar_usuario(dbref,user);
-
-                    dialog.ocultar_mensaje();
-                    alertDialog.crear_mensaje("Correcto", "Usuario Actualizado Correctamente", builder -> {
-                        builder.setCancelable(false);
-                        builder.setNeutralButton("Aceptar", (dialogInterface, i) -> {});
-                        builder.create().show();
-                    });
-
-                } else {
-                    dialog.ocultar_mensaje();
-                    alertDialog.crear_mensaje("¡Advertencia!", "Completa todos los campos", builder -> {
-                        builder.setCancelable(true);
-                        builder.setNeutralButton("Aceptar", (dialogInterface, i) -> {});
-                        builder.create().show();
-                    });
-                }
-
-            });
-
-            btn_delete.setOnClickListener(v -> {
+            btn_del_usuario.setOnClickListener(view -> {
 
                 alertDialog.crear_mensaje("¿Estás Seguro de Eliminar el usuario?", "¡Esta acción no es reversible!", builder -> {
                     builder.setPositiveButton("Aceptar", (dialogInterface, i) -> {
                         dialog.mostrar_mensaje("Eliminando Usuario...");
-                        MainActivity.ctlUsuario.eliminar_usuario(dbref, uid);
+                        fragmento_Usuario.ctlUsuarios.eliminar_usuario(dbref,uid);
                         dialog.ocultar_mensaje();
                         finish();
                     });
-                    builder.setNeutralButton("Cancelar", (dialogInterface, i) -> {
-                    });
+                    builder.setNeutralButton("Cancelar", (dialogInterface, i) -> {});
                     builder.setCancelable(false);
                     builder.create().show();
                 });
 
             });
-            editext_telefono.addTextChangedListener(new TextWatcher() {
+
+            editTextcedula.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    if(editable.toString().trim().length() == 10){
+                        if(!fragmento_Usuario.ctlUsuarios.Validar_Cedula(editable.toString().trim())){
+                            editTextcedula.setError("Cédula Incorrecta");
+                        }
+                    }else{
+                        editTextcedula.setError("Ingresa 10 dígitos");
+                    }
+
+                }
+            });
+
+            editTextnombre.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    if(!fragmento_Usuario.ctlUsuarios.validar_usuario(editable.toString().trim())){
+                        editTextnombre.setError("Ingresa un nombre válido");
+                    }
+                }
+            });
+
+
+            editTextTextEmailAddress.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    if(!fragmento_Usuario.ctlUsuarios.validar_correo(editable.toString().trim())){
+                        editTextTextEmailAddress.setError("Ingresa un correo válido");
+                    }
+                }
+            });
+
+            editTextTextPhone.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -180,49 +208,93 @@ public class Vi_det_usuario extends AppCompatActivity {
                 public void afterTextChanged(Editable editable) {
                     if(editable.toString().trim().length() == 10) {
                         if (!fragmento_Usuario.ctlUsuarios.validar_celular(editable.toString().trim())) {
-                            editext_telefono.setError("Ingresa un celular válido");
+                            editTextTextPhone.setError("Ingresa un celular válido");
                         }
                     }else{
-                        editext_telefono.setError("Ingresa 10 dígitos");
+                        editTextTextPhone.setError("Ingresa 10 dígitos");
                     }
                 }
             });
 
+            btn_edit_usuario.setOnClickListener(view -> {
 
-            dbref.child("usuarios").child(uid).addValueEventListener(new ValueEventListener() {
+                dialog.mostrar_mensaje("Actualizando Usuario...");
+
+                if(!editTextcedula.getText().toString().trim().isEmpty() && editTextcedula.getError() == null &&
+                        !editTextnombre.getText().toString().trim().isEmpty() && editTextnombre.getError() == null  &&
+                        !editTextTextEmailAddress.getText().toString().trim().isEmpty() && editTextTextEmailAddress.getError() == null &&
+                        !editTextTextPhone.getText().toString().trim().isEmpty() && editTextTextPhone.getError() == null
+                        &&  !spinner_tipo.getSelectedItem().toString().equals("Selecciona")
+                        && !spinner_estado.getSelectedItem().toString().equals("Selecciona")) {
+
+                    Usuario usuario = new Usuario();
+                    usuario.uid = uid;
+                    usuario.cedula = editTextcedula.getText().toString();
+                    usuario.nombre = editTextnombre.getText().toString();
+                    usuario.email = editTextTextEmailAddress.getText().toString();
+                    usuario.telefono = editTextTextPhone.getText().toString();
+                    usuario.rol = spinner_tipo.getSelectedItem().toString();
+                    usuario.estado = spinner_estado.getSelectedItem().toString();
+
+                    if (fecha_inicio.getVisibility() == View.VISIBLE) {
+                        long fechaContrato = (fecha_cal_ini != -1) ? fecha_cal_ini : new Date().getTime();
+                        usuario.fecha_ini_contrato = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(fechaContrato);
+                    }
+
+                    if (fecha_fin.getVisibility() == View.VISIBLE) {
+                        long fechaContratoFin = (fecha_cal_fin != -1) ? fecha_cal_fin : new Date().getTime();
+                        usuario.fecha_fin_contrato = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(fechaContratoFin);
+                    }
+
+                    MainActivity.ctlUsuario.update_usuario(dbref,usuario);
+
+                    dialog.ocultar_mensaje();
+                    alertDialog.crear_mensaje("Correcto", "Usuario Actualizado Correctamente", builder -> {
+                        builder.setCancelable(false);
+                        builder.setNeutralButton("Aceptar", (dialogInterface, i) -> {});
+                        builder.create().show();
+                    });
+
+                }else{
+                    dialog.ocultar_mensaje();
+                    alertDialog.crear_mensaje("¡Advertencia!", "Completa todos los campos", builder -> {
+                        builder.setCancelable(true);
+                        builder.setNeutralButton("Aceptar", (dialogInterface, i) -> {});
+                        builder.create().show();
+                    });
+                }
+
+            });
+
+            Principal.databaseReference.child("usuarios").child(uid).addValueEventListener(new ValueEventListener() {
                 @Override
-                public void onDataChange(@NonNull DataSnapshot datos) {
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                    if (datos.exists()) {
+                    if(snapshot.exists()){
 
-                        if (datos.child("cedula").exists()) {
-                            txt_cedula.setText(Objects.requireNonNull(datos.child("cedula").getValue()).toString());
+                        if(snapshot.child("cedula").exists()) {
+                            editTextcedula.setText(Objects.requireNonNull(snapshot.child("cedula").getValue()).toString().trim());
                         }
-                        if (datos.child("estado").exists()) {
-                            String estado = Objects.requireNonNull(datos.child("estado").getValue()).toString();
-                            int spinnerPosition = adapterspinner_estado.getPosition(estado);
-                            spinner_estado.setSelection(spinnerPosition);
+                        if(snapshot.child("nombre").exists()) {
+                            editTextnombre.setText(Objects.requireNonNull(snapshot.child("nombre").getValue()).toString().trim());
                         }
-                        if (datos.child("nombre").exists()) {
-                            txt_nombre.setText(Objects.requireNonNull(datos.child("nombre").getValue()).toString());
+                        if(snapshot.child("url_foto").exists()){
+                            String url_foto = Objects.requireNonNull(snapshot.child("url_foto").getValue()).toString();
+                            Glide.with(getBaseContext()).load(url_foto).centerCrop().into(img_perfil);
+                        }else{
+                            img_perfil.setImageResource(R.drawable.perfil);
                         }
-                        if (datos.child("email").exists()) {
-                            txt_email.setText(Objects.requireNonNull(datos.child("email").getValue()).toString());
+                        if(snapshot.child("email").exists()){
+                            editTextTextEmailAddress.setText(Objects.requireNonNull(snapshot.child("email").getValue()).toString().trim());
                         }
-                        if (datos.child("direccion").exists()) {
-                            editext_direccion.setText(datos.child("direccion").getValue().toString());
-                        } else {
-                            editext_direccion.setText("");
+                        if(snapshot.child("telefono").exists()){
+                            editTextTextPhone.setText(Objects.requireNonNull(snapshot.child("telefono").getValue()).toString().trim());
                         }
-                        if (datos.child("telefono").exists()) {
-                            editext_telefono.setText(datos.child("telefono").getValue().toString());
-                        } else {
-                            editext_telefono.setText("");
-                        }
-                        if(datos.child("fecha_ini_contrato").exists()){
+
+                        if(snapshot.child("fecha_ini_contrato").exists()){
                             btn_add_fecha_inicio.setVisibility(View.GONE);
                             btn_add_fecha_fin.setVisibility(View.VISIBLE);
-                            String f_inicio = Objects.requireNonNull(datos.child("fecha_ini_contrato").getValue()).toString();
+                            String f_inicio = Objects.requireNonNull(snapshot.child("fecha_ini_contrato").getValue()).toString();
                             int dia = Integer.parseInt(f_inicio.split("/")[0]);
                             int mes = Integer.parseInt(f_inicio.split("/")[1]) - 1;
                             int anio = Integer.parseInt(f_inicio.split("/")[2]);
@@ -236,10 +308,10 @@ public class Vi_det_usuario extends AppCompatActivity {
                             btn_add_fecha_fin.setVisibility(View.GONE);
                         }
 
-                        if(datos.child("fecha_fin_contrato").exists()){
+                        if(snapshot.child("fecha_fin_contrato").exists()){
                             btn_add_fecha_fin.setVisibility(View.GONE);
                             btn_del_fecha_fin.setVisibility(View.VISIBLE);
-                            String f_fin = Objects.requireNonNull(datos.child("fecha_fin_contrato").getValue()).toString();
+                            String f_fin = Objects.requireNonNull(snapshot.child("fecha_fin_contrato").getValue()).toString();
                             int dia2 = Integer.parseInt(f_fin.split("/")[0]);
                             int mes2 = Integer.parseInt(f_fin.split("/")[1]) - 1;
                             int anio2 = Integer.parseInt(f_fin.split("/")[2]);
@@ -251,23 +323,29 @@ public class Vi_det_usuario extends AppCompatActivity {
                             fecha_fin.setVisibility(View.GONE);
                             btn_del_fecha_fin.setVisibility(View.GONE);
                         }
-                        if(datos.child("citas").exists()){
-                            cant_solicitudes.setText(datos.child("citas").getChildrenCount()+" Solicitudes");
+
+                        if(snapshot.child("estado").exists()){
+                            String estado = Objects.requireNonNull(snapshot.child("estado").getValue()).toString();
+                            int spinnerPosition = adapterspinner_estado.getPosition(estado);
+                            spinner_estado.setSelection(spinnerPosition);
                         }
-                        if(datos.child("marcaciones").exists()){
-                            cant_marcaciones.setText(datos.child("marcaciones").getChildrenCount()+" Marcaciones");
+
+                        if(snapshot.child("rol").exists()){
+                            String rol = Objects.requireNonNull(snapshot.child("rol").getValue()).toString();
+                            int spinnerPosition = adapterspinner_tipo.getPosition(rol);
+                            spinner_tipo.setSelection(spinnerPosition);
                         }
-                        if(datos.child("url_foto").exists()){
-                            String url_foto = Objects.requireNonNull(datos.child("url_foto").getValue()).toString();
-                            Glide.with(getBaseContext()).load(url_foto).centerCrop().into(img_perfil);
-                        }else{
-                            img_perfil.setImageResource(R.drawable.perfil);
+
+                        if(snapshot.child("solicitudes").exists()){
+                            cant_solicitudes.setText(snapshot.child("solicitudes").getChildrenCount()+" Solicitudes");
+                        }
+                        if(snapshot.child("marcaciones").exists()){
+                            cant_marcaciones.setText(snapshot.child("marcaciones").getChildrenCount()+" Marcaciones");
                         }
 
                     }
 
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 
@@ -275,20 +353,22 @@ public class Vi_det_usuario extends AppCompatActivity {
             });
 
 
-
         }
+
+
         fecha_inicio.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
             Calendar calendar = Calendar.getInstance();
-            calendar.set(year, month, dayOfMonth);
+            calendar.set(year,month,dayOfMonth);
             view.setDate(calendar.getTimeInMillis());
             fecha_cal_ini = view.getDate();
         });
 
         fecha_fin.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
             Calendar calendar = Calendar.getInstance();
-            calendar.set(year, month, dayOfMonth);
+            calendar.set(year,month,dayOfMonth);
             view.setDate(calendar.getTimeInMillis());
             fecha_cal_fin = view.getDate();
         });
+
     }
 }

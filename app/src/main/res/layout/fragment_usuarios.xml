@@ -40,21 +40,29 @@
 
 
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/layout_opciones"
-        android:orientation="vertical"
         android:gravity="end"
         android:layout_below="@+id/card_rpt_marcacion"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
         >
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
         >
 
-        </LinearLayout>
+
+
+
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/spinner_rol"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            />
 
 
 
@@ -67,6 +75,7 @@
             android:textColor="@color/white"
             >
         </Button>
+
 
     </LinearLayout>
 

@@ -13,11 +13,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
+import com.joelmaza.mediclic.Adaptadores.Adaptador_doctores;
 import com.joelmaza.mediclic.Adaptadores.Adaptador_usuarios;
 import com.joelmaza.mediclic.MainActivity;
 import com.joelmaza.mediclic.Principal;
 import com.joelmaza.mediclic.R;
-import com.joelmaza.mediclic.Registro;
 import com.joelmaza.mediclic.Usuarios.Add_usuario;
 
 
@@ -26,7 +26,7 @@ public class Ver_doctores extends AppCompatActivity {
     Button btn_add_usuario;
     DatabaseReference dbRef;
     RecyclerView recyclerview_usuarios;
-    Adaptador_usuarios lista_usuarios;
+    Adaptador_doctores lista_usuarios;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class Ver_doctores extends AppCompatActivity {
         TextView txt_existe = findViewById(R.id.txt_existe);
         TextView txt_contador = findViewById(R.id.txt_contador);
 
-        lista_usuarios = new  Adaptador_usuarios(this);
+        lista_usuarios = new Adaptador_doctores(this);
 
         btn_add_usuario= findViewById(R.id.btn_add_usuario);
         if (Principal.rol.equals("Administrador")){
@@ -63,7 +63,7 @@ public class Ver_doctores extends AppCompatActivity {
 
         });
 
-        MainActivity.ctlUsuario.verUsuarios(dbRef,"Doctor",lista_usuarios,Principal.id,txt_existe,progressBar, txt_contador);
+        MainActivity.ctlUsuario.verUsuarios1(dbRef,"Doctor",lista_usuarios,Principal.id,txt_existe,progressBar, txt_contador);
 
 
     }

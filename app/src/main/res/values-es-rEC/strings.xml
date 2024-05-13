@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Cita en línea</string>
+    <string name="app_name">Citas Médicas</string>
     <string name="text_logo"> Logo institutional</string>
     <string name="title_cite">Agendar cita</string>
     <string name="text_back"> Atras</string>
@@ -19,7 +19,7 @@
     <string name="text_username">Usuarios</string>
     <string name="text_myusername">Ingrese su nombre de usuario</string>
     <string name="text_phone">Telefono:</string>
-    <string name="text_address"> Direccion:</string>
+    <string name="text_address"> Ciudad:</string>
     <string name="text_name">Nombre:</string>
     <string name="text_identification">Cedula:</string>
     <string name="text_logout">Cerrar sesión</string>
@@ -28,6 +28,11 @@
     <string name="btn_add"> Agregar</string>
     <string name="title_profile"> Perfil</string>
     <string name="text_forgot_password">¿Olvidate tu contraseña?</string>
+    <string name="text_empezar">Empezar</string>
+    <string name="text_bienvenida">«Estás en buenas manos. Nuestros especialistas están aquí para escucharte, guiarte y capacitarte mientras te familiarizas con nuestros productos y servicios.»</string>
+
+
+
 
 
     <string name="home_op1">Citas</string>
@@ -36,6 +41,14 @@
     <string name="home_op4">Médicos</string>
     <string name="home_op5">Ubicación</string>
     <string name="home_op6">Reportes</string>
+    <string name="home_op7">Asistencia</string>
+
+    <string-array name="tipo">
+        <item>Select</item>
+        <item>Presencial</item>
+        <item>Online</item>
+    </string-array>
+
 
 
 
@@ -92,6 +105,11 @@
         <item>Paciente</item>
 
     </string-array>
+    <string-array name="rol1">
+        <item>Rol</item>
+        <item>Doctor</item>
+        <item>Paciente</item>
+    </string-array>
 
     <string-array name="tipo_marcacion">
         <item>Selecciona</item>
@@ -116,6 +134,13 @@
         <item>Otra</item>
     </string-array>
 
+    <string-array name="tipo_solicitud">
+        <item>Selecciona</item>
+        <item>Certificado Médico</item>
+        <item>Historial clinico</item>
+    </string-array>
+
+
     <string-array name="estado_actividad">
         <item>Selecciona</item>
         <item>Pendiente</item>
@@ -136,9 +161,12 @@
         <item>Inactivo</item>
     </string-array>
 
-
-
-
+    <string-array name="estado">
+        <item>Selecciona</item>
+        <item>Pendiente</item>
+        <item>Aprobado</item>
+        <item>Rechazado</item>
+    </string-array>
 
 
 

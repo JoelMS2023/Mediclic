@@ -4,7 +4,6 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,9 +61,12 @@ public class Adaptador_usuarios extends RecyclerView.Adapter<Holder_usuarios> {
     public void onBindViewHolder(@NonNull Holder_usuarios holder, int position) {
 
         holder.card_nombre.setText(lista_usuarios.get(position).nombre);
+        holder.card_canton.setText(lista_usuarios.get(position).direccion);
         holder.card_telefono.setText(lista_usuarios.get(position).telefono);
         holder.card_estado.setText(lista_usuarios.get(position).estado);
-        holder.card_cedula.setText(lista_usuarios.get(position).cedula);
+        String ced = " C.I: " + lista_usuarios.get(position).cedula;
+        holder.card_cedula.setText(ced);
+
 
         if(lista_usuarios.get(position).estado!=null){
             switch (lista_usuarios.get(position).estado.toLowerCase()){
@@ -81,10 +83,10 @@ public class Adaptador_usuarios extends RecyclerView.Adapter<Holder_usuarios> {
         }
         holder.card_rol.setText(lista_usuarios.get(position).rol);
 
-        if(lista_usuarios.get(position).url_foto != null){
+        if(lista_usuarios.get(position).url_foto!=null && !lista_usuarios.get(position).url_foto.isEmpty()) {
             Glide.with(context).load(lista_usuarios.get(position).url_foto).centerCrop().into(holder.card_foto);
         }else{
-            holder.card_foto.setImageResource(R.drawable.perfil);
+            Glide.with(context).load(R.drawable.perfil).fitCenter().into(holder.card_foto);
         }
 
 
@@ -95,6 +97,12 @@ public class Adaptador_usuarios extends RecyclerView.Adapter<Holder_usuarios> {
                 Add_citas.card_cedula.setText(lista_usuarios.get(position).cedula);
                 Add_citas.card_nombre.setText(lista_usuarios.get(position).nombre);
                 Add_citas.UID_EMPLEADO = lista_usuarios.get(position).uid;
+                if(lista_usuarios.get(position).url_foto!=null && !lista_usuarios.get(position).url_foto.isEmpty()) {
+                    Glide.with(context).load(lista_usuarios.get(position).url_foto).centerCrop().into(holder.card_foto);
+                }else{
+                    Glide.with(context).load(R.drawable.perfil).fitCenter().into(holder.card_foto);
+                }
+
                 Dialog_Fragment_Usuarios.dialogFragment.dismiss();
 
             }else {
@@ -117,6 +125,10 @@ public class Adaptador_usuarios extends RecyclerView.Adapter<Holder_usuarios> {
 
             return true;
         });
+
+
+
+
     }
 
     @Override

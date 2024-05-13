@@ -34,6 +34,8 @@ public class Ver_tratamientos extends AppCompatActivity {
     CardView cardview_nombre;
     Button add_tratamientos;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +51,7 @@ public class Ver_tratamientos extends AppCompatActivity {
         cardview_nombre = findViewById(R.id.cardview_nombre);
 
 
+
         ctlTratamientos = new Ctl_tratamientos(Principal.databaseReference);
 
         add_tratamientos =findViewById(R.id.add_tratamientos);
@@ -56,6 +59,7 @@ public class Ver_tratamientos extends AppCompatActivity {
         add_tratamientos.setOnClickListener(View->{
             startActivity(new Intent(this, Add_Tratamientos.class));
         });
+
 
         adaptertratamientos = new Adapter_tratamientos(this);
         ctlTratamientos = new Ctl_tratamientos(Principal.databaseReference);

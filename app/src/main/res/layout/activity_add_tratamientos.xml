@@ -78,14 +78,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Ingrese la descripción del tratamiento"/>
 
-            <ImageView
-                android:id="@+id/imageViewTratamiento"
-                android:layout_width="333dp"
-                android:layout_height="150dp"
-                android:adjustViewBounds="true"
-                android:layout_gravity="center"
-                android:src="@drawable/perfil"
-                android:layout_marginTop="15dp"/>
+
 
 
 
@@ -97,6 +90,7 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="5dp"
                 android:backgroundTint="@color/proyecto_light"
+                android:layout_marginTop="10dp"
                 android:padding="15dp"
                 android:textColor="@color/white"
                 android:text="Guardar"/>

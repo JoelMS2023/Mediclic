@@ -10,10 +10,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -31,13 +33,14 @@ import java.util.Objects;
 
 public class Det_citas extends AppCompatActivity {
 
-    ArrayAdapter<CharSequence> adapterspinner_tipo, adapterspinner_estado;
-    Spinner spinner_tipo, spinner_estado;
-    EditText editTextActividad;
+    ArrayAdapter<CharSequence> adapterspinner_tipo, adapterspinner_estado,adapterspinner_tipo_cita;
+    Spinner spinner_tipo, spinner_estado,spinner_tipo_cita;
+
     Alert_dialog alertDialog;
     TextView txt_fecha, txt_hora, txt_nombre,txt_cedula;
     Progress_dialog dialog;
-    TextView card_nombre, card_cedula;
+    ImageView card_foto;
+    TextView card_nombre, card_cedula,card_info;
     String uid = "", ced_empleado = "", nom_empleado ="",uid_empleado = "";
     Button btn_edit_actividad, btn_del_actividad;
 
@@ -49,14 +52,18 @@ public class Det_citas extends AppCompatActivity {
         toolbar.setOnClickListener(view -> finish());
 
         spinner_tipo = findViewById(R.id.spinner_tipo);
+        spinner_tipo_cita = findViewById(R.id.spinner_tipo_cita);
+
         spinner_estado = findViewById(R.id.spinner_estado);
-        editTextActividad = findViewById(R.id.editTextActividad);
         card_nombre = findViewById(R.id.card_nombre);
         card_cedula = findViewById(R.id.card_cedula);
+        card_foto = findViewById(R.id.card_foto);
         txt_fecha = findViewById(R.id.txt_fecha);
         txt_hora = findViewById(R.id.txt_hora);
         txt_nombre = findViewById(R.id.txt_nombre);
         txt_cedula=findViewById(R.id.txt_cedula);
+
+
 
 
 
@@ -80,12 +87,18 @@ public class Det_citas extends AppCompatActivity {
         ced_empleado = Objects.requireNonNull(getIntent().getExtras()).getString("ced_empleado","");
         nom_empleado = Objects.requireNonNull(getIntent().getExtras()).getString("nom_empleado","");
 
+
+
         dialog = new Progress_dialog(this);
         alertDialog = new Alert_dialog(this);
 
         adapterspinner_tipo = ArrayAdapter.createFromResource(this, R.array.tipo_cita, android.R.layout.simple_spinner_item);
         adapterspinner_tipo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_tipo.setAdapter(adapterspinner_tipo);
+
+        adapterspinner_tipo_cita = ArrayAdapter.createFromResource(this, R.array.tipo, android.R.layout.simple_spinner_item);
+        adapterspinner_tipo_cita.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_tipo_cita.setAdapter(adapterspinner_tipo_cita);
 
         adapterspinner_estado = ArrayAdapter.createFromResource(this, R.array.estado_actividad, android.R.layout.simple_spinner_item);
         adapterspinner_estado.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -100,16 +113,20 @@ public class Det_citas extends AppCompatActivity {
             card_cedula.setText(ced_empleado);
             card_nombre.setText(nom_empleado);
 
-            if(Principal.rol.equals("Administrador")){
+            if(Principal.rol.equals("Administrador")|| Principal.rol.equals("Doctor")){
                 btn_del_actividad.setVisibility(View.VISIBLE);
-                spinner_tipo.setEnabled(true);
-                editTextActividad.setEnabled(true);
+                btn_edit_actividad.setVisibility(View.VISIBLE);
+                spinner_tipo.setEnabled(false);
+                spinner_tipo_cita.setEnabled(false);
+
 
 
             }else{
                 btn_del_actividad.setVisibility(View.GONE);
+                btn_edit_actividad.setVisibility(View.GONE);
                 spinner_tipo.setEnabled(false);
-                editTextActividad.setEnabled(false);
+                spinner_tipo_cita.setEnabled(false);
+                spinner_estado.setEnabled(false);
 
 
             }
@@ -134,13 +151,12 @@ public class Det_citas extends AppCompatActivity {
 
                 dialog.mostrar_mensaje("Actualizando Cita...");
 
-                if(!editTextActividad.getText().toString().isEmpty() && !spinner_tipo.getSelectedItem().toString().equals("Selecciona") && !spinner_estado.getSelectedItem().toString().equals("Selecciona")) {
+                if(!spinner_tipo_cita.getSelectedItem().toString().isEmpty()  && !spinner_estado.getSelectedItem().toString().equals("Selecciona")) {
 
                     Ob_citas obActividad = new Ob_citas();
                     obActividad.uid = uid;
                     obActividad.estado = spinner_estado.getSelectedItem().toString();
-                    obActividad.tipo = spinner_tipo.getSelectedItem().toString();
-                    obActividad.mensaje = editTextActividad.getText().toString();
+                    obActividad.tipo_cita = spinner_tipo_cita.getSelectedItem().toString();
 
                     Ver_citas.ctlActividad.update_cita(uid_empleado,obActividad);
 
@@ -172,23 +188,23 @@ public class Det_citas extends AppCompatActivity {
                             txt_fecha.setText(Objects.requireNonNull(snapshot.child("fecha_inicio").getValue()).toString());
 
                         }
-                        if(snapshot.child("nombre").exists()) {
-                            txt_nombre.setText(Objects.requireNonNull(snapshot.child("nombre").getValue()).toString());
+                        if(snapshot.child("paciente").exists()) {
+                            txt_nombre.setText(Objects.requireNonNull(snapshot.child("paciente").getValue()).toString());
 
                         }
-                        if(snapshot.child("cedula").exists()) {
-                            txt_cedula.setText(Objects.requireNonNull(snapshot.child("cedula").getValue()).toString());
+                        if(snapshot.child("ced_usuario").exists()) {
+                            txt_cedula.setText(Objects.requireNonNull(snapshot.child("ced_usuario").getValue()).toString());
                         }
 
                         if(snapshot.child("hora_inicio").exists()) {
                             txt_hora.setText(Objects.requireNonNull(snapshot.child("hora_inicio").getValue()).toString());
 
                         }
-
-                        if(snapshot.child("mensaje").exists()){
-                            editTextActividad.setText(Objects.requireNonNull(snapshot.child("mensaje").getValue()).toString());
+                        if(snapshot.child("tipo_cita").exists()){
+                            String tipo = Objects.requireNonNull(snapshot.child("tipo_cita").getValue()).toString();
+                            int spinnerPosition = adapterspinner_tipo_cita.getPosition(tipo);
+                            spinner_tipo_cita.setSelection(spinnerPosition);
                         }
-
                         if(snapshot.child("estado").exists()){
                             String estado = Objects.requireNonNull(snapshot.child("estado").getValue()).toString();
                             int spinnerPosition = adapterspinner_estado.getPosition(estado);
@@ -199,6 +215,14 @@ public class Det_citas extends AppCompatActivity {
                             int spinnerPosition = adapterspinner_tipo.getPosition(tipo);
                             spinner_tipo.setSelection(spinnerPosition);
                         }
+                        if(snapshot.child("url_foto").exists()){
+                            String URL_FOTO = Objects.requireNonNull(snapshot.child("url_foto").getValue()).toString();
+                            Glide.with(getBaseContext()).load(URL_FOTO).centerCrop().into(card_foto);
+                        }else{
+                            card_foto.setImageResource(R.drawable.perfil);
+                        }
+
+
 
                     }
 

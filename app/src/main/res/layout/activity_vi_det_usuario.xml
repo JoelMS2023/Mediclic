@@ -17,19 +17,20 @@
         app:title="Detalle de Usuario"
         app:titleTextColor="@color/white" />
 
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar" >
+        android:layout_below="@id/toolbar"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-
-
             >
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -51,27 +52,16 @@
 
             </androidx.cardview.widget.CardView>
 
-
             <ImageView
                 android:id="@+id/img_perfil"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:layout_marginBottom="10dp"
                 android:src="@drawable/perfil"
-                android:contentDescription="@string/text_image"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/text_myusername"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:textSize="15sp"
-                android:gravity="center"
-                android:id="@+id/txt_cedula"
-                android:layout_marginBottom="10sp"
-                >
-            </TextView>
+                android:scaleType="fitCenter"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/text_image">
+
+            </ImageView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -79,145 +69,111 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
                 >
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:padding="10dp">
-
-
-
+                    android:padding="10dp"
+                    >
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/text_name"
-                        android:layout_marginEnd="5dp"
+                        android:text="Cedula:"
                         android:textStyle="bold"
-
+                        android:layout_marginBottom="5dp"
                         />
 
-                    <TextView
-                        android:id="@+id/txt_nombre"
+                    <EditText
+                        android:id="@+id/editTextcedula"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:ems="10"
+                        android:maxLength="10"
+                        android:hint="Cedula de Identidad"
+                        android:inputType="number"
+                        android:textSize="15sp"/>
 
-            </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre:"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="10dp"
+                        />
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="10dp"
-                >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="10dp">
+                    <EditText
+                        android:id="@+id/editTextnombre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:ems="10"
+                        android:hint="Nombre completo"
+                        android:inputType="textPersonName|textCapCharacters"
+                        android:textSize="15sp"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/text_email"
-                        android:layout_marginEnd="5dp"
                         android:textStyle="bold"
-                        />
-
-                    <TextView
-                        android:id="@+id/txt_email"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="10dp"
-                >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
-                        android:text="Dirección:"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:id="@+id/editext_direccion"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Dirección Domicilio"
-                        android:textColor="@color/black"
-                        />
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="10dp"
-                >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Telefono:"
-                        android:layout_marginEnd="5dp"
-                        android:textStyle="bold"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="10dp"
                         />
 
                     <EditText
-                        android:id="@+id/editext_telefono"
+                        android:id="@+id/editTextTextEmailAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Celular o Whatsapp"
                         android:textColor="@color/black"
+                        android:ems="10"
+                        android:hint="Correo electronico"
+                        android:inputType="textEmailAddress"
+                        android:textSize="15sp"
+                        android:autofillHints="emailAddress" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_phone"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="10dp"
                         />
 
+                    <EditText
+                        android:id="@+id/editTextTextPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:ems="10"
+                        android:hint="Numero Telefonico"
+                        android:inputType="phone"
+                        android:textSize="15sp"
+                        android:maxLength="10"
+                        android:autofillHints="Phone" />
 
-                </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Rol:"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="10dp"
+                        />
 
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="10dp"
-                >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="10dp">
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/spinner_tipo"
+                        android:layout_marginBottom="10dp"
+                        >
+                    </Spinner>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -305,7 +261,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Cantidad de Citas:"
+                        android:text="Cantidad de Solicitudes:"
                         android:textStyle="bold"
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="10dp"
@@ -335,43 +291,38 @@
                         android:layout_marginBottom="5dp"
                         />
 
+                    <Button
+                        android:id="@+id/btn_edit_usuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
+                        android:backgroundTint="@color/success"
+                        android:textColor="@color/white"
+                        android:text="Actualizar Usuario"
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:id="@+id/btn_del_usuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
+                        android:backgroundTint="@color/danger"
+                        android:textColor="@color/white"
+                        android:text="Eliminar Usuario"
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
-            <Button
-                android:id="@+id/btn_update"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Actualizar"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/success"
-                android:textSize="20sp"
-                android:padding="15dp"
-                >
 
-            </Button>
-
-            <Button
-                android:id="@+id/btn_delete"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Eliminar"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/danger"
-                android:textSize="20sp"
-                android:padding="15dp"
-                >
-
-            </Button>
 
         </LinearLayout>
+
     </ScrollView>
 
 </RelativeLayout>

@@ -18,15 +18,10 @@ public class Vi_fotos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vi_fotos);
 
-        photoView = (PhotoView) findViewById(R.id.imagen);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        link = Objects.requireNonNull(getIntent().getExtras()).getString("url");
-        titulo = getIntent().getExtras().getString("titulo");
-
-        toolbar.setTitle(titulo);
+        PhotoView photoView = (PhotoView) findViewById(R.id.imagen);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        String link = Objects.requireNonNull(getIntent().getExtras()).getString("url");
         Glide.with(this).load(link).into(photoView);
-
         toolbar.setOnClickListener(view -> finish());
 
     }

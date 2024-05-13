@@ -26,10 +26,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 
 import com.google.firebase.database.ValueEventListener;
 import com.joelmaza.mediclic.Controllers.Alert_dialog;
+import com.joelmaza.mediclic.Controllers.Ctl_usuario;
 import com.joelmaza.mediclic.databinding.ActivityPrincipalBinding;
 
 import java.util.Objects;
@@ -39,13 +42,18 @@ public class Principal extends AppCompatActivity {
     public static String rol="";
     public static String id = "";
     public static String Nombre = "";
+    public static String Cedula = "";
+    public static String Correo = "";
     private AppBarConfiguration mAppBarConfiguration;
     public static DatabaseReference databaseReference;
+    public static StorageReference storageReference;
     Alert_dialog alertDialog;
     public static  SharedPreferences preferences;
     private boolean doubleBackToExitPressedOnce = false;
     private static final int DOUBLE_CLICK_INTERVAL = 2000;
     public static boolean vale_biometrico;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +61,15 @@ public class Principal extends AppCompatActivity {
 
         preferences=getSharedPreferences("Mediclic", MODE_PRIVATE);
         rol= preferences.getString("rol","");
+        id = preferences.getString("uid","");
 
-        if(MainActivity.mAuth.getUid() != null) {
-
+        if(!id.isEmpty()) {
             ActivityPrincipalBinding binding = ActivityPrincipalBinding.inflate(getLayoutInflater());
             setContentView(binding.getRoot());
 
             databaseReference = MainActivity.DB.getReference();
+            storageReference = FirebaseStorage.getInstance().getReference();
+
 
             setSupportActionBar(binding.appBarPrincipal.toolbar);
             DrawerLayout drawer = binding.drawerLayout;
@@ -67,7 +77,7 @@ public class Principal extends AppCompatActivity {
 
             View headerView = navigationView.getHeaderView(0);
             TextView headerTextView = headerView.findViewById(R.id.header_username);
-            TextView txt_correo = headerView.findViewById(R.id.header_correo);
+            TextView txt_cedula = headerView.findViewById(R.id.header_correo);
             ImageView headerImageView = headerView.findViewById(R.id.header_imagen);
 
 
@@ -97,7 +107,14 @@ public class Principal extends AppCompatActivity {
 
                         if (snapshot.child("nombre").exists()) {
                             Nombre = Objects.requireNonNull(snapshot.child("nombre").getValue()).toString();
-                            headerTextView.setText(Nombre);
+                        }
+                        if (snapshot.child("cedula").exists()) {
+                            Cedula = Objects.requireNonNull(snapshot.child("cedula").getValue()).toString();
+                            txt_cedula.setText(Cedula);
+                        }
+                        if (snapshot.child("email").exists()) {
+                            Correo = Objects.requireNonNull(snapshot.child("email").getValue()).toString();
+                            headerTextView.setText(Correo);
                         }
 
                         if (snapshot.child("estado").exists()) {
@@ -140,18 +157,6 @@ public class Principal extends AppCompatActivity {
             });
 
 
-            MainActivity.ctlUsuario.Obtener_usuario(databaseReference,MainActivity.mAuth.getUid(),user -> {
-
-                headerTextView.setText(user.nombre);
-                txt_correo.setText(user.email);
-
-
-            });
-
-
-            // Passing each menu ID as a set of Ids because each
-            // menu should be considered as top level destinations.
-
             if(rol.equals("Administrador"))  {
                 mAppBarConfiguration = new AppBarConfiguration.Builder(
                         R.id.nav_home, R.id.nav_profile, R.id.nav_horario,R.id.nav_user)
@@ -191,8 +196,12 @@ public class Principal extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.principal, menu);
+
         return true;
+
     }
+
+
 
     @Override
     public boolean onSupportNavigateUp() {

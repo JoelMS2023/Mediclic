@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:src="@drawable/perfil"
             android:scaleType="fitCenter"
-            android:layout_margin="5dp"
+            android:layout_margin="3dp"
             android:contentDescription="@string/text_image" />
 
         <LinearLayout
@@ -41,7 +41,7 @@
                 android:text="@string/text_myusername"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
+
                 />
 
 
@@ -51,8 +51,51 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
                 tools:ignore="UseCompoundDrawables">
+                <TextView
+                    android:id="@+id/card_cedula"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cedula"
+                    android:textSize="15sp"
 
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                tools:ignore="UseCompoundDrawables">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/baseline_location">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/card_canton"
+                    android:layout_marginStart="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ubicacion"
+                    android:textSize="15sp"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                tools:ignore="UseCompoundDrawables">
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -66,28 +109,11 @@
                     android:layout_height="wrap_content"
                     android:text="Teléfono"
                     android:textSize="15sp"
-                    android:textColor="@color/black"
                     />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="5dp"
-                tools:ignore="UseCompoundDrawables">
 
 
 
-                <TextView
-                    android:id="@+id/card_cedula"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Cedula"
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    />
 
             </LinearLayout>
             <LinearLayout
@@ -95,6 +121,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
                 tools:ignore="UseCompoundDrawables">
 
                 <ImageView
@@ -110,7 +137,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/text_rol"
                     android:textSize="15sp"
-                    android:textColor="@color/black"
+
                     />
 
 
@@ -121,7 +148,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Estado"
-                android:textColor="@color/black"
+                android:textColor="@color/success"
                 android:layout_marginTop="5dp"
                 android:textSize="15sp"
                 android:textStyle="bold"

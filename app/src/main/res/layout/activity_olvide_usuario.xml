@@ -14,7 +14,7 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:navigationIcon="@drawable/baseline_circle_left"
-        app:title="@string/home_op1"
+        app:title="Olvide mi contraseña"
         app:titleTextColor="#FFFFFF"/>
 
     <ScrollView
@@ -25,7 +25,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginTop="-60dp">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

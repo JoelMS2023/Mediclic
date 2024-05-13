@@ -3,239 +3,226 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-
-
-
-
-    <ScrollView
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:ignore="UselessParent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:gravity="center_horizontal"
+        android:id="@+id/linear"
+
         >
 
 
 
-
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="vertical"
+
+            >
+
+            <TextView
+                android:text="Bienvenido(a)"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:typeface="monospace"
+                >
+
+            </TextView>
+            <ProgressBar
+                android:id="@+id/progressBardatos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="5dp"
-                android:gravity="center">
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    app:cardUseCompatPadding="true"
-                    app:cardBackgroundColor="@color/light_purple"
-                    android:padding="0.2dp"
-                    app:cardCornerRadius="5dp">
+            </ProgressBar>
+            <TextView
+                android:id="@+id/nombre_home"
+                android:text="--"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
 
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:orientation="vertical">
-                        
-                        <TextView
-                            android:text="Bienvenido(a)"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textStyle="bold"
-                            android:textSize="20sp"
-                            android:typeface="monospace"
-                            android:textColor="@color/lavender"
-                            >
-
-                        </TextView>
-                        <ProgressBar
-                            android:id="@+id/progressBardatos"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_gravity="center">
-
-                        </ProgressBar>
-                        <TextView
-                            android:id="@+id/nombre_home"
-                            android:text="--"
-                            android:visibility="gone"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textStyle="bold"
-                            android:textSize="20sp"
-                            android:typeface="monospace"
-                            android:textColor="@color/lavender"
-                            >
+                >
 
 
-                        </TextView>
+            </TextView>
 
-                        <TextView
-                            android:id="@+id/correo_home"
-                            android:text="--"
-                            android:visibility="gone"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textStyle="bold"
-                            android:textSize="20sp"
-                            android:typeface="monospace"
-                            android:textColor="@color/lavender"
-                            >
-
-                        </TextView>
+            <TextView
+                android:id="@+id/correo_home"
+                android:text="--"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
 
 
-                    </androidx.appcompat.widget.LinearLayoutCompat>
+                >
+
+            </TextView>
 
 
-                </androidx.cardview.widget.CardView>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
 
 
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-            <!-- Primer CardView -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_marcacion"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent"
+        android:layout_below="@+id/linear"
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            >
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:layout_margin="20dp"
-                android:elevation="20dp"
-                app:cardCornerRadius="20dp"
-                android:focusable="true"
-                android:padding="2dp"
-                android:background="@drawable/shadow">
-
-                <LinearLayout
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                >
+                <!-- Primer CardView -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_marcacion"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_margin="1dp"
-                    android:clickable="false"
-                    android:background="@drawable/border"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="20dp"
+                    android:layout_margin="10dp"
+                    android:padding="2dp"
+                    android:focusable="true"
                     >
 
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/marcacion"
-                        android:scaleType="centerCrop"
-                        android:layout_marginStart="30dp"
-                        android:layout_gravity="center_vertical"
-                        android:contentDescription="@string/home_op1m"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
-                        android:layout_gravity="center_vertical"
-                        android:text="Asistencia"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-                        android:typeface="monospace"
-                        android:textColor="@color/lavender"
-                        android:clickable="false"/>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_agendamiento"
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:layout_margin="20dp"
-                android:elevation="20dp"
-                android:focusable="true"
-                android:padding="2dp"
-                android:background="@drawable/shadow"
-                app:cardCornerRadius="20dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_margin="1dp"
-                    android:clickable="false"
-                    android:background="@drawable/border">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/agendar"
-                        android:scaleType="fitCenter"
+                        android:orientation="vertical"
                         android:clickable="false"
-                        android:layout_marginStart="30dp"
-                        android:layout_gravity="center_vertical"
-                        android:contentDescription="@string/home_op1"/>
-                    <TextView
-                        android:layout_width="wrap_content"
+
+
+                        >
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/marcacion"
+                            android:contentDescription="@string/home_op1m"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/home_op7"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:clickable="false"
+                            />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_agendamiento"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="20dp"
+                    android:focusable="true"
+                    android:padding="2dp"
+                   >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
-                        android:layout_gravity="center_vertical"
-                        android:text="@string/home_op1"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-                        android:typeface="monospace"
-                        android:textColor="@color/lavender"
-                        android:clickable="false"/>
+                        android:orientation="vertical"
+                        android:clickable="false"
 
-                </LinearLayout>
+                        >
 
-                    <!-- Contenido de la tarjeta de agendamiento -->
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/agendar"
+                            android:clickable="false"
+                            android:contentDescription="@string/home_op1"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/home_op1"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:clickable="false"/>
+
+                    </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+
+                >
                 <!-- Tarjeta de horario -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_horario"
                     android:layout_width="match_parent"
-                    android:layout_height="75dp"
-                    android:layout_margin="20dp"
-                    android:elevation="20dp"
-                    android:focusable="true"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     app:cardCornerRadius="20dp"
+                    android:layout_margin="10dp"
+                    android:focusable="true"
                     android:padding="2dp"
-                    android:background="@drawable/shadow">
+                    >
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_margin="1dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
                         android:clickable="false"
-                        android:background="@drawable/border">
-
-
+                        >
 
                         <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:scaleType="fitCenter"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="center"
                             android:clickable="false"
-                            android:layout_marginStart="30dp"
-                            android:layout_gravity="center_vertical"
                             android:contentDescription="@string/home_op1"
                             android:src="@drawable/horario"/>
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="30dp"
-                            android:layout_gravity="center_vertical"
+                            android:gravity="center"
                             android:text="@string/home_op2"
                             android:textStyle="bold"
                             android:textSize="20sp"
-                            android:typeface="monospace"
-                            android:textColor="@color/lavender"
                             android:clickable="false"
                             />
 
@@ -246,90 +233,81 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_tratamientos"
                     android:layout_width="match_parent"
-                    android:layout_height="75dp"
-                    android:layout_margin="20dp"
-                    android:elevation="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
                     app:cardCornerRadius="20dp"
                     android:focusable="true"
                     android:padding="2dp"
-                    android:background="@drawable/shadow">
+                    >
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_margin="1dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
                         android:clickable="false"
-                        android:background="@drawable/border">
-
-
+                        >
 
                         <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginStart="30dp"
-                            android:layout_gravity="center_vertical"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="center"
                             android:src="@drawable/tratamiento"
-                            android:scaleType="fitCenter"
                             android:clickable="false"
                             android:contentDescription="@string/home_op3"/>
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="30dp"
-                            android:layout_gravity="center_vertical"
+                            android:gravity="center"
                             android:text="@string/home_op3"
                             android:textStyle="bold"
                             android:textSize="20sp"
-                            android:typeface="monospace"
-                            android:textColor="@color/lavender"
                             android:clickable="false"/>
 
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
-                <!-- Tarjeta 4 -->
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                >
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_doctores"
                     android:layout_width="match_parent"
-                    android:layout_height="75dp"
-                    android:layout_margin="20dp"
-                    android:elevation="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
                     app:cardCornerRadius="20dp"
                     android:focusable="true"
                     android:padding="2dp"
-                    android:background="@drawable/shadow">
+                    >
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_margin="1dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
                         android:clickable="false"
-                        android:background="@drawable/border">
-
-
+                        >
 
                         <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginStart="30dp"
-                            android:layout_gravity="center_vertical"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
                             android:src="@drawable/doctor"
-                            android:scaleType="fitCenter"
+                            android:layout_gravity="center"
                             android:clickable="false"
                             android:contentDescription="@string/home_op4"/>
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="30dp"
-                            android:layout_gravity="center_vertical"
+                            android:gravity="center"
                             android:text="@string/home_op4"
                             android:textStyle="bold"
                             android:textSize="20sp"
-                            android:typeface="monospace"
-                            android:textColor="@color/lavender"
                             android:clickable="false"/>
 
                     </LinearLayout>
@@ -339,99 +317,190 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_gps"
                     android:layout_width="match_parent"
-                    android:layout_height="75dp"
-                    android:layout_margin="20dp"
-                    android:elevation="20dp"
-                    android:focusable="true"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
                     app:cardCornerRadius="20dp"
+                    android:focusable="true"
                     android:padding="2dp"
-                    android:background="@drawable/shadow">
+                    >
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_margin="1dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
                         android:clickable="false"
-                        android:background="@drawable/border">
-
-
+                        >
 
                         <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginStart="30dp"
-                            android:layout_gravity="center_vertical"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
                             android:src="@drawable/location_map"
-                            android:scaleType="fitCenter"
                             android:clickable="false"
+                            android:layout_gravity="center"
                             android:contentDescription="@string/home_op5"/>
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="30dp"
-                            android:layout_gravity="center_vertical"
                             android:text="@string/home_op5"
+                            android:gravity="center"
                             android:textStyle="bold"
                             android:textSize="20sp"
-                            android:typeface="monospace"
-                            android:textColor="@color/lavender"
-                            android:clickable="false"/>
+                            android:clickable="false"
+                            />
 
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
-                <!-- Tarjeta 6 -->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_reportes"
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                >
+
+
+
+            <!-- Tarjeta 6 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_reportes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="20dp"
+                android:focusable="true"
+                android:padding="2dp"
+                >
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="75dp"
-                    android:layout_margin="20dp"
-                    android:elevation="20dp"
-                    android:focusable="true"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5dp"
+                    android:clickable="false"
+                    >
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/reporte"
+                        android:layout_gravity="center"
+                        android:clickable="false"
+                        android:contentDescription="@string/home_op6"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home_op6"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:clickable="false"
+                        android:gravity="center"
+                        />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_solicitudes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
                     app:cardCornerRadius="20dp"
+                    android:focusable="true"
                     android:padding="2dp"
-                    android:background="@drawable/shadow">
+                    >
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_margin="1dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="5dp"
                         android:clickable="false"
-                        android:background="@drawable/border">
+                        >
+
 
 
 
                         <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginStart="30dp"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/reporte"
-                            android:scaleType="fitCenter"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/solicitud"
+                            android:layout_gravity="center"
                             android:clickable="false"
-                            android:contentDescription="@string/home_op6"/>
+                            android:contentDescription="@string/home_op4">
 
+                        </ImageView>
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="30dp"
-                            android:layout_gravity="center_vertical"
-                            android:text="@string/home_op6"
+                            android:text="Solicitudes"
+                            android:gravity="center"
                             android:textStyle="bold"
                             android:textSize="20sp"
-                            android:typeface="monospace"
-                            android:textColor="@color/lavender"
-                            android:clickable="false"/>
+                            android:clickable="false"
+                            >
+
+                        </TextView>
 
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
-
         </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                >
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_tienda"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="20dp"
+                    android:focusable="true"
+                    android:padding="2dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="5dp"
+                        android:clickable="false"
+                        >
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="120dp"
+                            android:src="@drawable/tienda"
+                            android:scaleType="fitCenter"
+                            android:clickable="false"
+                            android:contentDescription="@string/home_op5">
+
+                        </ImageView>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
 
     </ScrollView>
 

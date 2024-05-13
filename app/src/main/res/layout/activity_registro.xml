@@ -17,16 +17,14 @@
         app:title="@string/text_createaccount"
         app:titleTextColor="#FFFFFF"/>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/toolbar">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
-            android:orientation="vertical">
+            android:layout_marginTop="80dp"
+            android:orientation="vertical"
+            android:layout_below="@+id/toolbar">
 
             <TextView
                 android:id="@+id/textView"
@@ -37,6 +35,27 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:hintEnabled="false">
+
+                <EditText
+                    android:id="@+id/editTextcedula"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:padding="20dp"
+                    android:drawablePadding="10dp"
+                    android:hint="Cedula"
+                    android:drawableStart="@drawable/icono_name"
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
 
@@ -57,7 +76,7 @@
                     android:drawablePadding="10dp"
                     android:hint="@string/text_fullname"
                     android:drawableStart="@drawable/icono_name"
-                    android:inputType="textPersonName|textCapWords"
+                    android:inputType="textPersonName|textCapCharacters"
                     android:textColor="@color/black"
                     />
 
@@ -136,14 +155,15 @@
 
                 <Button
                     android:id="@+id/btn_registrarse"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="15dp"
-                    android:padding="15dp"
                     android:text="@string/title_resgister"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/success"/>
 
                 <TextView
                     android:id="@+id/TengounacuentaTXT"
@@ -164,6 +184,6 @@
 
 
         </LinearLayout>
-    </ScrollView>
+
 
 </RelativeLayout>

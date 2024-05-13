@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -34,6 +35,8 @@ import com.joelmaza.mediclic.Marcacion.Ver_marcaciones;
 import com.joelmaza.mediclic.Principal;
 import com.joelmaza.mediclic.R;
 import com.joelmaza.mediclic.Reportes.Ver_reportes;
+import com.joelmaza.mediclic.Solicitudes.Ver_solicitud;
+import com.joelmaza.mediclic.Tienda.Ver_tienda;
 import com.joelmaza.mediclic.Tratamientos.Ver_tratamientos;
 import com.joelmaza.mediclic.Ubicacion;
 
@@ -45,7 +48,7 @@ import java.util.TimerTask;
 
 public class Fragment_Home extends Fragment {
 
-    CardView card_horario, card_marcacion, card_agendamiento, card_doctores, card_reportes, card_gps, card_tratamientos;
+    CardView card_horario, card_marcacion, card_agendamiento, card_doctores, card_reportes, card_gps, card_tratamientos,card_solicitudes,card_tienda;
     TextView correo_home,nombre_home;
     ProgressBar progressBardatos;
     DatabaseReference usuarios;
@@ -64,22 +67,26 @@ public class Fragment_Home extends Fragment {
         card_gps = (CardView) vista.findViewById(R.id.card_gps);
         card_reportes = (CardView) vista.findViewById(R.id.card_reportes);
         card_tratamientos = (CardView) vista.findViewById(R.id.card_tratamientos);
+        card_solicitudes= (CardView) vista.findViewById(R.id.card_solicitudes);
+        card_tienda=(CardView) vista.findViewById(R.id.card_tienda);
         correo_home= vista.findViewById(R.id.correo_home);
         nombre_home= vista.findViewById(R.id.nombre_home);
         progressBardatos=vista.findViewById(R.id.progressBardatos);
         usuarios= FirebaseDatabase.getInstance().getReference("usuarios");
 
 
+
+
+
         firebaseAuth =FirebaseAuth.getInstance();
         user=firebaseAuth.getCurrentUser();
 
 
-
-
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle("Citas médicas");
+            actionBar.setTitle("Inicio");
         }
+
 
 
 
@@ -95,12 +102,21 @@ public class Fragment_Home extends Fragment {
 
         });
         if (!Principal.rol.isEmpty()) {
-            if (Principal.rol.equals("Administrador") || Principal.rol.equals("Doctor")) {
-                card_horario.setVisibility(View.VISIBLE);
+            if (Principal.rol.equals("Administrador")) {
+                card_tienda.setVisibility(View.VISIBLE);
             } else {
-                card_horario.setVisibility(View.GONE);
+                card_tienda.setVisibility(View.GONE);
             }
         }
+        card_marcacion.setOnClickListener(view -> {
+            startActivity(new Intent(vista.getContext(), Ver_marcaciones.class));
+
+        });
+        card_tienda.setOnClickListener(view -> {
+            startActivity(new Intent(vista.getContext(), Ver_tienda.class));
+        });
+
+
         card_horario.setOnClickListener(view -> {
             startActivity(new Intent(vista.getContext(), Ver_horarios.class));
 
@@ -119,6 +135,13 @@ public class Fragment_Home extends Fragment {
         card_agendamiento.setOnClickListener(view -> {
             startActivity(new Intent(vista.getContext(), Ver_citas.class));
         });
+        if (!Principal.rol.isEmpty()) {
+            if (Principal.rol.equals("Administrador")) {
+                card_reportes.setVisibility(View.VISIBLE);
+            } else {
+                card_reportes.setVisibility(View.GONE);
+            }
+        }
         card_reportes.setOnClickListener(view -> {
             startActivity(new Intent(vista.getContext(), Ver_reportes.class));
         });
@@ -143,6 +166,11 @@ public class Fragment_Home extends Fragment {
         }
         card_gps.setOnClickListener(view -> {
             startActivity(new Intent(vista.getContext(), Ubicacion.class));
+        });
+
+        card_solicitudes.setOnClickListener(view -> {
+            startActivity(new Intent(vista.getContext(), Ver_solicitud.class));
+
         });
 
 

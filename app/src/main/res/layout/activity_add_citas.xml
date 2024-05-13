@@ -104,7 +104,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Escoger Doctor"
-                            android:backgroundTint="@color/proyecto_night"
+                            android:backgroundTint="@color/success"
                             android:textColor="@color/white"
                             >
                         </Button>
@@ -152,22 +152,20 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Motivo:"
+                        android:text="Tipo de cita:"
                         android:textStyle="bold"
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="10dp"
                         />
 
-                    <EditText
-                        android:id="@+id/editTextActividad"
+                    <Spinner
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:ems="10"
-                        android:hint="Ingrese el detalle de la cita"
-                        android:inputType="textMultiLine"
-                        android:textSize="15sp"
-                        tools:ignore="TextFields" />
+                        android:id="@+id/spinner_tipo_cita"
+                        android:layout_marginBottom="10dp"
+                        >
+
+                    </Spinner>
 
 
                     <TextView
@@ -203,258 +201,35 @@
                         android:timePickerMode="spinner"
                         android:id="@+id/hora_inicio"
                         android:layout_marginBottom="10dp"
+
                         >
 
                     </TimePicker>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <!-- Mañana (8:00 - 12:00) -->
-                        <TextView
+                        android:orientation="horizontal"
+                        android:gravity="center_horizontal">
+                        <Button
+                            android:id="@+id/btn_retroceder_hora"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Mañana"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginStart="16dp"/>
+                            android:backgroundTint="@color/white"
+                            android:drawableLeft="@drawable/flecha"
+                            android:layout_marginStart="16dp" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <!-- CardViews para intervalos de tiempo (8:00 - 12:00) -->
-                            <!-- Desde las 8:00 hasta las 11:30 -->
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
-                                app:cardCornerRadius="8dp"
-                                android:id="@+id/card1">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="8:00 - 8:30"
-                                    android:textSize="16sp"
-                                    android:padding="8dp"/>
-                            </androidx.cardview.widget.CardView>
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
-                                app:cardCornerRadius="8dp"
-                                android:id="@+id/card2">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="8:30 - 9:00"
-                                    android:textSize="16sp"
-                                    android:padding="8dp"/>
-                            </androidx.cardview.widget.CardView>
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
-                                app:cardCornerRadius="8dp"
-                                android:id="@+id/card3">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="9:00 - 9:30"
-                                    android:textSize="16sp"
-                                    android:padding="8dp"/>
-                            </androidx.cardview.widget.CardView>
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
-                                app:cardCornerRadius="8dp"
-                                android:id="@+id/card4">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="9:30 - 10:00"
-                                    android:textSize="16sp"
-                                    android:padding="8dp"/>
-                            </androidx.cardview.widget.CardView>
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
-                                app:cardCornerRadius="8dp"
-                                android:id="@+id/card5">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="10:00 - 10:30"
-                                    android:textSize="16sp"
-                                    android:padding="8dp"/>
-                            </androidx.cardview.widget.CardView>
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
-                                app:cardCornerRadius="8dp"
-                                android:id="@+id/card6">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="10:30 - 11:00"
-                                    android:textSize="16sp"
-                                    android:padding="8dp"/>
-                            </androidx.cardview.widget.CardView>
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
-                                app:cardCornerRadius="8dp"
-                                android:id="@+id/card7">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="11:00 - 11:30"
-                                    android:textSize="16sp"
-                                    android:padding="8dp"/>
-                            </androidx.cardview.widget.CardView>
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
-                                app:cardCornerRadius="8dp"
-                                android:id="@+id/card8">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="11:30 - 12:00"
-                                    android:textSize="16sp"
-                                    android:padding="8dp"/>
-                            </androidx.cardview.widget.CardView>
-
-                        </LinearLayout>
-
-                        <!-- Tarde (14:00 - 17:00) -->
-                        <TextView
+                        <!-- Botón para adelantar la hora -->
+                        <Button
+                            android:id="@+id/btn_adelantar_hora"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Tarde"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginStart="16dp"/>
+                            android:backgroundTint="@color/white"
+                            android:drawableLeft="@drawable/flechas"
+                            />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                        <!-- Botón para retroceder la hora -->
 
-                            <!-- CardViews para intervalos de tiempo (14:00 - 17:00) -->
-                            <!-- Desde las 14:00 hasta las 16:30 -->
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
-                                app:cardCornerRadius="8dp"
-                                android:id="@+id/card9">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="14:00 - 14:30"
-                                    android:textSize="16sp"
-                                    android:padding="8dp"/>
-                            </androidx.cardview.widget.CardView>
-
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
-                                app:cardCornerRadius="8dp"
-                                android:id="@+id/card10">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="14:30 - 15:00"
-                                    android:textSize="16sp"
-                                    android:padding="8dp"/>
-                            </androidx.cardview.widget.CardView>
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
-                                app:cardCornerRadius="8dp"
-                                android:id="@+id/card11">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="15:00 - 15:30"
-                                    android:textSize="16sp"
-                                    android:padding="8dp"/>
-                            </androidx.cardview.widget.CardView>
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
-                                app:cardCornerRadius="8dp"
-                                android:id="@+id/card12">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="15:30 - 16:00"
-                                    android:textSize="16sp"
-                                    android:padding="8dp"/>
-                            </androidx.cardview.widget.CardView>
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
-                                app:cardCornerRadius="8dp"
-                                android:id="@+id/card13">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="16:00 - 16:30"
-                                    android:textSize="16sp"
-                                    android:padding="8dp"/>
-                            </androidx.cardview.widget.CardView>
-                            <androidx.cardview.widget.CardView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
-                                app:cardCornerRadius="8dp"
-                                android:id="@+id/card14">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="16:30 - 17:00"
-                                    android:textSize="16sp"
-                                    android:padding="8dp"/>
-                            </androidx.cardview.widget.CardView>
-
-
-                        </LinearLayout>
                     </LinearLayout>
-
-
-
-
-
 
 
                 </LinearLayout>

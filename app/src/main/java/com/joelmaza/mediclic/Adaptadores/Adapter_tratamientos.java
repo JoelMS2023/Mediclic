@@ -14,6 +14,7 @@ import com.joelmaza.mediclic.Holders.Holder_tratamientos;
 import com.joelmaza.mediclic.Objetos.Ob_tratamientos;
 import com.joelmaza.mediclic.Principal;
 import com.joelmaza.mediclic.R;
+import com.joelmaza.mediclic.Solicitudes.Det_solicitud;
 import com.joelmaza.mediclic.Tratamientos.Det_tratamientos;
 
 import java.util.ArrayList;
@@ -46,33 +47,12 @@ public class Adapter_tratamientos extends RecyclerView.Adapter<Holder_tratamient
     @Override
     public void onBindViewHolder(@NonNull Holder_tratamientos holder, int position) {
 
-
-        holder.card_estado.setText(list_tratamientos.get(position).estado);
-
-        if(list_tratamientos.get(position).estado!=null){
-            switch (list_tratamientos.get(position).estado.toLowerCase()){
-                case "pendiente":
-                    holder.card_estado.setTextColor(ContextCompat.getColor(context,R.color.warning));
-                    break;
-                case "finalizado":
-                    holder.card_estado.setTextColor(ContextCompat.getColor(context,R.color.success));
-                    break;
-                default:
-                    holder.card_estado.setTextColor(ContextCompat.getColor(context,R.color.proyecto_night));
-                    break;
-            }
-        }
+        holder.card_tipo.setText(list_tratamientos.get(position).tipo);
 
 
-        holder.cardView.setOnClickListener(view -> {
 
-            Intent i = new Intent();
-            i.setClass(context, Det_tratamientos.class);
-            i.putExtra("uid",list_tratamientos.get(position).uid);
 
-            context.startActivity(i);
 
-        });
 
     }
 

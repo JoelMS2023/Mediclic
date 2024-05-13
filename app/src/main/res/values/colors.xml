@@ -3,9 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00FFFFFF</color>
-    <color name="proyecto_light">#8692f7</color>
-    <color name="proyecto_night">#212D6E</color>
-    <color name="proyecto_dark">#303D85</color>
+    <color name="proyecto_light">#3F51B5</color>
+    <color name="proyecto_night">#005b4f</color>
+    <color name="proyecto_dark">#3F51B5</color>
     <color name="success">#4CAF50</color>
     <color name="danger">#F44336</color>
     <color name="warning">#FF9800</color>

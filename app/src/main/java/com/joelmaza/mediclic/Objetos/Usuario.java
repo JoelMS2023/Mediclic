@@ -18,20 +18,9 @@ public class Usuario {
     public String estado;
 
 
-    public Usuario() {
-    }
 
-    public Usuario(String uid, String nombre, String direccion, String telefono, String email, String url_foto, String rol, String cedula, String clave,String estado) {
-        this.uid = uid;
-        this.nombre=nombre;
-        this.direccion=direccion;
-        this.email=email;
-        this.telefono=telefono;
-        this.url_foto=url_foto;
-        this.rol=rol;
-        this.cedula=cedula;
-        this.clave=clave;
-        this.estado=estado;
-    }
+    public Usuario() {}
 }
+
+
 

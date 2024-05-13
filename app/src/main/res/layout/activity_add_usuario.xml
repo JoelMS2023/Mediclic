@@ -101,7 +101,7 @@
                         android:textColor="@color/black"
                         android:ems="10"
                         android:hint="Nombre completo"
-                        android:inputType="textPersonName"
+                        android:inputType="textPersonName|textCapCharacters"
                         android:textSize="15sp"/>
 
                     <TextView

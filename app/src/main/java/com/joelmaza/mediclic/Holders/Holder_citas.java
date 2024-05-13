@@ -22,5 +22,6 @@ public class Holder_citas extends RecyclerView.ViewHolder {
         card_empleado = itemView.findViewById(R.id.card_empleado);
         card_paciente = itemView.findViewById(R.id.card_paciente);
         cardView =  itemView.findViewById(R.id.cardview_citas);
+
     }
 }

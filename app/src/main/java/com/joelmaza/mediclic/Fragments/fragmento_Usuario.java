@@ -1,5 +1,6 @@
 package com.joelmaza.mediclic.Fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,9 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +40,7 @@ import com.joelmaza.mediclic.Usuarios.Add_usuario;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 
 
@@ -49,7 +54,7 @@ public class fragmento_Usuario extends Fragment {
     Button btn_add_usuario;
     public static Ctl_usuario ctlUsuarios;
     EditText txt_buscador;
-
+    Spinner spinner_rol;
 
 
     @Nullable
@@ -65,6 +70,8 @@ public class fragmento_Usuario extends Fragment {
         TextView txt_existe = vista.findViewById(R.id.txt_existe);
         TextView txt_contador = vista.findViewById(R.id.txt_contador);
         txt_buscador = vista.findViewById(R.id.txt_buscador);
+        spinner_rol = vista.findViewById(R.id.spinner_rol);
+
 
 
         //metodo para ver usuario.
@@ -72,51 +79,57 @@ public class fragmento_Usuario extends Fragment {
         lista_usuarios = new  Adaptador_usuarios(vista.getContext());
         ctlUsuarios = new Ctl_usuario();
 
-
-        btn_add_usuario = vista.findViewById(R.id.btn_add_usuario);
-        if (Principal.rol.equals("Administrador")){
-            btn_add_usuario.setVisibility(View.VISIBLE);
-
-        }else{
-            btn_add_usuario.setVisibility(View.GONE);
-        }
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerview_usuarios.setLayoutManager(linearLayoutManager);
         recyclerview_usuarios.setAdapter(lista_usuarios);
 
-        MainActivity.ctlUsuario.verUsuarios(dbRef,"",lista_usuarios, Principal.id,txt_existe,progressBar, txt_contador);
+        ArrayAdapter<CharSequence> adapterspinner_rol = ArrayAdapter.createFromResource(vista.getContext(), R.array.rol1, android.R.layout.simple_spinner_item);
+        adapterspinner_rol.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_rol.setAdapter(adapterspinner_rol);
+
+        if(!Principal.id.isEmpty()) {
+            MainActivity.ctlUsuario.VerUsuarios(dbRef,lista_usuarios, Principal.id , "Rol","", txt_existe, progressBar, txt_contador);
 
 
-        btn_add_usuario.setOnClickListener(v -> {
+            spinner_rol.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    MainActivity.ctlUsuario.VerUsuarios(dbRef,lista_usuarios, Principal.id ,spinner_rol.getSelectedItem().toString(),txt_buscador.getText().toString(), txt_existe, progressBar, txt_contador);
 
-            startActivity(new Intent(vista.getContext(), Add_usuario.class));
-        });
-
-        txt_buscador.setOnEditorActionListener((v, actionId, event) -> {
-
-
-
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-
-                if(!txt_buscador.getText().toString().trim().isEmpty()) {
-
-
-                    MainActivity.ctlUsuario.BuscarUsuarios(dbRef,txt_buscador.getText().toString().trim(),lista_usuarios, txt_existe, progressBar, txt_contador);
-
-
-                }else{
-
-                    Toast.makeText(getContext(),"Ingresa la cédula o nombre a buscar",Toast.LENGTH_SHORT).show();
                 }
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {}
 
-                return true;
+            });
+            txt_buscador.setOnEditorActionListener((v, actionId, event) -> {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    ocultar_teclado();
+                    MainActivity.ctlUsuario.VerUsuarios(dbRef,lista_usuarios, Principal.id ,spinner_rol.getSelectedItem().toString(),txt_buscador.getText().toString(), txt_existe, progressBar, txt_contador);
+                    return true;
+                }
+                return false;
+            });
+            btn_add_usuario = vista.findViewById(R.id.btn_add_usuario);
+            if (Principal.rol.equals("Administrador")){
+                btn_add_usuario.setVisibility(View.VISIBLE);
 
+            }else{
+                btn_add_usuario.setVisibility(View.GONE);
             }
 
-            return false;
+            btn_add_usuario.setOnClickListener(v -> {
 
-        });
+                startActivity(new Intent(vista.getContext(), Add_usuario.class));
+            });
+        }else{
+        Toast.makeText(vista.getContext(), "Ocurrió un error al cargar el id",Toast.LENGTH_LONG).show();
+    }
+
+
+
+
+
+
 
 
 
@@ -124,5 +137,11 @@ public class fragmento_Usuario extends Fragment {
 
 
     }
+    public void ocultar_teclado(){
+        InputMethodManager inputMethodManager = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(Objects.requireNonNull(requireActivity().getCurrentFocus()).getWindowToken(), 0);
+
+    }
+
 
 }

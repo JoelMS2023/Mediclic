@@ -27,14 +27,19 @@
     <string name="btn_add"> Add</string>
     <string name="title_profile"> Profile</string>
     <string name="text_forgot_password">Forgot your Password?</string>
+    <string name="text_empezar">Get started</string>
+    <string name="text_bienvenida">«Estás en buenas manos. Nuestros especialistas están aquí para escucharte, guiarte y capacitarte mientras te familiarizas con nuestros productos y servicios.»
+</string>
 
     //Pacientes
-    <string name="home_op1">Schedule</string>
+    <string name="home_op1">Appointment</string>
     <string name="home_op2">Schedule</string>
     <string name="home_op3">Services</string>
     <string name="home_op4">Doctors</string>
     <string name="home_op5">Location</string>
-    <string name="home_op6">Medical history</string>
+    <string name="home_op6">Reports</string>
+    <string name="home_op7">Assistance</string>
+
 
     //Medicos
     <string name="home_op1m">Assistance</string>
@@ -76,6 +81,11 @@
         <item>Doctor</item>
         <item>Patient</item>
     </string-array>
+    <string-array name="rol1">
+        <item>Rol</item>
+        <item>Doctor</item>
+        <item>Patient</item>
+    </string-array>
 
     <string-array name="tipo_marcacion">
         <item>Choose</item>
@@ -106,6 +116,12 @@
         <item>Under Review</item>
         <item>Completed</item>
     </string-array>
+    <string-array name="tipo">
+        <item>Select</item>
+        <item>In person</item>
+        <item>Online</item>
+    </string-array>
+
 
     <string name="texto_subrayado"><u>Our networks</u></string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -122,11 +138,23 @@
         <item>Available</item>
         <item>Not available</item>
     </string-array>
+    <string-array name="tipo_solicitud">
+        <item>Select</item>
+        <item>Medical Certificate</item>
+        <item>Clinical history</item>
+    </string-array>
 
     <string-array name="estado_user">
         <item>Selecciona</item>
         <item>Available</item>
         <item>Not available</item>
+    </string-array>
+
+    <string-array name="estado">
+        <item>Select</item>
+        <item>Pending</item>
+        <item>Approved</item>
+        <item>Rejected</item>
     </string-array>
 
 

@@ -68,7 +68,7 @@
                         android:id="@+id/card_foto"
                         android:layout_width="125dp"
                         android:layout_height="match_parent"
-                        android:src="@drawable/perfil"
+                        android:src="@drawable/doctor"
                         android:scaleType="fitCenter"
                         android:layout_margin="5dp"
                         android:contentDescription="@string/text_image" />
@@ -83,7 +83,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Doctor"
+                            android:text="Dra."
                             android:textSize="15sp"
                             android:textStyle="bold"
                             />
@@ -106,6 +106,7 @@
                             android:layout_marginTop="5dp"
                             android:textSize="15sp"
                             />
+
 
                     </LinearLayout>
 
@@ -131,6 +132,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="Paciente:"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="5dp"
+                        />
+                    <TextView
+                        android:text=""
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:id="@+id/txt_cedula"
 
@@ -139,66 +148,10 @@
 
                     <TextView
                         android:id="@+id/txt_nombre"
+                        android:text=""
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"/>
-
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Tipo:"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="5dp"
-                        />
-
-                    <Spinner
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spinner_tipo"
-                        android:layout_marginBottom="10dp"
-                        >
-
-                    </Spinner>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Detalle:"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp"
-                        />
-
-                    <EditText
-                        android:id="@+id/editTextActividad"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:ems="10"
-                        android:hint="Ingrese el detalle de la actividad"
-                        android:inputType="textMultiLine"
-                        android:textSize="15sp"
-                        tools:ignore="TextFields" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Estado:"
-                        android:textStyle="bold"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        />
-
-                    <Spinner
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spinner_estado"
-                        android:layout_marginBottom="10dp"
-                        >
-
-                    </Spinner>
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -235,36 +188,94 @@
                         />
 
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tipo:"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="5dp"
+                        />
+
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/spinner_tipo"
+                        android:layout_marginBottom="10dp"
+                        >
+
+                    </Spinner>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tipo de cita:"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="10dp"
+                        />
+
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/spinner_tipo_cita"
+                        android:layout_marginBottom="10dp"
+                        >
+
+                    </Spinner>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Estado:"
+                        android:textStyle="bold"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        />
+
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/spinner_estado"
+                        android:layout_marginBottom="10dp"
+                        >
+
+                    </Spinner>
+
+
+
+                    <Button
+                        android:id="@+id/btn_edit_actividad"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="10dp"
+                        android:backgroundTint="@color/success"
+                        android:padding="15dp"
+                        android:textColor="@color/white"
+                        android:text="Actualizar Cita"
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:id="@+id/btn_del_actividad"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="5dp"
+                        android:backgroundTint="@color/danger"
+                        android:padding="15dp"
+                        android:textColor="@color/white"
+                        android:text="Eliminar Cita"
+                        android:textSize="20sp" />
+
+
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
-            <Button
-                android:id="@+id/btn_edit_actividad"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/success"
-                android:padding="15dp"
-                android:textColor="@color/white"
-                android:text="Actualizar Cita"
-                android:textSize="20sp" />
 
-            <Button
-                android:id="@+id/btn_del_actividad"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="5dp"
-                android:backgroundTint="@color/danger"
-                android:padding="15dp"
-                android:textColor="@color/white"
-                android:text="Eliminar Actividad"
-                android:textSize="20sp" />
 
         </LinearLayout>
 
